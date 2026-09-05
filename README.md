@@ -5,7 +5,7 @@ Automated proxy scraper and validator by **Gametturxux**. The pipeline collects 
 publishes only the proxies that actually route traffic. Everything runs on
 GitHub Actions, no server required.
 
-[![Proxy Scraper Auto Update](https://github.com/Gametturxux/Proxy-List-Gamt/actions/workflows/update-proxies.yml/badge.svg)](https://github.com/Gametturxux/Proxy-List-Gamt/actions/workflows/update-proxies.yml)
+[![Proxy Scraper Auto Update](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/update-proxies.yml/badge.svg)](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/update-proxies.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Schedule](https://img.shields.io/badge/refresh-every%203%20hours-orange)
