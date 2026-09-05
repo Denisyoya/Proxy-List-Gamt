@@ -1,0 +1,17 @@
+{
+ "generated_at": "2026-09-05 06:00:07 UTC",
+ "sources": 2795,
+ "sources_responding": 655,
+ "candidates": 182531,
+ "validation_rounds": 3,
+ "live": 508,
+ "http": 399,
+ "socks4": 25,
+ "socks5": 84,
+ "https_capable": 28,
+ "stable": 200,
+ "median_latency_ms": 2623,
+ "fastest_latency_ms": 324,
+ "under_1s": 104,
+ "runtime_seconds": 576
+}
