@@ -16,23 +16,23 @@ GitHub Actions, no server required.
 
 <!-- stats:start -->
 
-Last run: `2026-09-07 04:28:08 UTC`
+Last run: `2026-09-07 12:28:59 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **2,035** |
-| HTTP / HTTPS | 1,398 |
-| SOCKS4 | 194 |
-| SOCKS5 | 443 |
-| CONNECT (HTTPS) capable | 485 |
-| Re-confirmed (stable) | 730 |
-| Median latency | 1527 ms |
-| Fastest | 7 ms |
-| Under 1 second | 837 |
-| Sources queried | 2,795 (663 responded) |
-| Candidates scraped | 180,469 |
+| Live proxies | **1,605** |
+| HTTP / HTTPS | 943 |
+| SOCKS4 | 190 |
+| SOCKS5 | 472 |
+| CONNECT (HTTPS) capable | 287 |
+| Re-confirmed (stable) | 729 |
+| Median latency | 1224 ms |
+| Fastest | 6 ms |
+| Under 1 second | 737 |
+| Sources queried | 2,795 (647 responded) |
+| Candidates scraped | 180,466 |
 | Validation rounds | 3 |
-| Runtime | 887s |
+| Runtime | 903s |
 
 <!-- stats:end -->
 
@@ -214,6 +214,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-09-07 04:28:08 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-09-07 12:28:59 UTC.
 
 <!-- footer:end -->
