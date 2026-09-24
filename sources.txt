@@ -2703,6 +2703,10 @@ mixed|https://www.socks-proxy.net/
 mixed|https://proxy-daily.com/
 mixed|https://api.proxy-list.download/v1/get?type=http
 mixed|https://proxylist.geonode.com/api/proxy-list?limit=500&page=1
+mixed|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-09-24/http.txt
+socks5|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-09-24/socks5.txt
+mixed|https://raw.githubusercontent.com/jetkai/proxy-list/main/archive/2026-09-24/proxies.txt
+mixed|https://raw.githubusercontent.com/monosans/proxy-list/main/archive/2026-09-24/http.txt
 mixed|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-09-23/http.txt
 socks5|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-09-23/socks5.txt
 mixed|https://raw.githubusercontent.com/jetkai/proxy-list/main/archive/2026-09-23/proxies.txt
@@ -2789,7 +2793,3 @@ mixed|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-08
 socks5|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-08-26/socks5.txt
 mixed|https://raw.githubusercontent.com/jetkai/proxy-list/main/archive/2026-08-26/proxies.txt
 mixed|https://raw.githubusercontent.com/monosans/proxy-list/main/archive/2026-08-26/http.txt
-mixed|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-08-25/http.txt
-socks5|https://raw.githubusercontent.com/zloi-user/hideip.me/main/archive/2026-08-25/socks5.txt
-mixed|https://raw.githubusercontent.com/jetkai/proxy-list/main/archive/2026-08-25/proxies.txt
-mixed|https://raw.githubusercontent.com/monosans/proxy-list/main/archive/2026-08-25/http.txt
