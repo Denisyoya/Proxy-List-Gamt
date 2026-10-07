@@ -1,0 +1,217 @@
+# Curated websites, APIs and pages that publish free proxy lists (many languages).
+#
+# format: <hint> <url> [pages=<first>..<last>] [step=<n>]
+#   hint    http | socks4 | socks5 | socks | mixed   (protocol of entries that do not say)
+#   pages   the URL contains {page} (1,2,3...) and/or {offset} ((page-1)*step); pages are
+#           fetched in order and the walk stops at the first page that adds nothing new.
+#
+# Provenance
+#   [verified] fetched or confirmed alive on 2026-10-07 while preparing this list
+#   all other entries come from the source lists of actively maintained community scrapers
+#   (Skillter/ProxyGather, jhao104/proxy_pool, Python3WebSpider/ProxyPool,
+#   bluet/proxybroker2, monosans/proxy-scraper-checker). Free sites come and go: every
+#   source is health-tracked, a source that keeps failing is skipped with exponential
+#   back-off (see src/scraper.py), so dead entries cost almost nothing.
+
+# ============================================================== APIs and aggregators
+# [verified] ProxyScrape v4: typed output (protocol://ip:port) + one call per protocol
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=text
+http   https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&protocol=http&proxy_format=ipport&format=text
+socks4 https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&protocol=socks4&proxy_format=ipport&format=text
+socks5 https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&protocol=socks5&proxy_format=ipport&format=text
+http   https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all
+socks4 https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=10000&country=all
+socks5 https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=10000&country=all
+# [verified] Geonode: 500 per page, ~4,000 proxies in total -> the walk stops by itself
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&sort_by=lastChecked&sort_type=desc  pages=1..12
+socks5 https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&sort_by=speed&sort_type=asc&protocols=socks5  pages=1..6
+socks4 https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&sort_by=speed&sort_type=asc&protocols=socks4  pages=1..4
+# [verified] sockslist.us SOCKS5 API (JSON)
+socks5 https://sockslist.us/Api?request=display&country=all&level=all&token=free
+http   https://www.proxy-list.download/api/v1/get?type=http
+http   https://www.proxy-list.download/api/v1/get?type=https
+socks4 https://www.proxy-list.download/api/v1/get?type=socks4
+socks5 https://www.proxy-list.download/api/v1/get?type=socks5
+http   https://www.proxy-list.download/api/v2/get?l=en&t=http
+socks4 https://www.proxy-list.download/api/v2/get?l=en&t=socks4
+socks5 https://www.proxy-list.download/api/v2/get?l=en&t=socks5
+http   https://openproxylist.xyz/http.txt
+socks4 https://openproxylist.xyz/socks4.txt
+socks5 https://openproxylist.xyz/socks5.txt
+http   https://proxyspace.pro/http.txt
+http   https://proxyspace.pro/https.txt
+socks4 https://proxyspace.pro/socks4.txt
+socks5 https://proxyspace.pro/socks5.txt
+mixed  https://spys.me/proxy.txt
+socks  https://spys.me/socks.txt
+mixed  https://geoxy.io/proxies?count=99999
+mixed  https://proxy-daily.com/api/serverside/proxies
+http   https://freeproxyupdate.com/files/txt/http.txt
+http   https://freeproxyupdate.com/files/txt/https-ssl.txt
+socks4 https://freeproxyupdate.com/files/txt/socks4.txt
+socks5 https://freeproxyupdate.com/files/txt/socks5.txt
+mixed  https://freeproxyupdate.com/files/txt/elite.txt
+mixed  https://freeproxyupdate.com/files/txt/anonymous.txt
+
+# Lists that live in a GitHub *wiki* or on GitHub Pages (not in the repository tree, so
+# discovery cannot see them). The gfpcom wiki lists are huge raw dumps (500k+ lines each):
+# they are tested last, the time budget cuts them first.
+http   https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/http.txt
+http   https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/https.txt
+socks5 https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/socks5.txt
+http   https://vakhov.github.io/fresh-proxy-list/http.txt
+socks4 https://vakhov.github.io/fresh-proxy-list/socks4.txt
+socks5 https://vakhov.github.io/fresh-proxy-list/socks5.txt
+mixed  https://vakhov.github.io/fresh-proxy-list/proxylist.json
+
+# ============================================================== English-language sites
+# [verified] free-proxy-list.net and its sister sites (same table layout)
+http   https://free-proxy-list.net/
+http   https://free-proxy-list.net/uk-proxy.html
+http   https://free-proxy-list.net/anonymous-proxy.html
+http   https://www.sslproxies.org/
+http   https://www.us-proxy.org/
+http   https://www.google-proxy.net/
+socks  https://www.socks-proxy.net/
+mixed  https://www.freeproxy.world/?page={page}  pages=1..8
+mixed  https://proxy-list.org/english/index.php?p={page}  pages=1..10
+mixed  https://free-proxy.cz/en/proxylist/main/date/{page}  pages=1..10
+mixed  https://proxydb.net/?offset={offset}  pages=1..10  step=30
+mixed  https://advanced.name/freeproxy?page={page}  pages=1..10
+mixed  https://hide.mn/en/proxy-list/?start={offset}  pages=1..10  step=64
+mixed  https://ipaddress.com/proxy-list/
+mixed  https://www.proxyrack.com/free-proxy-list/
+mixed  https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-{page}  pages=1..5
+mixed  https://list.proxylistplus.com/SSL-List-{page}  pages=1..5
+mixed  https://list.proxylistplus.com/Socks-List-{page}  pages=1..5
+mixed  https://www.my-proxy.com/free-proxy-list.html
+mixed  https://www.my-proxy.com/free-proxy-list-{page}.html  pages=2..10
+socks4 https://www.my-proxy.com/free-socks-4-proxy.html
+socks5 https://www.my-proxy.com/free-socks-5-proxy.html
+mixed  https://www.my-proxy.com/free-elite-proxy.html
+mixed  https://www.my-proxy.com/free-anonymous-proxy.html
+http   https://proxymist.com/protocols/http/
+socks4 https://proxymist.com/protocols/socks4/
+socks5 https://proxymist.com/protocols/socks5/
+mixed  https://proxymist.com/anonymity/elite/
+http   https://proxypremium.top/http-proxy-list
+http   https://proxypremium.top/https-ssl-proxy-list
+socks  https://proxypremium.top/socks-proxy-list
+mixed  https://proxypremium.top/full-proxy-list
+mixed  https://proxypremium.top/elite-proxy-list
+http   https://proxyhub.me/en/all-http-proxy-list.html
+http   https://proxyhub.me/en/all-https-proxy-list.html
+socks  https://proxyhub.me/en/all-socks-proxy-list.html
+socks4 https://proxyhub.me/en/all-sock4-proxy-list.html
+socks5 https://proxyhub.me/en/all-sock5-proxy-list.html
+mixed  https://premiumproxy.net/full-proxy-list/
+mixed  https://proxyhttp.net/
+mixed  https://proxyhttp.net/free-list/anonymous-server-hide-ip-address/
+mixed  https://proxylist.me/?page={page}  pages=1..5
+mixed  https://www.proxz.com/proxy_list_high_anonymous_0.html
+mixed  https://cyber-gateway.net/get-proxy/free-proxy/24-free-http-proxy
+mixed  https://cyber-gateway.net/get-proxy/free-proxy/56-free-socks-proxy
+mixed  https://www.coderduck.com/free-proxy-list
+mixed  https://gologin.com/free-proxy/
+mixed  https://free-proxy-list.com/
+mixed  https://anonymouse.cz/proxy-list/
+mixed  https://www.duplichecker.com/free-proxy-list.php
+mixed  https://freeproxy.lunaproxy.com/
+mixed  https://openproxylist.com/proxy/
+mixed  https://hugeproxies.com/home/
+mixed  http://www.proxylists.net/
+mixed  http://blackstarsecurity.com/proxy-list.txt
+mixed  http://go4free.xyz/Free-Proxy/
+mixed  http://www.get-proxy.net/proxy-archives
+mixed  http://maxiproxies.com/category/proxy-lists/
+mixed  http://50kproxies.com/category/proxy-list/
+mixed  https://freshfreeproxylist.wordpress.com/
+# [verified] roundproxies / fineproxy publish JSON / HTML for several locales
+mixed  https://roundproxies.com/api/get-free-proxies/?limit=50&page={page}&sort_by=lastChecked&sort_type=desc  pages=1..20
+mixed  https://fineproxy.org/free-proxy/
+
+# ============================================================== Chinese (zh) - mainland sites
+# [verified] kuaidaili (100k+ entries, 12 per page, freshest first), 89ip API
+http   https://www.kuaidaili.com/free/inha/{page}/  pages=1..25
+http   https://www.kuaidaili.com/free/intr/{page}/  pages=1..25
+mixed  https://www.kuaidaili.com/free/fps/{page}/  pages=1..15
+http   https://www.89ip.cn/tqdl.html?api=1&num=999&port=&address=&isp=
+http   https://www.89ip.cn/index_{page}.html  pages=1..20
+http   http://www.ip3366.net/free/?stype=1&page={page}  pages=1..10
+http   http://www.ip3366.net/free/?stype=2&page={page}  pages=1..10
+http   http://www.66ip.cn/{page}.html  pages=1..10
+mixed  https://www.zdaye.com/everyday_proxy/
+mixed  https://www.zdaye.com/everyday_proxy/{page}  pages=2..10
+http   https://ip.ihuan.me/
+http   http://www.kxdaili.com/dailiip/1/{page}.html  pages=1..10
+http   http://www.kxdaili.com/dailiip/2/{page}.html  pages=1..10
+http   http://www.xiladaili.com/gaoni/{page}/  pages=1..10
+http   http://www.xiladaili.com/http/{page}/  pages=1..10
+http   http://www.xiladaili.com/https/{page}/  pages=1..10
+http   http://www.nimadaili.com/gaoni/{page}/  pages=1..10
+http   http://www.nimadaili.com/http/{page}/  pages=1..10
+http   http://www.nimadaili.com/https/{page}/  pages=1..10
+http   http://www.taiyanghttp.com/free/page{page}  pages=1..5
+http   http://ip.yqie.com/ipproxy.htm
+http   https://www.goodips.com/
+http   https://proxy.seofangfa.com/
+http   http://www.xsdaili.cn/
+http   https://www.docip.net/data/free.json
+mixed  https://ip.jiangxianli.com/api/proxy_ips?page={page}  pages=1..10
+mixed  https://proxy.scdn.io/get_proxies.php?protocol=&country=&per_page=100&page={page}  pages=1..10
+mixed  https://cn.freevpnnode.com/free-proxy/
+mixed  http://api.66daili.com/?format=json
+mixed  http://cn-proxy.com/
+mixed  https://static.fatezero.org/tmp/proxy.txt
+
+# ============================================================== Russian (ru)
+# [verified] toproxylab (Russian free proxy list, TXT/JSON/CSV export)
+mixed  https://toproxylab.com/ru/spisok-besplatnyh-proksi-serverov
+mixed  https://xseo.in/proxylist
+mixed  https://xseo.in/freeproxy
+mixed  https://ab57.ru/downloads/proxylist.txt
+mixed  https://ab57.ru/downloads/proxyold.txt
+mixed  https://ab57.ru/proxylist.html
+mixed  https://webanetlabs.net/publ/23
+mixed  https://webanetlabs.net/publ/24
+mixed  https://webanetlabs.net/publ/28
+http   https://papaproxy.net/ru/http.php
+http   https://papaproxy.net/ru/https.php
+socks  https://papaproxy.net/ru/socks.php
+socks4 https://papaproxy.net/ru/socks4.php
+socks5 https://papaproxy.net/ru/socks5.php
+mixed  https://papaproxy.net/ru/ipv4.php
+mixed  https://papaproxy.net/ru/elite.php
+mixed  https://papaproxy.net/ru/anonymous.php
+mixed  http://api.foxtools.ru/v2/Proxy.txt?page={page}  pages=1..5
+mixed  http://proxytime.ru/http
+mixed  http://tools.rosinstrument.com/raw_free_db.htm?{page}&t=3  pages=1..5
+mixed  http://proxy.rufey.ru/
+mixed  https://geekelectronics.org/my-servisy/proxy
+socks5 https://mtpro.xyz/socks5
+socks5 https://mtpro.xyz/socks5-ru
+mixed  https://hide.mn/ru/proxy-list/?start={offset}  pages=1..10  step=64
+
+# ============================================================== Other languages
+# Japanese
+mixed  http://www.cybersyndrome.net/pla6.html
+mixed  http://www.cybersyndrome.net/plr6.html
+# German / English (de)
+mixed  https://www.ip-adress.com/proxy-list
+# Spanish / Portuguese
+mixed  https://www.marcosbl.com/lab/proxies/
+# Romanian, Georgian
+mixed  http://www.proxylist.ro/
+mixed  http://www.httptunnel.ge/ProxyListForFree.aspx
+# Other locale versions of sites that serve different pages per language
+mixed  https://proxy-list.org/russian/index.php?p={page}  pages=1..5
+mixed  https://proxy-list.org/spanish/index.php?p={page}  pages=1..5
+mixed  https://proxy-list.org/german/index.php?p={page}  pages=1..5
+mixed  https://proxy-list.org/chinese/index.php?p={page}  pages=1..5
+mixed  https://proxy-list.org/japanese/index.php?p={page}  pages=1..5
+mixed  https://free-proxy.cz/ru/proxylist/main/date/{page}  pages=1..5
+mixed  https://free-proxy.cz/es/proxylist/main/date/{page}  pages=1..5
+mixed  https://free-proxy.cz/de/proxylist/main/date/{page}  pages=1..5
+mixed  https://free-proxy.cz/fr/proxylist/main/date/{page}  pages=1..5
+mixed  https://free-proxy.cz/zh/proxylist/main/date/{page}  pages=1..5
+mixed  https://free-proxy.cz/ja/proxylist/main/date/{page}  pages=1..5
