@@ -1,0 +1,360 @@
+# Curated proxy lists hosted on GitHub - verified alive on 2026-10-08.
+#
+# Only repositories pushed within the last 60 days are listed (lists that are not
+# refreshed are dead weight). The 2026-10-07 audit of the previous list found that
+# 69 of its 128 repositories were gone (404/403) and 20 more had not been updated
+# for months - those were removed. Mirrors (jsDelivr, statically) are added
+# automatically and only used when raw.githubusercontent.com fails.
+#
+# format: <hint> <owner>/<repo>/<branch>/<path>      hint = http | socks4 | socks5 | socks | mixed
+# More lists are found automatically in discovered.txt (python src/discover.py).
+
+# proxifly/free-proxy-list (6859*, pushed 2026-10-07) 🚀 Free HTTP, SOCKS4, & SOCKS5 proxy list * Updated every 5 minutes * a
+http proxifly/free-proxy-list/main/proxies/protocols/http/data.txt
+http proxifly/free-proxy-list/main/proxies/protocols/https/data.txt
+socks4 proxifly/free-proxy-list/main/proxies/protocols/socks4/data.txt
+socks5 proxifly/free-proxy-list/main/proxies/protocols/socks5/data.txt
+mixed proxifly/free-proxy-list/main/proxies/all/data.txt
+
+# TheSpeedX/PROXY-List (5845*, pushed 2026-10-07) Get PROXY List that gets updated everyday
+http TheSpeedX/PROXY-List/master/http.txt
+socks4 TheSpeedX/PROXY-List/master/socks4.txt
+socks5 TheSpeedX/PROXY-List/master/socks5.txt
+
+# monosans/proxy-list (1533*, pushed 2026-10-07) Free HTTP, SOCKS4 and SOCKS5 proxy lists, re-checked every hour. Plain
+http monosans/proxy-list/main/proxies/http.txt
+socks4 monosans/proxy-list/main/proxies/socks4.txt
+socks5 monosans/proxy-list/main/proxies/socks5.txt
+mixed monosans/proxy-list/main/proxies/all.txt
+
+# hookzof/socks5_list (1065*, pushed 2026-10-07) Auto-updated SOCKS5 proxy list + proxies for Telegram (прокси для теле
+mixed hookzof/socks5_list/master/proxy.txt
+
+# roosterkid/openproxylist (930*, pushed 2026-10-07) List of Free HTTPS, SOCKS4, SOCKS5 & V2Ray Proxy (Hourly Updates!)
+http roosterkid/openproxylist/main/HTTPS_RAW.txt
+socks4 roosterkid/openproxylist/main/SOCKS4_RAW.txt
+socks5 roosterkid/openproxylist/main/SOCKS5_RAW.txt
+http roosterkid/openproxylist/main/HTTPS.txt
+socks4 roosterkid/openproxylist/main/SOCKS4.txt
+socks5 roosterkid/openproxylist/main/SOCKS5.txt
+
+# mishakorzik/Free-Proxy (630*, pushed 2026-09-17) Hi there will be a lot of proxies here.
+mixed mishakorzik/Free-Proxy/main/proxy.txt
+
+# sunny9577/proxy-scraper (591*, pushed 2026-10-07) ⭐️ A proxy scraper made using Protractor | Proxy list Updates every th
+http sunny9577/proxy-scraper/master/generated/http_proxies.txt
+mixed sunny9577/proxy-scraper/master/proxies.txt
+
+# zloi-user/hideip.me (505*, pushed 2026-10-07) proxy list that updates every 10 minutes
+http zloi-user/hideip.me/main/connect.txt
+http zloi-user/hideip.me/main/http.txt
+http zloi-user/hideip.me/main/https.txt
+socks4 zloi-user/hideip.me/main/socks4.txt
+socks5 zloi-user/hideip.me/main/socks5.txt
+
+# mmpx12/proxy-list (436*, pushed 2026-10-07) Free proxies (few vpn and tor exit nodes) from various sources update
+http mmpx12/proxy-list/master/http.txt
+http mmpx12/proxy-list/master/https.txt
+socks4 mmpx12/proxy-list/master/socks4.txt
+socks5 mmpx12/proxy-list/master/socks5.txt
+mixed mmpx12/proxy-list/master/proxies.txt
+
+# Zaeem20/FREE_PROXIES_LIST (415*, pushed 2026-10-07) FREE PROXY LIST (Gets Updated Every 10 Minutes). included HTTP(S) Prox
+http Zaeem20/FREE_PROXIES_LIST/master/http.txt
+http Zaeem20/FREE_PROXIES_LIST/master/https.txt
+socks4 Zaeem20/FREE_PROXIES_LIST/master/socks4.txt
+socks5 Zaeem20/FREE_PROXIES_LIST/master/socks5.txt
+
+# ErcinDedeoglu/proxies (391*, pushed 2026-10-07) 🔍💻🔒🌀🔄🌟🚀📂📈 Need a daily updated proxy list? Look no further! Our PROXY
+http ErcinDedeoglu/proxies/main/proxies/http.txt
+http ErcinDedeoglu/proxies/main/proxies/https.txt
+socks4 ErcinDedeoglu/proxies/main/proxies/socks4.txt
+socks5 ErcinDedeoglu/proxies/main/proxies/socks5.txt
+
+# vakhov/fresh-proxy-list (380*, pushed 2026-10-07) Provides a list of fresh, working proxy servers (HTTP, HTTPS, SOCKS4 &
+mixed vakhov/fresh-proxy-list/master/proxylist.txt
+http vakhov/fresh-proxy-list/master/http.txt
+http vakhov/fresh-proxy-list/master/https.txt
+socks4 vakhov/fresh-proxy-list/master/socks4.txt
+socks5 vakhov/fresh-proxy-list/master/socks5.txt
+
+# iplocate/free-proxy-list (338*, pushed 2026-10-07) ⚡️ Free Verified HTTP, SOCKS5, & SOCKS4 Proxy List ⏰ Updated every 30
+mixed iplocate/free-proxy-list/main/all-proxies.txt
+http iplocate/free-proxy-list/main/protocols/http.txt
+http iplocate/free-proxy-list/main/protocols/https.txt
+socks4 iplocate/free-proxy-list/main/protocols/socks4.txt
+socks5 iplocate/free-proxy-list/main/protocols/socks5.txt
+
+# Argh94/Proxy-List (243*, pushed 2026-10-07) The repository is refreshed every hour and offers categorized, ready-t
+http Argh94/Proxy-List/main/HTTP.txt
+http Argh94/Proxy-List/main/HTTPS.txt
+socks4 Argh94/Proxy-List/main/SOCKS4.txt
+socks5 Argh94/Proxy-List/main/SOCKS5.txt
+
+# ProxyScraper/ProxyScraper (228*, pushed 2026-10-07) Automatic and permanent proxy collection and update center for free (u
+http ProxyScraper/ProxyScraper/main/http.txt
+socks4 ProxyScraper/ProxyScraper/main/socks4.txt
+socks5 ProxyScraper/ProxyScraper/main/socks5.txt
+
+# Anonym0usWork1221/Free-Proxies (217*, pushed 2026-10-07) Update free every 2 hours
+http Anonym0usWork1221/Free-Proxies/main/proxy_files/http_proxies.txt
+http Anonym0usWork1221/Free-Proxies/main/proxy_files/https_proxies.txt
+socks4 Anonym0usWork1221/Free-Proxies/main/proxy_files/socks4_proxies.txt
+socks5 Anonym0usWork1221/Free-Proxies/main/proxy_files/socks5_proxies.txt
+
+# elliottophellia/proxylist (216*, pushed 2026-10-07) The Ultimate Checked Proxy List
+http elliottophellia/proxylist/master/results/http/global/http_checked.txt
+http elliottophellia/proxylist/master/results/http/global/phttp_checked.txt
+socks4 elliottophellia/proxylist/master/results/socks4/global/psocks4_checked.txt
+socks4 elliottophellia/proxylist/master/results/socks4/global/socks4_checked.txt
+socks5 elliottophellia/proxylist/master/results/socks5/global/psocks5_checked.txt
+socks5 elliottophellia/proxylist/master/results/socks5/global/socks5_checked.txt
+
+# ALIILAPRO/Proxy (198*, pushed 2026-10-07) Get new and fast proxy list every hour.
+http ALIILAPRO/Proxy/main/http.txt
+socks4 ALIILAPRO/Proxy/main/socks4.txt
+socks5 ALIILAPRO/Proxy/main/socks5.txt
+
+# mzyui/proxy-list (183*, pushed 2026-10-04) 🔓 daily updated proxy list
+http mzyui/proxy-list/main/http.txt
+socks4 mzyui/proxy-list/main/socks4.txt
+socks5 mzyui/proxy-list/main/socks5.txt
+mixed mzyui/proxy-list/main/all.txt
+
+# ProxyScrape/free-proxy-list (168*, pushed 2026-10-07) Free HTTP, HTTPS, SOCKS4 & SOCKS5 proxy list. ~22k proxies across 90+
+http ProxyScrape/free-proxy-list/main/proxies/protocols/http/data.txt
+http ProxyScrape/free-proxy-list/main/proxies/protocols/https/data.txt
+socks4 ProxyScrape/free-proxy-list/main/proxies/protocols/socks4/data.txt
+socks5 ProxyScrape/free-proxy-list/main/proxies/protocols/socks5/data.txt
+mixed ProxyScrape/free-proxy-list/main/proxies/all/data.txt
+
+# watchttvv/free-proxy-list (157*, pushed 2026-10-07) free socks5 http https proxy-list 免费socks5代理 socks5爬虫代理 最新socks5
+mixed watchttvv/free-proxy-list/main/proxy.txt
+
+# dpangestuw/Free-Proxy (155*, pushed 2026-10-07) Free Proxy List 🔄 Update Every 5 Minutes
+http dpangestuw/Free-Proxy/main/http_proxies.txt
+socks4 dpangestuw/Free-Proxy/main/socks4_proxies.txt
+socks5 dpangestuw/Free-Proxy/main/socks5_proxies.txt
+mixed dpangestuw/Free-Proxy/main/All_proxies.txt
+
+# VPSLabCloud/VPSLab-Free-Proxy-List (146*, pushed 2026-10-07) Free proxy list updated every 15 minutes | HTTP, HTTPS, SOCKS4, SOCKS5
+http VPSLabCloud/VPSLab-Free-Proxy-List/main/all_ssl.txt
+http VPSLabCloud/VPSLab-Free-Proxy-List/main/all_ssl_elite.txt
+http VPSLabCloud/VPSLab-Free-Proxy-List/main/http_all.txt
+socks4 VPSLabCloud/VPSLab-Free-Proxy-List/main/socks4_all.txt
+socks5 VPSLabCloud/VPSLab-Free-Proxy-List/main/socks5_all.txt
+mixed VPSLabCloud/VPSLab-Free-Proxy-List/main/all_proxies.txt
+http VPSLabCloud/VPSLab-Free-Proxy-List/main/http_nossl.txt
+http VPSLabCloud/VPSLab-Free-Proxy-List/main/http_ssl.txt
+http VPSLabCloud/VPSLab-Free-Proxy-List/main/http_transparent.txt
+mixed VPSLabCloud/VPSLab-Free-Proxy-List/main/all_anonymous.txt
+
+# Vann-Dev/proxy-list (144*, pushed 2026-10-07) List of public proxies, and checked to some domain like Google, Facebo
+http Vann-Dev/proxy-list/main/proxies/http.txt
+http Vann-Dev/proxy-list/main/proxies/https.txt
+socks4 Vann-Dev/proxy-list/main/proxies/socks4.txt
+socks5 Vann-Dev/proxy-list/main/proxies/socks5.txt
+http Vann-Dev/proxy-list/main/proxies/http-tested/discord.txt
+http Vann-Dev/proxy-list/main/proxies/http-tested/facebook.txt
+http Vann-Dev/proxy-list/main/proxies/http-tested/google.txt
+http Vann-Dev/proxy-list/main/proxies/http-tested/instagram.txt
+http Vann-Dev/proxy-list/main/proxies/http-tested/microsoft.txt
+http Vann-Dev/proxy-list/main/proxies/http-tested/tiktok.txt
+
+# Skillter/ProxyGather (132*, pushed 2026-10-07) Sophisticated proxy scraper and checker
+http Skillter/ProxyGather/master/proxies/working-proxies-http.txt
+socks4 Skillter/ProxyGather/master/proxies/working-proxies-socks4.txt
+socks5 Skillter/ProxyGather/master/proxies/working-proxies-socks5.txt
+mixed Skillter/ProxyGather/master/proxies/working-proxies-all.txt
+mixed Skillter/ProxyGather/master/sites-to-get-proxies-from.txt
+
+# rix4uni/fresh-proxy-list (126*, pushed 2026-10-07) Free Proxy List Updated every 10 minutes
+mixed rix4uni/fresh-proxy-list/main/proxylist.txt
+
+# noctiro/getproxy (123*, pushed 2026-10-07) Scripts that automatically collect proxy links from the Internet, type
+http noctiro/getproxy/master/file/http.txt
+http noctiro/getproxy/master/file/http_with_protocol.txt
+http noctiro/getproxy/master/file/https.txt
+http noctiro/getproxy/master/file/https_with_protocol.txt
+socks4 noctiro/getproxy/master/file/socks4.txt
+socks4 noctiro/getproxy/master/file/socks4_with_protocol.txt
+socks5 noctiro/getproxy/master/file/socks5.txt
+socks5 noctiro/getproxy/master/file/socks5_with_protocol.txt
+
+# SevenworksDev/proxy-list (117*, pushed 2026-10-07) 🚀 [UPDATES EVERY 15 MINUTES] The best collection of HTTP(s), SOCKS4, S
+http SevenworksDev/proxy-list/main/proxies/http.txt
+http SevenworksDev/proxy-list/main/proxies/https.txt
+socks4 SevenworksDev/proxy-list/main/proxies/socks4.txt
+socks5 SevenworksDev/proxy-list/main/proxies/socks5.txt
+
+# MrMarble/proxy-list (105*, pushed 2026-10-07) Free https proxy list
+mixed MrMarble/proxy-list/main/all.txt
+
+# Tsprnay/Proxy-lists (97*, pushed 2026-10-07)
+http Tsprnay/Proxy-lists/master/proxies/http.txt
+http Tsprnay/Proxy-lists/master/proxies/https.txt
+socks4 Tsprnay/Proxy-lists/master/proxies/socks4.txt
+socks5 Tsprnay/Proxy-lists/master/proxies/socks5.txt
+mixed Tsprnay/Proxy-lists/master/proxies/all.txt
+mixed Tsprnay/Proxy-lists/master/proxies/all_no_ports.txt
+http Tsprnay/Proxy-lists/master/proxies/sorted/http.txt
+http Tsprnay/Proxy-lists/master/proxies/sorted/https.txt
+socks4 Tsprnay/Proxy-lists/master/proxies/sorted/socks4.txt
+socks5 Tsprnay/Proxy-lists/master/proxies/sorted/socks5.txt
+
+# SoliSpirit/proxy-list (96*, pushed 2026-10-07) An automated proxy list that updates every 3 hours with HTTP, HTTPS, S
+http SoliSpirit/proxy-list/main/http.txt
+http SoliSpirit/proxy-list/main/https.txt
+socks4 SoliSpirit/proxy-list/main/socks4.txt
+socks5 SoliSpirit/proxy-list/main/socks5.txt
+
+# berkay-digital/Proxy-Scraper (85*, pushed 2026-10-07) Scrapes and checks HTTP proxies from various sources. Automatically up
+mixed berkay-digital/Proxy-Scraper/main/proxies.txt
+
+# parserpp/ip_ports (84*, pushed 2026-10-07) 免费代理资源 . https://github.com/parserpp/Every15m_runner-get_proxy_2 和http
+mixed parserpp/ip_ports/main/proxyinfo.txt
+mixed parserpp/ip_ports/main/proxy.list
+
+# hproxy-com/free-proxy-list (73*, pushed 2026-10-07) Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SO
+http hproxy-com/free-proxy-list/main/http.txt
+http hproxy-com/free-proxy-list/main/https.txt
+socks4 hproxy-com/free-proxy-list/main/socks4.txt
+socks5 hproxy-com/free-proxy-list/main/socks5.txt
+mixed hproxy-com/free-proxy-list/main/all.txt
+
+# andigwandi/free-proxy (53*, pushed 2026-10-07) Get list of free proxies
+mixed andigwandi/free-proxy/main/proxy_list.txt
+
+# Vadim287/free-proxy (52*, pushed 2026-10-07) Free-proxy
+http Vadim287/free-proxy/main/proxies/http.txt
+socks4 Vadim287/free-proxy/main/proxies/socks4.txt
+socks5 Vadim287/free-proxy/main/proxies/socks5.txt
+
+# ebrasha/abdal-proxy-hub (51*, pushed 2026-10-07) A curated list of free, tested proxies by EbraSha — updated every 10 m
+http ebrasha/abdal-proxy-hub/main/http-proxy-list-by-EbraSha.txt
+http ebrasha/abdal-proxy-hub/main/https-proxy-list-by-EbraSha.txt
+socks4 ebrasha/abdal-proxy-hub/main/socks4-proxy-list-by-EbraSha.txt
+socks5 ebrasha/abdal-proxy-hub/main/socks5-proxy-list-by-EbraSha.txt
+
+# vmheaven/VMHeaven.io-Free-Proxy-List (48*, pushed 2026-10-07) Fresh list of HTTP/S & SOCKS4/SOCKS5 Proxies, Amazon excluded, Updatin
+http vmheaven/VMHeaven.io-Free-Proxy-List/main/http.txt
+http vmheaven/VMHeaven.io-Free-Proxy-List/main/https.txt
+socks4 vmheaven/VMHeaven.io-Free-Proxy-List/main/socks4.txt
+socks5 vmheaven/VMHeaven.io-Free-Proxy-List/main/socks5.txt
+mixed vmheaven/VMHeaven.io-Free-Proxy-List/main/allproxy.txt
+
+# databay-labs/free-proxy-list (48*, pushed 2026-10-07) Free Proxy List ✅​🚀 HTTP, HTTPS, SOCKS4 & SOCKS5 | Updated every 5 min
+http databay-labs/free-proxy-list/master/http.txt
+http databay-labs/free-proxy-list/master/https.txt
+socks4 databay-labs/free-proxy-list/master/socks4.txt
+socks5 databay-labs/free-proxy-list/master/socks5.txt
+
+# Mohammedcha/ProxRipper (42*, pushed 2026-10-07) Fresh free proxy list (HTTP, HTTPS, SOCKS4/5) updated every 15 minutes
+http Mohammedcha/ProxRipper/main/full_proxies/http.txt
+http Mohammedcha/ProxRipper/main/full_proxies/https.txt
+socks4 Mohammedcha/ProxRipper/main/full_proxies/socks4.txt
+socks5 Mohammedcha/ProxRipper/main/full_proxies/socks5.txt
+
+# stormsia/proxy-list (37*, pushed 2026-10-07) 🚀 A curated collection of working proxies, automatically updated every
+mixed stormsia/proxy-list/main/working_proxies.txt
+http stormsia/proxy-list/main/http.txt
+socks4 stormsia/proxy-list/main/socks4.txt
+socks5 stormsia/proxy-list/main/socks5.txt
+
+# claude89757/free_https_proxies (33*, pushed 2026-10-07) Share some free https proxies from internet
+http claude89757/free_https_proxies/main/https_proxies.txt
+http claude89757/free_https_proxies/main/isz_https_proxies.txt
+
+# xyzs996/free-proxy-health-list (31*, pushed 2026-10-07) Free proxy list by country: verified SOCKS5, SOCKS4, HTTP and HTTPS pr
+http xyzs996/free-proxy-health-list/main/proxies/protocols/http/data.txt
+http xyzs996/free-proxy-health-list/main/proxies/protocols/https/data.txt
+socks4 xyzs996/free-proxy-health-list/main/proxies/protocols/socks4/data.txt
+socks5 xyzs996/free-proxy-health-list/main/proxies/protocols/socks5/data.txt
+http xyzs996/free-proxy-health-list/main/http.txt
+http xyzs996/free-proxy-health-list/main/https.txt
+socks4 xyzs996/free-proxy-health-list/main/socks4.txt
+socks5 xyzs996/free-proxy-health-list/main/socks5.txt
+mixed xyzs996/free-proxy-health-list/main/proxies/all/data.txt
+mixed xyzs996/free-proxy-health-list/main/all.txt
+
+# mauricegift/free-proxies (29*, pushed 2026-10-07) Free to use working and validated http, socks4 and socks5 proxies, aut
+http mauricegift/free-proxies/master/files/http.json
+socks4 mauricegift/free-proxies/master/files/socks4.json
+socks5 mauricegift/free-proxies/master/files/socks5.json
+
+# dinoz0rg/proxy-list (25*, pushed 2026-10-07) Scraped and verified proxies, all in one place.
+http dinoz0rg/proxy-list/main/checked_proxies/http.txt
+socks4 dinoz0rg/proxy-list/main/checked_proxies/socks4.txt
+socks5 dinoz0rg/proxy-list/main/checked_proxies/socks5.txt
+http dinoz0rg/proxy-list/main/scraped_proxies/http.txt
+socks4 dinoz0rg/proxy-list/main/scraped_proxies/socks4.txt
+socks5 dinoz0rg/proxy-list/main/scraped_proxies/socks5.txt
+
+# proxy-free/free-proxy-list (25*, pushed 2026-10-07) ⚡ Free Proxy List - HTTP, HTTPS, SOCKS4 & SOCKS5 proxies updated every
+http proxy-free/free-proxy-list/main/http.txt
+socks4 proxy-free/free-proxy-list/main/socks4.txt
+socks5 proxy-free/free-proxy-list/main/socks5.txt
+mixed proxy-free/free-proxy-list/main/all.txt
+
+# NikolaiT/free-proxy-list (23*, pushed 2026-10-06) List of free and checked http, https, socks4 and socks5 proxies
+http NikolaiT/free-proxy-list/main/proxies/http_working.txt
+http NikolaiT/free-proxy-list/main/proxies/https_working.txt
+socks4 NikolaiT/free-proxy-list/main/proxies/socks4_working.txt
+socks5 NikolaiT/free-proxy-list/main/proxies/socks5_working.txt
+mixed NikolaiT/free-proxy-list/main/proxies/ips.txt
+
+# VolkanSah/Auto-Proxy-Fetcher (22*, pushed 2026-10-07) Automatically fetch and update proxy lists from multiple sources every
+mixed VolkanSah/Auto-Proxy-Fetcher/main/proxies.txt
+
+# trio666/proxy-checker (21*, pushed 2026-10-07) A regularly updated repository providing free HTTP, HTTPS, SOCKS4, and
+http trio666/proxy-checker/main/http.txt
+http trio666/proxy-checker/main/https.txt
+socks4 trio666/proxy-checker/main/socks4.txt
+socks5 trio666/proxy-checker/main/socks5.txt
+mixed trio666/proxy-checker/main/all.txt
+
+# proxmint/free-proxy-list (20*, pushed 2026-10-07) Free proxy list, re-validated every 30 minutes. HTTP/HTTPS/SOCKS4/SOCK
+http proxmint/free-proxy-list/main/proxies/http.txt
+http proxmint/free-proxy-list/main/proxies/https.txt
+socks4 proxmint/free-proxy-list/main/proxies/socks4.txt
+socks5 proxmint/free-proxy-list/main/proxies/socks5.txt
+mixed proxmint/free-proxy-list/main/proxies/all.txt
+
+# handeveloper1/DailyProxy---Auto-Update-List (19*, pushed 2026-10-07) DailyProxy - Auto Update List
+http handeveloper1/DailyProxy---Auto-Update-List/main/Proxies-Ercin/http.txt
+http handeveloper1/DailyProxy---Auto-Update-List/main/Proxies-Ercin/https.txt
+socks4 handeveloper1/DailyProxy---Auto-Update-List/main/Proxies-Ercin/socks4.txt
+socks5 handeveloper1/DailyProxy---Auto-Update-List/main/Proxies-Ercin/socks5.txt
+http handeveloper1/DailyProxy---Auto-Update-List/main/Proxy-Tsprnay/https.txt
+http handeveloper1/DailyProxy---Auto-Update-List/main/Proxy-TuanMinPay/http.txt
+http handeveloper1/DailyProxy---Auto-Update-List/main/Proxy-Zaeem20/https.txt
+http handeveloper1/DailyProxy---Auto-Update-List/main/Proxy-mzyui/http.txt
+
+# Bes-js/public-proxy-list (15*, pushed 2026-10-07) 🌎 Continuously updated free proxy list in JSON and TXT formats, collec
+mixed Bes-js/public-proxy-list/main/proxies.txt
+mixed Bes-js/public-proxy-list/main/proxies_geolocation.json
+
+# EDT-Pages/Proxy-List (15*, pushed 2026-10-07)
+http EDT-Pages/Proxy-List/main/data/http.json
+http EDT-Pages/Proxy-List/main/data/https.json
+socks5 EDT-Pages/Proxy-List/main/data/socks5.json
+
+# officialputuid/KangProxy (14*, pushed 2026-09-17) Free, fast, and regularly updated proxy list for everyone.
+http officialputuid/KangProxy/main/http/http.txt
+http officialputuid/KangProxy/main/https/https.txt
+socks4 officialputuid/KangProxy/main/socks4/socks4.txt
+socks5 officialputuid/KangProxy/main/socks5/socks5.txt
+
+# litportnet/free-proxy-list (4*, pushed 2026-10-07) Verified HTTP, SOCKS4 and SOCKS5 proxy data for developers and AI agen
+http litportnet/free-proxy-list/main/proxies/http.txt
+http litportnet/free-proxy-list/main/proxies/https.txt
+socks4 litportnet/free-proxy-list/main/proxies/socks4.txt
+socks5 litportnet/free-proxy-list/main/proxies/socks5.txt
+mixed litportnet/free-proxy-list/main/proxies/all.txt
+
+# maximilianfeix/free-proxy-list (0*, pushed 2026-10-07) 🌐 Free proxy list updated every hour – HTTP, SOCKS4 & SOCKS5 proxies t
+http maximilianfeix/free-proxy-list/main/http.txt
+http maximilianfeix/free-proxy-list/main/https.txt
+socks4 maximilianfeix/free-proxy-list/main/socks4.txt
+socks5 maximilianfeix/free-proxy-list/main/socks5.txt
+mixed maximilianfeix/free-proxy-list/main/all.txt

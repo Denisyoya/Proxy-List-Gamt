@@ -12,17 +12,33 @@ on:
   workflow_dispatch:
     inputs:
       timeout:
-        description: "Per-request timeout in seconds"
+        description: "Per-probe timeout in seconds"
         required: false
         default: "8"
       concurrency:
-        description: "Parallel checks during validation"
+        description: "Simultaneous protocol probes"
         required: false
-        default: "1500"
+        default: "800"
+      tcp_concurrency:
+        description: "Simultaneous TCP pre-filter connects"
+        required: false
+        default: "3000"
       rounds:
-        description: "Confirmation rounds"
+        description: "Confirmation rounds after the first pass"
         required: false
         default: "2"
+      time_budget:
+        description: "Stop verifying after N minutes (0 = no limit)"
+        required: false
+        default: "70"
+      max_candidates:
+        description: "Test only the best N candidates (0 = all)"
+        required: false
+        default: "0"
+      discover:
+        description: "Find new proxy-list repositories on GitHub (auto/on/off)"
+        required: false
+        default: "auto"
 
 permissions:
   contents: write
@@ -72,13 +88,29 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Remembers which sources keep failing so they are skipped (and finally pruned
+      # from sources/discovered.txt) instead of being downloaded every three hours.
+      - name: Restore source health
+        uses: actions/cache@v4
+        with:
+          path: .cache/source_health.json
+          key: source-health-${{ github.run_id }}
+          restore-keys: |
+            source-health-
+
       - name: Run pipeline
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ulimit -n 65535 || true
           python main.py \
             --timeout "${{ github.event.inputs.timeout || '8' }}" \
-            --concurrency "${{ github.event.inputs.concurrency || '1500' }}" \
-            --rounds "${{ github.event.inputs.rounds || '2' }}"
+            --concurrency "${{ github.event.inputs.concurrency || '800' }}" \
+            --tcp-concurrency "${{ github.event.inputs.tcp_concurrency || '3000' }}" \
+            --rounds "${{ github.event.inputs.rounds || '2' }}" \
+            --time-budget "${{ github.event.inputs.time_budget || '70' }}" \
+            --max-candidates "${{ github.event.inputs.max_candidates || '0' }}" \
+            --discover "${{ github.event.inputs.discover || 'auto' }}"
 
       - name: Build summary
         run: |
@@ -90,7 +122,7 @@ jobs:
             echo "Channel: ${COMMUNITY_CHANNEL}"
             echo ""
             echo '```json'
-            cat proxy/stats.json
+            cat results/json/stats.json
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -98,12 +130,12 @@ jobs:
         run: |
           git config user.name "${PROJECT_AUTHOR} bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add proxy sources.txt README.md
+          git add results sources README.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          COUNT=$(python -c "import json;print(json.load(open('proxy/stats.json'))['live'])")
+          COUNT=$(python -c "import json;print(json.load(open('results/json/stats.json'))['live'])")
           git commit -m "update: ${COUNT} live proxies [${PROJECT_AUTHOR}]"
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
           git push origin HEAD:"${GITHUB_REF_NAME}"
