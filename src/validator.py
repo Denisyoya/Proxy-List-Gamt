@@ -461,7 +461,10 @@ class Environment:
 async def _direct(session: aiohttp.ClientSession, url: str, ssl_arg) -> tuple[str | None, bool]:
     """Fetch a judge without proxy. Returns ``(ip, certificate_problem)``."""
     try:
-        async with session.get(url, ssl=ssl_arg, headers={"User-Agent": USER_AGENT}) as response:
+        # No redirects: a judge that bounces plain HTTP to HTTPS would look healthy here
+        # but fail every plain probe through a proxy (which does not follow redirects).
+        async with session.get(url, ssl=ssl_arg, allow_redirects=False,
+                               headers={"User-Agent": USER_AGENT}) as response:
             if response.status == 200:
                 return parse_ip(await response.content.read(2048)), False
     except aiohttp.ClientConnectorCertificateError:

@@ -83,7 +83,7 @@ class JudgeServer:
 
     def __init__(self, ssl_ctx: ssl.SSLContext | None = None, mode: str = "length") -> None:
         self.ssl_ctx = ssl_ctx
-        self.mode = mode          # length | chunked | eof | 403 | garbage | html | truncated
+        self.mode = mode          # length | chunked | eof | 403 | redirect | garbage | html | truncated
         self.requests = 0
         self.port = 0
         self._server: asyncio.AbstractServer | None = None
@@ -105,7 +105,10 @@ class JudgeServer:
             peer = writer.get_extra_info("peername")[0]
             body = f"{peer}\n".encode()
             head = b"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n"
-            if self.mode == "403":
+            if self.mode == "redirect":  # e.g. a judge that forces plain HTTP over to HTTPS
+                writer.write(b"HTTP/1.1 301 Moved Permanently\r\nLocation: https://127.0.0.1:1/ip\r\n"
+                             b"Content-Length: 0\r\nConnection: close\r\n\r\n")
+            elif self.mode == "403":
                 writer.write(b"HTTP/1.1 403 Forbidden\r\nContent-Length: 0\r\nConnection: close\r\n\r\n")
             elif self.mode == "garbage":
                 writer.write(head + b"Content-Length: 11\r\nConnection: close\r\n\r\nhello world")

@@ -272,6 +272,16 @@ class FullPipeline(World):
         self.assertTrue(env.verify_tls)
         self.assertEqual(env.plain[0].ip, "127.0.0.1")
 
+    async def test_judges_that_redirect_plain_http_are_not_used_for_plain_probes(self):
+        redirecting = JudgeServer(mode="redirect")
+        await redirecting.start()
+        self.addAsyncCleanup(redirecting.close)
+        bad = Judge("127.0.0.1", "/ip", http_port=redirecting.port, https_port=0, ip="127.0.0.1")
+        env = await detect_environment([bad, self.judge], timeout=3.0, ssl_context=self.client_ctx,
+                                       log=lambda _: None)
+        self.assertEqual([j.http_port for j in env.plain], [self.judge.http_port])   # redirector dropped
+        self.assertEqual(env.egress, frozenset({"127.0.0.1"}))
+
     async def test_environment_without_judges_reachable_degrades_gracefully(self):
         dead_judge = Judge("127.0.0.1", "/ip", http_port=1, https_port=2, ip="127.0.0.1")
         env = await detect_environment([dead_judge], timeout=1.0, log=lambda _: None)
