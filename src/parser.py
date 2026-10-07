@@ -33,11 +33,12 @@ _SCHEME_MASK = {
 # ``[scheme://]ip<sep>port`` where <sep> is ':' or whitespace/table-cell noise.
 #  - not preceded by '@' or '/' ... : skips ``user:pass@ip:port`` entries and
 #    IPs embedded in URLs (those proxies need credentials, so they are useless).
-#  - not followed by ':word' : skips ``ip:port:user:pass`` entries.
+#  - not followed by ':field:field' : skips ``ip:port:user:pass`` entries, but keeps
+#    ``ip:port:Country`` (one trailing field is metadata, e.g. the hideip.me lists).
 _PROXY_RE = re.compile(
     rf"(?<![\w.@/\-])(?:(?P<scheme>https?|socks4a?|socks5h?)://)?"
     rf"(?P<ip>{IPV4})[\s:,;|\uff1a\uff0c\uff1b]{{1,6}}(?P<port>\d{{2,5}})"
-    rf"(?![\d.]|:[^\s/])",
+    rf"(?![\d.]|:[^\s:/]+:[^\s:/]+)",
     re.IGNORECASE,
 )
 # Protocol word in the text that follows an entry (``... socks5 ...``).

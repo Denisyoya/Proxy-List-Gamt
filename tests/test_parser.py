@@ -48,6 +48,17 @@ class PlainText(unittest.TestCase):
                 "4.4.4.4:8080\n")
         self.assertEqual(parse_payload(text, "http"), {"4.4.4.4:8080": HTTP})
 
+    def test_one_trailing_field_is_metadata_not_credentials(self):
+        # zloi-user/hideip.me style: ip:port:Country ; CB-X2-Jun style: scheme://ip:port:CC
+        text = ("162.214.3.183:3128:United States\n"
+                "203.174.15.138:8080:Indonesia\n"
+                "http://115.114.77.133:9090:IN\n"
+                "socks4://109.248.236.150:60606:KZ\n"
+                "9.9.9.9:8080:user:password\n")                       # two fields = credentials: skipped
+        self.assertEqual(parse_payload(text, "mixed"),
+                         {"162.214.3.183:3128": 0, "203.174.15.138:8080": 0,
+                          "115.114.77.133:9090": HTTP, "109.248.236.150:60606": SOCKS4})
+
     def test_ip_inside_url_is_not_a_proxy(self):
         self.assertEqual(parse_payload("see https://example.com/8.8.8.8:80 now", "http"), {})
 
