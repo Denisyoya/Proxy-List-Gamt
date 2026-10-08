@@ -18,25 +18,25 @@ required.
 
 <!-- stats:start -->
 
-Last run: `2026-10-08 01:42:58 UTC`
+Last run: `2026-10-08 11:09:10 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **1,426** |
-| HTTP | 409 |
-| HTTPS (verified TLS tunnel) | 47 |
-| SOCKS4 | 156 |
-| SOCKS5 | 847 |
-| Passed every check (stable) | 971 |
-| Median latency | 4954 ms |
-| Fastest | 324 ms |
-| Under 1 second | 127 |
-| Sources registered | 691 (415 curated + 276 discovered) |
-| Sources that delivered proxies | 510 |
-| Candidates scraped | 1,658,057 |
-| Reachable on TCP | 170,048 |
+| Live proxies | **853** |
+| HTTP | 353 |
+| HTTPS (verified TLS tunnel) | 44 |
+| SOCKS4 | 112 |
+| SOCKS5 | 372 |
+| Passed every check (stable) | 570 |
+| Median latency | 3551 ms |
+| Fastest | 359 ms |
+| Under 1 second | 123 |
+| Sources registered | 692 (415 curated + 277 discovered) |
+| Sources that delivered proxies | 504 |
+| Candidates scraped | 1,657,227 |
+| Reachable on TCP | 170,610 |
 | Validation rounds | 3 (first pass + 2 confirmation) |
-| Runtime | 2869s |
+| Runtime | 2927s |
 
 <!-- stats:end -->
 
@@ -330,6 +330,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-08 01:42:58 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-08 11:09:10 UTC.
 
 <!-- footer:end -->
