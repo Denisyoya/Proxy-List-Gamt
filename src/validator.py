@@ -39,7 +39,7 @@ from typing import Callable
 
 import aiohttp
 
-from common import ALL_MASK, probe_order, split_proxy, stable_hash
+from common import ALL_MASK, probe_order, split_proxy, stable_hash, utc_stamp
 
 try:  # not available on Windows
     import resource
@@ -132,6 +132,7 @@ class Record:
     total: int = 1
     latency_sum: int = 0
     alive: bool = True     # outcome of the most recent check
+    checked_at: str = ""   # when it last passed a check ("" = now, filled on export)
 
     def __post_init__(self) -> None:
         self.latency_sum = self.latency_sum or self.latency_ms
@@ -146,11 +147,14 @@ class Record:
             self.exit_ip, self.http, self.https = probe.exit_ip, probe.http, probe.https
 
     def to_dict(self) -> dict:
+        if not self.checked_at:
+            self.checked_at = utc_stamp()
         return {
             "proxy": self.proxy, "protocol": self.protocol,
             "url": f"{self.protocol}://{self.proxy}", "latency_ms": self.latency_ms,
             "http": self.http, "https": self.https, "exit_ip": self.exit_ip,
             "checks_passed": self.passed, "checks_total": self.total,
+            "checked_at": self.checked_at,
         }
 
 

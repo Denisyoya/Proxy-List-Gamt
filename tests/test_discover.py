@@ -11,8 +11,8 @@ from aiohttp import web
 
 import discover
 from discover import Registry, hint_for, looks_random, repo_score, score_file, select_files
-from sources import (MAX_DISCOVERED, Source, github_urls, load_sources, parse_github_line,
-                     parse_web_line)
+from sources import (MAX_DISCOVERED, Source, github_urls, load_sources, parse_any_line,
+                     parse_github_line, parse_web_line)
 
 
 def blob(path, size=5000):
@@ -126,28 +126,43 @@ class SourceFiles(unittest.TestCase):
                     "nonsense https://x/y", "http"):
             self.assertIsNone(parse_web_line(bad), bad)
 
+    def test_any_line_accepts_both_formats(self):
+        """indonesia.txt mixes domestic websites with GitHub-hosted lists."""
+        web = parse_any_line("mixed https://x.test/proxy?id  pages=1..3")
+        self.assertEqual((web.kind, web.paged), ("web", True))
+        hub = parse_any_line("socks5 owner/repo/main/socks5.txt")
+        self.assertEqual(hub.kind, "github")
+        self.assertEqual(hub.urls[0], "https://raw.githubusercontent.com/owner/repo/main/socks5.txt")
+        self.assertEqual(len(hub.urls), 3)                     # mirrors are added
+        for bad in ("", "# comment", "mixed", "nonsense https://x/y", "weird a/b/c"):
+            self.assertIsNone(parse_any_line(bad), bad)
+
     def test_load_sources_precedence_and_counts(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "github.txt").write_text("http a/b/main/http.txt\nbroken line\n# c\nsocks5 a/b/main/s5.txt\n")
             (root / "websites.txt").write_text("mixed https://x.test/list\nmixed https://x.test/list\n")
+            (root / "indonesia.txt").write_text("mixed https://id.test/proxy\nmixed id/repo/main/list.txt\n")
             (root / "discovered.txt").write_text("# @ a/b 2026-10-01\nhttp a/b/main/http.txt\nhttp c/d/main/http.txt\n"
                                                  "# @ c/d 2026-10-01\nsocks4 c/d/main/s4.txt\n")
             sources, counts = load_sources(root)
-            self.assertEqual(counts, {"github": 2, "websites": 1, "discovered": 2})   # duplicates collapse
-            self.assertEqual(len(sources), 5)
+            self.assertEqual(counts, {"github": 2, "websites": 1, "indonesia": 2, "discovered": 2})
+            self.assertEqual(len(sources), 7)                  # duplicates collapse
+            self.assertEqual(counts["github"], 2)              # a/b/main/http.txt beats discovered.txt
             _, counts = load_sources(root, include_discovered=False)
             self.assertEqual(counts["discovered"], 0)
             _, counts = load_sources(root, limit_discovered=1)
             self.assertEqual(counts["discovered"], 1)
 
     def test_missing_directory_is_empty_not_an_error(self):
-        self.assertEqual(load_sources("/nonexistent/dir"), ([], {"github": 0, "websites": 0, "discovered": 0}))
+        self.assertEqual(load_sources("/nonexistent/dir"),
+                         ([], {"github": 0, "websites": 0, "indonesia": 0, "discovered": 0}))
 
     def test_shipped_source_files_are_clean(self):
         """Every non-comment line in the real data files must parse: no silent typos."""
         root = support.ROOT / "sources"
-        for name, parser in (("github.txt", parse_github_line), ("websites.txt", parse_web_line)):
+        for name, parser in (("github.txt", parse_github_line), ("websites.txt", parse_web_line),
+                             ("indonesia.txt", parse_any_line)):
             path = root / name
             self.assertTrue(path.exists(), name)
             bad = [line for line in path.read_text().splitlines()
@@ -158,7 +173,8 @@ class SourceFiles(unittest.TestCase):
         self.assertEqual(len(keys), len(set(keys)))
         self.assertLessEqual(counts["discovered"], MAX_DISCOVERED)
         self.assertGreater(counts["github"], 50)
-        self.assertGreater(counts["websites"], 20)
+        self.assertGreater(counts["websites"], 100)
+        self.assertGreater(counts["indonesia"], 10)            # domestic coverage must stay real
 
 
 class RegistryFile(unittest.TestCase):

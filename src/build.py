@@ -26,10 +26,14 @@ from pathlib import Path
 from typing import Callable
 
 import pdfgen
+from common import stamp_age_seconds
 
 OUTPUT_DIR = "results"
+RAW_DIR = "results/raw"
 FORMATS = ("txt", "json", "pdf")
+RAW_FORMATS = ("txt", "json")
 GROUPS = ("all", "http", "https", "socks", "socks4", "socks5")
+RAW_GROUPS = ("all", "http", "socks", "socks4", "socks5")
 PROTOCOL_ORDER = {"http": 0, "socks5": 1, "socks4": 2}
 
 GROUP_TITLES = {
@@ -69,6 +73,46 @@ def _atomic_write(path: Path, data: bytes) -> None:
         if os.path.exists(tmp):
             os.unlink(tmp)
         raise
+
+
+# ------------------------------------------------------- continuous publishing
+
+
+def merge_published(previous: list[dict], fresh: list[dict], keep_minutes: float = 0.0,
+                    now: datetime | None = None) -> tuple[list[dict], dict]:
+    """Keep adding to what is already published instead of starting from zero.
+
+    * a proxy + protocol that verified again **overwrites** the old record;
+    * a record that was *not* re-checked this run survives while it is younger
+      than ``keep_minutes`` (``0`` = publish only what this run verified), so a
+      short validation pass never wipes a list built by earlier runs;
+    * carried-over records are flagged ``carried_over`` and keep their own
+      ``checked_at`` stamp, so they expire on their own.
+    """
+    now = now or datetime.now(timezone.utc)
+    merged: dict[tuple, dict] = {}
+    for record in fresh:
+        if record.get("proxy"):
+            merged[(record["proxy"], record.get("protocol"))] = dict(record)
+    carried = 0
+    if keep_minutes > 0:
+        limit = keep_minutes * 60
+        for record in previous:
+            if not isinstance(record, dict):
+                continue                                       # a hand-edited or truncated file
+            proxy = record.get("proxy")
+            if not proxy:
+                continue
+            key = (proxy, record.get("protocol"))
+            if key in merged:
+                continue                                   # the new check wins
+            if stamp_age_seconds(record.get("checked_at"), now) <= limit:
+                kept = dict(record)
+                kept["carried_over"] = True
+                merged[key] = kept
+                carried += 1
+    stats = {"verified_now": len(fresh), "carried_over": carried, "published": len(merged)}
+    return list(merged.values()), stats
 
 
 def _url(record: dict) -> str:
@@ -148,10 +192,120 @@ def build(records: list[dict], meta: dict | None = None, output_dir: str = OUTPU
     return stats
 
 
+# ------------------------------------------------------- raw (no validation)
+
+RAW_TITLES = {
+    "all": "Every scraped proxy, unvalidated",
+    "http": "Scraped HTTP proxies, unvalidated",
+    "socks": "Scraped SOCKS proxies (SOCKS4 + SOCKS5), unvalidated",
+    "socks4": "Scraped SOCKS4 proxies, unvalidated",
+    "socks5": "Scraped SOCKS5 proxies, unvalidated",
+}
+
+
+def _ip_key(record: dict) -> tuple:
+    """Numeric IP order: stable between runs, so git only stores the difference."""
+    proxy = record.get("proxy", "")
+    host, _, port = proxy.rpartition(":")
+    try:
+        parts = tuple(int(octet) for octet in host.split("."))
+        if len(parts) != 4:
+            raise ValueError
+    except ValueError:
+        return ((1,) + (0,) * 4 + (0,), proxy)
+    return ((0,) + parts + (int(port) if port.isdigit() else 0,), proxy)
+
+
+def raw_lines(records: list[dict], group: str) -> list[str]:
+    """``protocol://ip:port`` for mixed lists, bare ``ip:port`` otherwise.
+
+    A proxy whose sources never said which protocol it speaks appears in ``all``
+    as a bare ``ip:port`` line and in no single-protocol list.
+    """
+    if group == "all":
+        lines: list[str] = []
+        for record in records:
+            protocols = record.get("protocols") or []
+            lines += [f"{name}://{record['proxy']}" for name in protocols] or [record["proxy"]]
+        return lines
+    if group == "socks":
+        return [f"{name}://{record['proxy']}" for record in records
+                for name in record.get("protocols", ()) if name.startswith("socks")]
+    return [record["proxy"] for record in records if group in (record.get("protocols") or [])]
+
+
+def select_raw(records: list[dict], group: str) -> list[dict]:
+    """Records of *group*, in a stable numeric-IP order.
+
+    The pool hands them over freshest-first - that is the order the ``--raw-limit``
+    cut is made in - but publishing sorts by address, so two consecutive runs differ
+    only where entries really appeared or disappeared (and git stores the difference).
+    """
+    if group == "all":
+        chosen = list(records)
+    elif group == "socks":
+        chosen = [r for r in records if {"socks4", "socks5"} & set(r.get("protocols") or ())]
+    else:
+        chosen = [r for r in records if group in (r.get("protocols") or [])]
+    chosen.sort(key=_ip_key)
+    return chosen
+
+
+def compute_raw_stats(records: list[dict], meta: dict) -> dict:
+    protocols = Counter(name for r in records for name in r.get("protocols") or [])
+    stats = {
+        "generated_at": meta.get("generated_at")
+        or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "raw_published": len(records),
+        "raw_endpoints": len({r["proxy"] for r in records}),
+        "raw_http": protocols.get("http", 0),
+        "raw_socks4": protocols.get("socks4", 0),
+        "raw_socks5": protocols.get("socks5", 0),
+        "raw_unspecified": sum(1 for r in records if not r.get("protocols")),
+        "raw_multi_run": sum(1 for r in records if r.get("hits", 1) > 1),
+        "raw_median_listings": sorted(r.get("listings", 1) for r in records)[len(records) // 2]
+        if records else 0,
+        "raw_newest_age_seconds": min((r.get("age_seconds", 0) for r in records), default=0),
+        "validated": False,
+    }
+    for key, value in meta.items():
+        stats.setdefault(key, value)
+    return stats
+
+
+def build_raw(records: list[dict], meta: dict | None = None, output_dir: str = RAW_DIR,
+              formats: tuple[str, ...] = RAW_FORMATS, limit: int = 0,
+              readme: str | None = None) -> dict:
+    """Publish the scraped-but-unvalidated pool; returns its statistics."""
+    meta = dict(meta or {})
+    meta.setdefault("generated_at", datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"))
+    if limit and len(records) > limit:
+        records = records[:limit]
+    stats = compute_raw_stats(records, meta)
+    root = Path(output_dir)
+    for group in RAW_GROUPS:
+        chosen = select_raw(records, group)
+        if "txt" in formats:
+            lines = raw_lines(chosen, group)
+            _atomic_write(root / "txt" / f"{group}.txt",
+                          ("\n".join(lines) + "\n" if lines else "").encode())
+        if "json" in formats:
+            # compact: bulk data, nobody reads ten thousand records by hand
+            _atomic_write(root / "json" / f"{group}.json",
+                          (json.dumps(chosen, separators=(",", ":")) + "\n").encode())
+    if "json" in formats:
+        _atomic_write(root / "json" / "stats.json", (json.dumps(stats, indent=1) + "\n").encode())
+    if readme:
+        update_readme_raw(stats, readme)
+    return stats
+
+
 # ------------------------------------------------------------- README blocks
 
 STATS_START = "<!-- stats:start -->"
 STATS_END = "<!-- stats:end -->"
+RAW_START = "<!-- raw-stats:start -->"
+RAW_END = "<!-- raw-stats:end -->"
 FOOTER_START = "<!-- footer:start -->"
 FOOTER_END = "<!-- footer:end -->"
 
@@ -197,6 +351,38 @@ def update_readme(stats: dict, path: str = "README.md") -> bool:
         f"| Runtime | {stats.get('runtime_seconds', 0)}s |",
     ])
     updated = _replace_block(content, STATS_START, STATS_END, table)
+    if updated is None:
+        return False
+    Path(path).write_text(updated, encoding="utf-8")
+    return True
+
+
+def update_readme_raw(stats: dict, path: str = "README.md") -> bool:
+    """Refresh the ``<!-- raw-stats -->`` block with the unvalidated numbers."""
+    if not os.path.exists(path):
+        return False
+    content = Path(path).read_text(encoding="utf-8")
+    table = "\n".join([
+        f"Last scrape: `{stats['generated_at']}` - **no validation**, published as scraped",
+        "",
+        "| Metric | Value |",
+        "| --- | --- |",
+        f"| Raw proxies published | **{stats.get('raw_published', 0):,}** |",
+        f"| Unique endpoints | {stats.get('raw_endpoints', 0):,} |",
+        f"| HTTP | {stats.get('raw_http', 0):,} |",
+        f"| SOCKS4 | {stats.get('raw_socks4', 0):,} |",
+        f"| SOCKS5 | {stats.get('raw_socks5', 0):,} |",
+        f"| Protocol not stated by any source | {stats.get('raw_unspecified', 0):,} |",
+        f"| Seen in more than one scrape run | {stats.get('raw_multi_run', 0):,} |",
+        f"| Sources registered | {stats.get('sources', 0):,} "
+        f"({stats.get('sources_curated', 0):,} curated + {stats.get('sources_discovered', 0):,} discovered) |",
+        f"| Sources that delivered proxies | {stats.get('sources_ok', 0):,} |",
+        f"| Candidates scraped this run | {stats.get('candidates', 0):,} |",
+        f"| Raw pool size (accumulated) | {stats.get('raw_total', 0):,} |",
+        f"| Raw pool TTL | {stats.get('raw_ttl_hours', 0)} h |",
+        f"| Scrape time | {stats.get('scrape_seconds', 0)}s |",
+    ])
+    updated = _replace_block(content, RAW_START, RAW_END, table)
     if updated is None:
         return False
     Path(path).write_text(updated, encoding="utf-8")

@@ -1,16 +1,28 @@
 # Proxy-List-Gamt
 
 Automated proxy scraper and validator by **Gametturxux**. The pipeline collects candidates from
-hundreds of curated lists, websites and APIs (English, Chinese, Russian and more) plus every proxy-list
-repository it can discover on GitHub, verifies each candidate against live judge endpoints, and
-publishes only the proxies that actually route traffic. Everything runs on GitHub Actions, no server
-required.
+hundreds of curated lists, websites and APIs (English, Chinese, Russian, Indonesian and more) plus
+every proxy-list repository it can discover on GitHub, verifies each candidate against live judge
+endpoints, and publishes only the proxies that actually route traffic. Everything runs on GitHub
+Actions **every 5 minutes**, no server required.
+
+Two lists are published on that 5-minute schedule:
+
+* [`results/`](results) - **validated**: every proxy answered a live judge request through itself.
+* [`results/raw/`](results/raw) - **scraped only, no validation**: thousands of proxies, published
+  minutes after they were listed, for uses where a big list matters more than a checked one.
+
+Both grow continuously: every pass *adds* what it scraped, an entry that is already there is
+**overwritten** with its newest data instead of being duplicated, and an entry nobody lists any more
+expires on its own.
 
 [![Proxy Scraper Auto Update](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/update-proxies.yml/badge.svg)](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/update-proxies.yml)
+[![Proxy Scraper Raw](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/scrape-raw.yml/badge.svg)](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/scrape-raw.yml)
+[![Publish PDF](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/publish-pdf.yml/badge.svg)](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/publish-pdf.yml)
 [![Tests](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/tests.yml/badge.svg)](https://github.com/Denisyoya/Proxy-List-Gamt/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Schedule](https://img.shields.io/badge/refresh-every%203%20hours-orange)
+![Schedule](https://img.shields.io/badge/refresh-every%205%20minutes-orange)
 ![Author](https://img.shields.io/badge/author-Gametturxux-black)
 ![Community](https://img.shields.io/badge/community-gametturxux-25D366)
 
@@ -49,7 +61,10 @@ the same six lists:
 results/
 ├── txt/    all.txt   http.txt   https.txt   socks.txt   socks4.txt   socks5.txt
 ├── json/   all.json  http.json  https.json  socks.json  socks4.json  socks5.json   stats.json
-└── pdf/    all.pdf   http.pdf   https.pdf   socks.pdf   socks4.pdf   socks5.pdf
+├── pdf/    all.pdf   http.pdf   https.pdf   socks.pdf   socks4.pdf   socks5.pdf
+└── raw/    scraped only, never validated
+    ├── txt/    all.txt   http.txt   socks.txt   socks4.txt   socks5.txt
+    └── json/   all.json  http.json  socks.json  socks4.json  socks5.json   stats.json
 ```
 
 | List | Contents | `txt` line format |
@@ -65,7 +80,9 @@ results/
   single-protocol lists are bare `ip:port`.
 * Every list is sorted by measured latency, fastest first.
 * `json/*.json` are arrays of records:
-  `{"proxy", "protocol", "url", "latency_ms", "http", "https", "exit_ip", "checks_passed", "checks_total"}`.
+  `{"proxy", "protocol", "url", "latency_ms", "http", "https", "exit_ip", "checks_passed",
+  "checks_total", "checked_at"}`, plus `"carried_over": true` on a record that an earlier pass
+  verified and this one kept published (`--keep-published`).
   `http` / `https` say what the proxy was observed to do in its last check, `checks_passed` of
   `checks_total` shows how reliable it was across the confirmation rounds.
 * `json/stats.json` holds the metrics of the last run (counts, latency, source health, timings).
@@ -87,6 +104,39 @@ https://raw.githubusercontent.com/Denisyoya/Proxy-List-Gamt/main/results/json/al
 ```
 
 Replace `txt/all.txt` with `json/<list>.json` or `pdf/<list>.pdf` for the other formats.
+
+### Raw lists (scraped, **not** validated)
+
+[`results/raw/`](results/raw) is published by its own 5-minute pass that only scrapes: no judges, no
+TCP pre-filter, no protocol probes. It is the whole pool of proxies that the sources listed recently,
+so it is much bigger - and much dirtier - than the validated lists. Use it when you want volume and
+can afford to fail over (a rotating client, a checker of your own), never when you need a proxy that
+is known to work.
+
+<!-- raw-stats:start -->
+
+Last scrape: `not published yet` - run `python main.py --scrape-only` or wait for the
+**Proxy Scraper Raw** workflow.
+
+<!-- raw-stats:end -->
+
+* `raw/txt/all.txt` - one line per proxy per claimed protocol (`protocol://ip:port`). A proxy whose
+  sources never said which protocol it speaks is listed bare (`ip:port`) and appears in no
+  single-protocol list.
+* `raw/txt/{http,socks,socks4,socks5}.txt` - the same entries per protocol.
+* `raw/json/*.json` - one compact record per proxy:
+  `{"proxy", "protocols", "listings", "hits", "first_seen", "last_seen", "age_seconds"}`.
+  `listings` is how many sources listed it in its best pass, `hits` in how many passes it was seen -
+  the two cheapest quality signals there are without validating.
+* `raw/json/stats.json` - the numbers of the last scrape pass.
+* Entries are ordered by address, not by age, so consecutive commits differ only where proxies really
+  appeared or disappeared. The freshest entries are the ones kept when `--raw-limit` cuts the list.
+
+```
+https://raw.githubusercontent.com/Denisyoya/Proxy-List-Gamt/main/results/raw/txt/all.txt
+https://raw.githubusercontent.com/Denisyoya/Proxy-List-Gamt/main/results/raw/txt/socks5.txt
+https://raw.githubusercontent.com/Denisyoya/Proxy-List-Gamt/main/results/raw/json/all.json
+```
 
 > **Migrating from the old layout.** The previous `proxy/` directory (`proxy.txt`, `stable.txt`,
 > `proxies.csv`, `proxies.json` ...) was replaced by `results/`. `proxy.txt` is now
@@ -144,8 +194,14 @@ fast_https = [r["url"] for r in requests.get(url, timeout=15).json() if r["laten
    labelled `socks5` is tried as HTTP/SOCKS4 only when its first handshake was *not recognised*.
 7. **Confirmation rounds** - survivors are probed again against different judges; only proxies that
    pass the final check are published, together with how many checks they passed.
-8. **Publish** - `results/` is rewritten atomically. If nothing verified (network outage) the previous
-   results are left untouched.
+8. **Accumulate** - everything the scrape found is merged into a persistent pool
+   (`.cache/raw_pool.json`): new entries are appended, entries that are already there are overwritten
+   with their newest data, and entries nobody lists any more expire after `--raw-ttl-hours`. The pool
+   is published unvalidated to `results/raw/` and seeds the candidate ranking of the next pass.
+9. **Publish** - `results/` is rewritten atomically, merged with what is already published
+   (`--keep-published`): a proxy that verified again overwrites its old record, one that this pass did
+   not re-check survives for the keep window and is flagged `carried_over`. If nothing verified
+   (network outage) the previous results are left untouched.
 
 ### Why it is faster and finds more
 
@@ -170,7 +226,8 @@ depend on your network.
 | File | Contents |
 | --- | --- |
 | [`sources/github.txt`](sources/github.txt) | Hand-picked proxy lists hosted on GitHub, verified alive and recently updated |
-| [`sources/websites.txt`](sources/websites.txt) | Websites, APIs and pages in many languages (English, Chinese, Russian, Japanese, ...) |
+| [`sources/websites.txt`](sources/websites.txt) | Websites, APIs and pages abroad (luar negeri) in many languages: English, Chinese, Russian, Japanese, Turkish, Polish, Spanish, Portuguese, ... |
+| [`sources/indonesia.txt`](sources/indonesia.txt) | Domestic sources (dalam negeri): Indonesian GitHub lists and sites, plus the `country=ID` endpoints of the big aggregators |
 | [`sources/discovered.txt`](sources/discovered.txt) | Found automatically by `src/discover.py` (capped at 50,000 sources) |
 
 Add a source by appending one line (the test-suite fails on a malformed line):
@@ -178,11 +235,21 @@ Add a source by appending one line (the test-suite fails on a malformed line):
 ```
 http   owner/repo/main/path/http.txt                    # sources/github.txt
 mixed  https://example.com/list?page={page}  pages=1..10 # sources/websites.txt
+mixed  https://example.id/proxy?page={page}  pages=1..5  # sources/indonesia.txt (URL or repo path)
 ```
 
 `hint` is the protocol the source claims for entries that do not say (`http`, `socks4`, `socks5`,
 `socks`, `mixed`). GitHub files automatically get CDN mirrors (jsDelivr, statically) that are only
 used when `raw.githubusercontent.com` fails.
+
+**Auditing the registries.** Free sites come and go, so [`tools/audit_sources.py`](tools/audit_sources.py)
+fetches every registered source once and reports which ones are reachable and how many proxies each
+of them yields - locally, or through the **Audit Sources** workflow, which runs it on a GitHub runner:
+
+```bash
+python tools/audit_sources.py --sort yield                # what delivers, biggest first
+python tools/audit_sources.py --prune --prune-empty       # ready-to-use registries without the dead lines
+```
 
 **Source health.** A source that fails or delivers nothing for three runs in a row is skipped for an
 exponentially growing number of runs (capped at 16), so dead sources cost almost nothing. A discovered
@@ -205,8 +272,20 @@ python main.py
 Set `GITHUB_TOKEN` (any token, no scopes needed) to let discovery use the GitHub API; without it
 discovery is skipped and the committed registry is used as is.
 
+Scrape only, publish thousands of unvalidated proxies, and keep doing it every 5 minutes (this is
+exactly what the raw workflow runs):
+
+```bash
+python main.py --scrape-only                       # one pass -> results/raw/
+python main.py --scrape-only --interval 5          # forever, a pass every 5 minutes
+python main.py --interval 5                        # forever, scrape + validate every 5 minutes
+```
+
 | Flag | Default | Description |
 | --- | --- | --- |
+| `--interval` | `0` | Run forever, a new pass every N minutes (`0` = one pass; `5` matches the schedule) |
+| `--scrape-only` | off | Scrape and publish the raw lists only: no validation, no judges |
+| `--keep-published` | `0` | Keep a verified proxy published for N minutes after its last check |
 | `--timeout` | `8` | Per-probe timeout in seconds |
 | `--connect-timeout` | `5` | TCP connect timeout in seconds |
 | `--concurrency` | `800` | Simultaneous protocol probes |
@@ -224,17 +303,39 @@ discovery is skipped and the committed registry is used as is.
 | `--discover` | `auto` | `auto` (only with a token), `on` or `off` |
 | `--max-sources` | `50000` | Cap for discovered sources |
 | `--discover-calls` | `500` | GitHub API call budget per run |
+| `--discover-minutes` | `8` | Time budget for discovery |
+| `--publish-raw` | off | Also publish the raw lists during a validating run |
+| `--raw-dir` | `results/raw` | Directory for the unvalidated lists |
+| `--raw-formats` | `txt,json` | Which raw formats to write |
+| `--raw-limit` | `10000` | Publish at most N raw entries, freshest first (`0` = all) |
+| `--raw-ttl-hours` | `6` | A raw entry that is not seen again for N hours expires |
+| `--raw-pool-limit` | `250000` | Hard cap for the accumulated pool (`0` = no cap) |
+| `--no-accumulate` | off | Start from an empty pool instead of adding to the previous one |
 | `--output` | `results` | Results directory |
 | `--formats` | `txt,json,pdf` | Which formats to write |
 | `--readme` | `README.md` | README to refresh (`''` leaves it alone) |
-| `--cache` | `.cache` | Directory for source health and the candidate cache |
+| `--cache` | `.cache` | Directory for source health and the pools |
 | `--allow-empty` | off | Publish even when nothing verified |
+| `--allow-private` | off | Accept private/loopback IPs (local testing) |
 
 Quick run:
 
 ```bash
 python main.py --max-candidates 20000 --rounds 1 --discover off
 ```
+
+### How the pool keeps growing
+
+A pass never starts from zero. Everything it scrapes goes into a persistent pool
+(`.cache/raw_pool.json`, kept between workflow runs by `actions/cache`):
+
+| Situation | What happens |
+| --- | --- |
+| A proxy nobody listed before | Appended, `first_seen = last_seen = now`, `hits = 1` |
+| A proxy that is already in the pool | **Overwritten**: `last_seen` refreshed, `hits += 1`, `listings` = the best pass so far, protocol claims unioned (listed as HTTP once and SOCKS5 once -> it claims both) |
+| A proxy no source lists any more | Kept until it is older than `--raw-ttl-hours`, then dropped |
+| The pool above `--raw-pool-limit` | The oldest, least-listed entries are dropped first |
+| A verified proxy this pass did not re-check | Stays in `results/` for `--keep-published` minutes (flagged `carried_over` in the JSON), so a short pass never wipes the list earlier passes built |
 
 ## Tests
 
@@ -254,48 +355,76 @@ runs discovery against the real GitHub API.
 
 ## Automation
 
-[`.github/workflows/update-proxies.yml`](.github/workflows/update-proxies.yml) runs the pipeline every
-three hours and on manual dispatch, then commits the refreshed `results/`, `sources/` and this README's
-statistics. [`.github/workflows/tests.yml`](.github/workflows/tests.yml) runs the test-suite on every
-push and pull request.
+Four workflows, three of them on a schedule:
 
-The workflow carries an author lock. `PROJECT_AUTHOR`, `PROJECT_COMMUNITY` and `PROJECT_REPOSITORY` are
+| Workflow | Schedule | What it does |
+| --- | --- | --- |
+| [`update-proxies.yml`](.github/workflows/update-proxies.yml) | `*/5 * * * *` | Scrape -> add to the pool -> validate the best candidates -> publish `results/{txt,json}`, `sources/` and this README |
+| [`scrape-raw.yml`](.github/workflows/scrape-raw.yml) | `2-59/5 * * * *` | Scrape only, **no validation** -> publish `results/raw/` (offset by two minutes so the two never fight over a commit) |
+| [`publish-pdf.yml`](.github/workflows/publish-pdf.yml) | `17 */3 * * *` | Re-render `results/pdf/` from the published JSON (`tools/render_pdf.py`): no scraping, no network |
+| [`tests.yml`](.github/workflows/tests.yml) | every push / pull request | The hermetic test-suite |
+
+A 5-minute interval leaves no room to validate 1.6 million candidates, so each pass works with a
+budget instead of testing everything: `--scrape-budget 2` minutes of downloading, `--time-budget 2`
+minutes of validating, `--max-candidates 40000` of the ranked candidates, and `--keep-published 30` so
+proxies verified by an earlier pass stay published while they are still fresh. Proxies that were alive
+in the last pass are ranked first, so the live set is always the first thing a pass re-checks. Every
+number is a dispatch input - trigger the workflow by hand with a bigger budget whenever you want a
+deep pass.
+
+The two scheduled scrapers share one `actions/cache` entry (`.cache/`: source health, the candidate
+cache and the accumulated raw pool), which is how the pool survives between passes - and between the
+two workflows. Only `update-proxies.yml` writes this README, so the two never produce a conflicting
+commit; both rebase before they push.
+
+The workflows carry an author lock. `PROJECT_AUTHOR`, `PROJECT_COMMUNITY` and `PROJECT_REPOSITORY` are
 pinned in the YAML, and the `authorization` job compares the live repository name against
-`Proxy-List-Gamt`. Renaming the repository fails that job, the `update` job is skipped, and the
+`Proxy-List-Gamt`. Renaming the repository fails that job, the scraping jobs are skipped, and the
 automation stops running until the original name and author block are restored.
 
 Setup:
 
 1. Fork or push this repository to your account.
 2. Open **Settings - Actions - General - Workflow permissions** and select
-   **Read and write permissions** so the workflow can commit results.
-3. Open the **Actions** tab, enable workflows, and trigger **Proxy Scraper Auto Update** once with
-   **Run workflow**.
+   **Read and write permissions** so the workflows can commit results.
+3. Open the **Actions** tab, enable workflows, and trigger **Proxy Scraper Auto Update** and
+   **Proxy Scraper Raw** once with **Run workflow**.
 
-Change the cadence by editing the `cron` expression; the dispatch form exposes the timeouts,
-concurrency, rounds, time budget, candidate cap and discovery mode.
+Change the cadence by editing the `cron` expressions. GitHub runs scheduled workflows at most every
+five minutes and skips them while an earlier run of the same concurrency group is still going, so
+`*/5 * * * *` is the fastest this can be; for anything tighter, run `python main.py --interval 1`
+on your own machine or VPS - the loop mode is the same pipeline, and one pass never overlaps the next.
+Note that scheduled workflows only run on the default branch, and GitHub disables them when a
+repository has been inactive for 60 days.
 
 ## Project layout
 
 ```
 .
 ├── .github/workflows/
-│   ├── update-proxies.yml      scheduled pipeline + author lock
+│   ├── update-proxies.yml      every 5 min: scrape + validate + publish (+ author lock)
+│   ├── scrape-raw.yml          every 5 min: scrape only, no validation -> results/raw/
+│   ├── publish-pdf.yml         every 3 h: re-render the PDFs from the published JSON
+│   ├── audit-sources.yml       on demand: which sources are reachable, what do they yield
 │   └── tests.yml               test-suite on every push / pull request
-├── main.py                     pipeline entry point
+├── main.py                     pipeline entry point (one pass, or --interval N forever)
 ├── requirements.txt            runtime dependency (aiohttp)
 ├── requirements-dev.txt        test dependencies
-├── sources/                    github.txt, websites.txt, discovered.txt
-├── results/                    published lists: txt/  json/  pdf/
+├── sources/                    github.txt, websites.txt, indonesia.txt, discovered.txt
+├── results/                    published lists: txt/  json/  pdf/  raw/
 ├── src/
-│   ├── common.py               protocol masks, IP rules
+│   ├── common.py               protocol masks, IP rules, timestamps
 │   ├── parser.py               every payload format -> ip:port
 │   ├── sources.py              source files and mirrors
 │   ├── discover.py             GitHub discovery
 │   ├── scraper.py              downloading, candidate pool, source health
+│   ├── rawpool.py              the persistent pool: add, overwrite, expire
 │   ├── validator.py            TCP pre-filter, protocol probes, confirmation
-│   ├── build.py                results writer and README blocks
+│   ├── build.py                results writer (validated + raw) and README blocks
 │   └── pdfgen.py               dependency-free PDF writer
+├── tools/
+│   ├── audit_sources.py        reachability and yield of every registered source
+│   └── render_pdf.py           results/json -> results/pdf, no network
 └── tests/                      unit, integration and end-to-end tests + fake internet
 ```
 

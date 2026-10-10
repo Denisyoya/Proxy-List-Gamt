@@ -75,12 +75,20 @@ class Pool:
         tmp.write_text(json.dumps(self._data, separators=(",", ":")))
         os.replace(tmp, target)
 
+    def snapshot(self) -> dict[str, int]:
+        """Copy of the packed ``ip:port -> value`` mapping."""
+        return dict(self._data)
+
+    def restore(self, packed: dict[str, int]) -> None:
+        """Replace the contents with a packed mapping (cache file or raw pool)."""
+        self._data = {str(key): int(value) for key, value in packed.items()}
+
     @classmethod
     def load(cls, path: str | Path) -> "Pool":
         pool = cls()
         try:
             data = json.loads(Path(path).read_text())
-            pool._data = {str(k): int(v) for k, v in data.items()}
+            pool.restore(data)
         except (ValueError, OSError, AttributeError):
             pool._data = {}
         return pool

@@ -106,6 +106,25 @@ def stable_hash(text: str) -> int:
     return zlib.crc32(text.encode())
 
 
+STAMP_FORMAT = "%Y-%m-%d %H:%M:%S UTC"
+
+
 def utc_stamp(moment: datetime | None = None) -> str:
     moment = moment or datetime.now(timezone.utc)
-    return moment.strftime("%Y-%m-%d %H:%M:%S UTC")
+    return moment.strftime(STAMP_FORMAT)
+
+
+def parse_stamp(text: str) -> datetime | None:
+    """Read back a stamp written by :func:`utc_stamp` (``None`` when unreadable)."""
+    try:
+        return datetime.strptime(str(text).strip(), STAMP_FORMAT).replace(tzinfo=timezone.utc)
+    except (ValueError, AttributeError, TypeError):
+        return None
+
+
+def stamp_age_seconds(text: str, now: datetime | None = None) -> float:
+    """Seconds between *text* and *now*; ``inf`` when the stamp cannot be read."""
+    moment = parse_stamp(text)
+    if moment is None:
+        return float("inf")
+    return ((now or datetime.now(timezone.utc)) - moment).total_seconds()

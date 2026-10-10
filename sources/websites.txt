@@ -215,3 +215,165 @@ mixed  https://free-proxy.cz/de/proxylist/main/date/{page}  pages=1..5
 mixed  https://free-proxy.cz/fr/proxylist/main/date/{page}  pages=1..5
 mixed  https://free-proxy.cz/zh/proxylist/main/date/{page}  pages=1..5
 mixed  https://free-proxy.cz/ja/proxylist/main/date/{page}  pages=1..5
+
+# ============================================================== plain-text APIs (high yield)
+# Single-request endpoints that return a full list: the cheapest thousands of candidates.
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=text&timeout=20000
+mixed  https://api.proxyscan.io/proxy?limit=500&type=http,https,socks4,socks5&format=txt&lastCheck=180
+http   https://api.proxyscan.io/proxy?limit=500&type=http,https&format=txt&lastCheck=180
+socks4 https://api.proxyscan.io/proxy?limit=500&type=socks4&format=txt&lastCheck=180
+socks5 https://api.proxyscan.io/proxy?limit=500&type=socks5&format=txt&lastCheck=180
+http   https://www.proxyscan.io/download?type=http
+socks4 https://www.proxyscan.io/download?type=socks4
+socks5 https://www.proxyscan.io/download?type=socks5
+mixed  https://proxyscan.io/download?type=all
+http   https://api.openproxy.space/list/http
+socks4 https://api.openproxy.space/lists/socks4
+socks5 https://api.openproxy.space/lists/socks5
+socks4 https://openproxy.space/list/socks4
+socks5 https://openproxy.space/list/socks5
+socks4 http://worm.rip/socks4.txt
+socks5 http://worm.rip/socks5.txt
+http   https://www.freeproxychecker.com/result/http_proxies.txt
+socks4 https://www.freeproxychecker.com/result/socks4_proxies.txt
+socks5 https://www.freeproxychecker.com/result/socks5_proxies.txt
+mixed  http://freevpn.ninja/free-proxy/txt
+mixed  https://hideip.me/en/proxy/http-list
+mixed  https://hideip.me/en/proxy/socks4list
+mixed  https://hideip.me/en/proxy/socks5list
+mixed  https://www.proxylist.live/dashboard/http
+mixed  https://www.proxylist.live/dashboard/socks4
+mixed  https://www.proxylist.live/dashboard/socks5
+mixed  https://proxysearcher.sourceforge.net/ProxyList.php?type=http
+mixed  https://proxysearcher.sourceforge.net/ProxyList.php?type=socks
+mixed  http://www.mrhinkydink.com/proxies.htm
+mixed  http://www.mrhinkydink.com/proxies2.htm
+mixed  http://www.mrhinkydink.com/proxies3.htm
+mixed  http://fastproxyservers.org/socks5-servers.htm
+mixed  http://fastproxyservers.org/socks4-servers.htm
+mixed  http://fastproxyservers.org/proxy-servers.htm
+mixed  https://www.ultraproxies.com/
+mixed  https://www.ultraproxies.com/high-anonymous.html
+mixed  http://sockslist.net/
+mixed  https://freeproxylists.net/
+mixed  http://proxy.org/
+mixed  https://catsyproxy.com/
+
+# ============================================================== more paginated sites
+mixed  https://proxylist.me/proxys/index/{page}  pages=1..40
+mixed  https://proxyrox.com/?p={page}  pages=1..25
+mixed  https://premproxy.com/list/{page}.htm  pages=1..20
+mixed  https://premproxy.com/socks-list/{page}.htm  pages=1..15
+mixed  https://aliveproxies.com/ipproxy/page/{page}/  pages=1..10
+mixed  http://aliveproxy.com/proxy-list-port-8080/
+mixed  http://aliveproxy.com/proxy-list-port-3128/
+mixed  http://aliveproxy.com/proxy-list-port-80/
+mixed  http://aliveproxy.com/proxy-list-port-81/
+mixed  http://aliveproxy.com/high-anonymity-proxy-list/
+mixed  http://aliveproxy.com/anonymous-proxy-list/
+mixed  http://aliveproxy.com/us-proxy-list/
+mixed  http://atomintersoft.com/products/alive-proxy/proxy-list
+mixed  http://atomintersoft.com/proxy_list_port_3128
+mixed  http://atomintersoft.com/proxy_list_port_8080
+mixed  http://atomintersoft.com/proxy_list_port_80
+mixed  http://atomintersoft.com/proxy_list_port_81
+mixed  http://atomintersoft.com/proxy_list_port_1080
+mixed  https://www.gatherproxy.com/proxylist/anonymity/?t=Elite
+mixed  https://www.gatherproxy.com/proxylist/anonymity/?t=Anonymous
+mixed  https://www.gatherproxy.com/proxylist/port/8080
+mixed  http://foxtools.ru/Proxy?page={page}  pages=1..10
+mixed  http://tools.rosinstrument.com/proxy/?rule1
+mixed  http://tools.rosinstrument.com/raw_free_db.htm?t=2
+mixed  https://www.proxystream.com/elite-proxy/{page}  pages=1..10
+mixed  https://www.proxystream.com/anonymous-proxy/{page}  pages=1..10
+mixed  https://www.proxystream.com/socks5-proxy/{page}  pages=1..10
+mixed  https://www.proxystream.com/socks4-proxy/{page}  pages=1..10
+mixed  https://www.proxz.com/proxy_list_port_std_{page}.html  pages=0..9
+mixed  https://www.proxz.com/proxy_list_port_nonstd_{page}.html  pages=0..9
+mixed  https://www.proxz.com/proxy_list_anonymous_us_{page}.html  pages=0..9
+mixed  https://www.proxz.com/proxy_list_cn_{page}.html  pages=0..5
+mixed  https://www.proxz.com/proxy_list_cn_ssl_{page}.html  pages=0..5
+mixed  https://www.proxz.com/proxy_list_fr_{page}.html  pages=0..5
+mixed  https://www.proxz.com/proxy_list_uk_{page}.html  pages=0..5
+mixed  http://proxylist.sakura.ne.jp/index.htm?pages={page}  pages=1..5
+mixed  https://www.proxydocker.com/en/proxy-list/
+mixed  https://www.proxydocker.com/en/proxylist/port/8080
+mixed  https://www.proxydocker.com/en/proxylist/port/3128
+mixed  https://www.proxydocker.com/en/proxylist/port/80
+mixed  https://hidemy.name/en/proxy-list/?type=hs
+mixed  https://hidemy.name/en/proxy-list/?type=s
+mixed  https://hidemy.name/en/proxy-list/?type=h
+mixed  https://spys.one/en/free-proxy-list/
+mixed  https://spys.one/en/socks-proxy-list/
+mixed  https://spys.one/en/https-ssl-proxy-list/
+mixed  http://spys.ru/en/free-proxy-list/1/
+mixed  http://spys.ru/en/free-proxy-list/2/
+mixed  https://best-proxy.com/english/search.php?search=anonymous-and-elite&country=any&type=anonymous-and-elite&port=any&ssl=any
+
+# ============================================================== country slices (luar negeri)
+# The same aggregators, filtered per country: more independent listings per proxy and
+# coverage of regions the global pages rotate out.
+mixed  https://www.proxynova.com/proxy-server-list/country-us/
+mixed  https://www.proxynova.com/proxy-server-list/country-br/
+mixed  https://www.proxynova.com/proxy-server-list/country-ru/
+mixed  https://www.proxynova.com/proxy-server-list/country-cn/
+mixed  https://www.proxynova.com/proxy-server-list/country-in/
+mixed  https://www.proxynova.com/proxy-server-list/country-fr/
+mixed  https://www.proxynova.com/proxy-server-list/country-de/
+mixed  https://www.proxynova.com/proxy-server-list/country-vn/
+mixed  https://www.proxynova.com/proxy-server-list/country-th/
+mixed  https://www.proxynova.com/proxy-server-list/country-ph/
+mixed  https://www.proxynova.com/proxy-server-list/country-my/
+mixed  https://www.proxynova.com/proxy-server-list/country-sg/
+mixed  https://www.proxynova.com/proxy-server-list/country-tr/
+mixed  https://www.proxynova.com/proxy-server-list/country-pk/
+mixed  https://www.proxynova.com/proxy-server-list/country-bd/
+mixed  https://www.proxynova.com/proxy-server-list/country-eg/
+mixed  https://www.proxynova.com/proxy-server-list/country-ng/
+mixed  https://www.proxynova.com/proxy-server-list/country-za/
+mixed  https://www.proxynova.com/proxy-server-list/country-mx/
+mixed  https://www.proxynova.com/proxy-server-list/country-ar/
+mixed  https://spys.one/free-proxy-list/US/
+mixed  https://spys.one/free-proxy-list/BR/
+mixed  https://spys.one/free-proxy-list/RU/
+mixed  https://spys.one/free-proxy-list/CN/
+mixed  https://spys.one/free-proxy-list/IN/
+mixed  https://spys.one/free-proxy-list/VN/
+mixed  https://spys.one/free-proxy-list/TR/
+mixed  https://spys.one/free-proxy-list/DE/
+mixed  https://spys.one/free-proxy-list/FR/
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=US&sort_by=lastChecked&sort_type=desc  pages=1..6
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=BR&sort_by=lastChecked&sort_type=desc  pages=1..4
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=RU&sort_by=lastChecked&sort_type=desc  pages=1..4
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=IN&sort_by=lastChecked&sort_type=desc  pages=1..4
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=CN&sort_by=lastChecked&sort_type=desc  pages=1..4
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=VN&sort_by=lastChecked&sort_type=desc  pages=1..4
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=US&proxy_format=protocolipport&format=text
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=RU&proxy_format=protocolipport&format=text
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=BR&proxy_format=protocolipport&format=text
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=IN&proxy_format=protocolipport&format=text
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=VN&proxy_format=protocolipport&format=text
+
+# ============================================================== other languages (tambahan)
+# Turkish (tr)
+mixed  https://guncelproxy.com/
+mixed  http://www.proksi.org/proxy_liste1.php
+mixed  http://www.proksi.org/proxy_liste2.php
+# Polish (pl)
+mixed  http://proxy.net.pl/lista-proxy/lista-1-17.html
+mixed  http://proxy.net.pl/lista-proxy/lista-2-17.html
+# Vietnamese / Thai / Korean / Arabic / Hindi (vi, th, ko, ar, hi)
+# Italian / French / Portuguese (it, fr, pt)
+mixed  https://www.proxy-list.download/api/v2/get?l=it&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=fr&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=pt&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=es&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=de&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ru&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=tr&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=vi&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=th&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ko&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ja&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ar&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=hi&t=http
