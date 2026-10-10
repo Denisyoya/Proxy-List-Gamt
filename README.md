@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-10 17:33:36 UTC`
+Last run: `2026-10-10 20:42:28 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **903** |
-| HTTP | 219 |
-| HTTPS (verified TLS tunnel) | 32 |
-| SOCKS4 | 113 |
-| SOCKS5 | 570 |
-| Passed every check (stable) | 903 |
-| Median latency | 3870 ms |
-| Fastest | 374 ms |
-| Under 1 second | 186 |
+| Live proxies | **1,167** |
+| HTTP | 794 |
+| HTTPS (verified TLS tunnel) | 33 |
+| SOCKS4 | 106 |
+| SOCKS5 | 266 |
+| Passed every check (stable) | 1,167 |
+| Median latency | 1644 ms |
+| Fastest | 204 ms |
+| Under 1 second | 222 |
 | Sources registered | 878 (589 curated + 289 discovered) |
-| Sources that delivered proxies | 509 |
-| Candidates scraped | 1,629,722 |
-| Reachable on TCP | 14,023 |
+| Sources that delivered proxies | 535 |
+| Candidates scraped | 1,660,172 |
+| Reachable on TCP | 12,891 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 232s |
+| Runtime | 228s |
 
 <!-- stats:end -->
 
@@ -115,8 +115,23 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `not published yet` - run `python main.py --scrape-only` or wait for the
-**Proxy Scraper Raw** workflow.
+Last scrape: `2026-10-10 17:35:32 UTC` - **no validation**, published as scraped
+
+| Metric | Value |
+| --- | --- |
+| Raw proxies published | **10,000** |
+| Unique endpoints | 10,000 |
+| HTTP | 10,000 |
+| SOCKS4 | 9,703 |
+| SOCKS5 | 9,999 |
+| Protocol not stated by any source | 0 |
+| Seen in more than one scrape run | 10,000 |
+| Sources registered | 878 (589 curated + 289 discovered) |
+| Sources that delivered proxies | 544 |
+| Candidates scraped this run | 1,661,547 |
+| Raw pool size (accumulated) | 250,000 |
+| Raw pool TTL | 6.0 h |
+| Scrape time | 54s |
 
 <!-- raw-stats:end -->
 
@@ -459,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-10 17:33:36 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-10 20:42:28 UTC.
 
 <!-- footer:end -->
