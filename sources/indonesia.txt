@@ -26,12 +26,9 @@ mixed Xnuvers007/free-proxy/main/proxy_scheme_active.txt
 # notthinks/proxy-indonesia - "Auto-scanner proxy Indonesia aktif - multi-provider, geo+forward verify"
 mixed notthinks/proxy-indonesia/main/indonesia_proxies.txt
 mixed notthinks/proxy-indonesia/main/raw_proxies.txt
-# Dragonforfly/proxy-list-free-socks - "daftar proxy SOCKS4 dan SOCKS5"
-socks  Dragonforfly/proxy-list-free-socks/main/modules/cache/database.json
 
 # ============================================================== situs & blog dalam negeri
 mixed  https://tuwaga.id/artikel/daftar-proxy-indonesia-gratis/
-mixed  https://www.biznethome.net/blog/proxy-gratis-terbaik-2025-cepat-online-dan-aman-digunakan/
 
 # ============================================================== API per negara (country=ID)
 mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=ID&proxy_format=protocolipport&format=text&timeout=20000
@@ -54,7 +51,4 @@ mixed  https://fineproxy.org/free-proxies/asia/indonesia/
 mixed  https://free.geonix.com/en/indonesia/
 mixed  https://proxyelite.info/free/asia/indonesia/
 mixed  https://proxyfreeonly.com/free-proxy-list/indonesia
-mixed  https://list.proxylistplus.com/Indonesia-Proxy-List-{page}  pages=1..3
-mixed  https://www.proxy-list.download/id/v1/get?type=http&country=ID
-mixed  https://roundproxies.com/api/get-free-proxies/?limit=50&page={page}&country=ID&sort_by=lastChecked&sort_type=desc  pages=1..10
-mixed  https://hide.mn/en/proxy-list/?country=ID&start={offset}  pages=1..5  step=64
+mixed  https://www.proxy-list.download/api/v2/get?l=id&t=http

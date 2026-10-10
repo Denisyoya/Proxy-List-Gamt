@@ -362,21 +362,18 @@ mixed  http://www.proksi.org/proxy_liste2.php
 # Polish (pl)
 mixed  http://proxy.net.pl/lista-proxy/lista-1-17.html
 mixed  http://proxy.net.pl/lista-proxy/lista-2-17.html
-# Vietnamese / Thai / Korean (vi, th, ko)
-mixed  https://proxy.vn/proxy
-mixed  http://www.proxy.co.kr/
+# Vietnamese / Thai / Korean / Arabic / Hindi (vi, th, ko, ar, hi)
 # Italian / French / Portuguese (it, fr, pt)
-mixed  https://www.proxy-list.download/it/v1/get?type=http
-mixed  https://www.proxy-list.download/fr/v1/get?type=http
-mixed  https://www.proxy-list.download/pt/v1/get?type=http
-mixed  https://www.proxy-list.download/es/v1/get?type=http
-mixed  https://www.proxy-list.download/de/v1/get?type=http
-mixed  https://www.proxy-list.download/ru/v1/get?type=http
-mixed  https://www.proxy-list.download/tr/v1/get?type=http
-mixed  https://www.proxy-list.download/vi/v1/get?type=http
-mixed  https://www.proxy-list.download/th/v1/get?type=http
-mixed  https://www.proxy-list.download/ko/v1/get?type=http
-mixed  https://www.proxy-list.download/ja/v1/get?type=http
-mixed  https://www.proxy-list.download/ar/v1/get?type=http
-mixed  https://www.proxy-list.download/hi/v1/get?type=http
-mixed  https://www.proxy-list.download/id/v1/get?type=http
+mixed  https://www.proxy-list.download/api/v2/get?l=it&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=fr&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=pt&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=es&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=de&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ru&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=tr&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=vi&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=th&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ko&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ja&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=ar&t=http
+mixed  https://www.proxy-list.download/api/v2/get?l=hi&t=http

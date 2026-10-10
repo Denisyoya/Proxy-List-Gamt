@@ -1,0 +1,138 @@
+name: Proxy Scraper Raw
+
+# Every 5 minutes (offset from the validating workflow): scrape everything and publish
+# it *without any validation* to `results/raw/`. Thousands of proxies, minutes after
+# they were listed, for uses where a big list matters more than a checked one.
+#
+# The pool is persistent: every pass adds what it scraped, an entry that is already
+# there is overwritten with its newest data, and entries nobody lists any more expire
+# after RAW_TTL hours. Nothing is validated, so this pass never needs judges, a TCP
+# pre-filter or a probe budget - it is done in a couple of minutes.
+#
+# It deliberately does not touch README.md or results/{txt,json,pdf}: those belong to
+# "Proxy Scraper Auto Update", which also mirrors the raw numbers into the README.
+
+env:
+  PROJECT_AUTHOR: Gametturxux
+  PROJECT_COMMUNITY: gametturxux community
+  PROJECT_REPOSITORY: Proxy-List-Gamt
+  COMMUNITY_CHANNEL: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
+
+on:
+  schedule:
+    - cron: "2-59/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      scrape_budget:
+        description: "Stop scraping after N minutes"
+        required: false
+        default: "3"
+      raw_limit:
+        description: "Publish at most N raw entries, freshest first (0 = all)"
+        required: false
+        default: "10000"
+      raw_ttl_hours:
+        description: "A raw entry that is not seen again for N hours expires"
+        required: false
+        default: "6"
+      raw_pool_limit:
+        description: "Hard cap for the accumulated pool (0 = no cap)"
+        required: false
+        default: "250000"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: proxy-scraper-raw
+  cancel-in-progress: false
+
+jobs:
+  authorization:
+    name: Author lock
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check.outputs.allowed }}
+    steps:
+      - id: check
+        name: Verify repository identity
+        run: |
+          echo "author        : ${PROJECT_AUTHOR}"
+          echo "community     : ${PROJECT_COMMUNITY}"
+          echo "expected repo : ${PROJECT_REPOSITORY}"
+          echo "current repo  : ${{ github.event.repository.name }}"
+          if [ "${{ github.event.repository.name }}" != "${PROJECT_REPOSITORY}" ]; then
+            echo "::error title=Author lock::Repository must stay named ${PROJECT_REPOSITORY}. Automation is disabled after a rename."
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          echo "allowed=true" >> "$GITHUB_OUTPUT"
+
+  scrape:
+    name: Scrape without validation
+    needs: authorization
+    if: needs.authorization.outputs.allowed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore caches
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: proxy-cache-${{ github.run_id }}
+          restore-keys: |
+            proxy-cache-
+
+      - name: Scrape and publish raw lists
+        run: |
+          ulimit -n 65535 || true
+          python main.py --scrape-only \
+            --scrape-budget "${{ github.event.inputs.scrape_budget || '3' }}" \
+            --raw-limit "${{ github.event.inputs.raw_limit || '10000' }}" \
+            --raw-ttl-hours "${{ github.event.inputs.raw_ttl_hours || '6' }}" \
+            --raw-pool-limit "${{ github.event.inputs.raw_pool_limit || '250000' }}" \
+            --discover off \
+            --readme ""
+
+      - name: Build summary
+        if: always()
+        run: |
+          {
+            echo "### ${PROJECT_REPOSITORY} - raw (no validation)"
+            echo ""
+            echo "Author: ${PROJECT_AUTHOR} | ${PROJECT_COMMUNITY}"
+            echo ""
+            echo "Channel: ${COMMUNITY_CHANNEL}"
+            echo ""
+            echo '```json'
+            cat results/raw/json/stats.json 2>/dev/null || echo "no stats (nothing scraped this pass)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit raw results
+        run: |
+          git config user.name "${PROJECT_AUTHOR} bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/raw
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          COUNT=$(python -c "import json;print(json.load(open('results/raw/json/stats.json'))['raw_published'])")
+          POOL=$(python -c "import json;print(json.load(open('results/raw/json/stats.json')).get('raw_total',0))")
+          git commit -m "raw: ${COUNT} scraped proxies, pool ${POOL} (no validation) [${PROJECT_AUTHOR}]"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          git push origin HEAD:"${GITHUB_REF_NAME}"

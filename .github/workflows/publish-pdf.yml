@@ -1,0 +1,55 @@
+name: Publish PDF
+
+# The 5-minute loops publish `txt` and `json` only. The PDFs are the same lists in a
+# printable layout, so they are re-rendered from the published JSON every three hours:
+# no scraping, no validation, no network, a few seconds of work - and the repository
+# does not grow by six PDFs twelve times an hour.
+
+env:
+  PROJECT_AUTHOR: Gametturxux
+  PROJECT_REPOSITORY: Proxy-List-Gamt
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-pdf
+  cancel-in-progress: false
+
+jobs:
+  pdf:
+    name: Render PDF lists
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'workflow_dispatch' || github.event.repository.name == 'Proxy-List-Gamt'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Render
+        run: python tools/render_pdf.py --results results
+
+      - name: Commit
+        run: |
+          git config user.name "${PROJECT_AUTHOR} bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/pdf
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "pdf: re-rendered from the published lists [${PROJECT_AUTHOR}]"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          git push origin HEAD:"${GITHUB_REF_NAME}"

@@ -217,16 +217,22 @@ def step_accumulate(args: argparse.Namespace, pool: Pool, cache: Path, meta: dic
     return raw
 
 
-def step_publish_raw(args: argparse.Namespace, raw: rawstore.RawPool, meta: dict,
-                     step: int, total: int) -> dict:
+def raw_formats(args: argparse.Namespace) -> tuple[str, ...] | None:
+    """``--raw-formats`` as a tuple, or ``None`` when it is not a usable subset."""
+    formats = tuple(f.strip() for f in args.raw_formats.split(",") if f.strip())
+    if not formats or any(f not in builder.RAW_FORMATS for f in formats):
+        print(f"--raw-formats must be a non-empty subset of {','.join(builder.RAW_FORMATS)}",
+              file=sys.stderr)
+        return None
+    return formats
+
+
+def step_publish_raw(args: argparse.Namespace, records: list[dict], formats: tuple[str, ...],
+                     meta: dict, step: int, total: int) -> dict:
     """Publish the pool as scraped: thousands of proxies, no validation at all."""
     log_header(step, total, "Publishing raw (unvalidated) proxies")
-    formats = tuple(f.strip() for f in args.raw_formats.split(",") if f.strip())
-    if any(f not in builder.RAW_FORMATS for f in formats):
-        print(f"--raw-formats must be a subset of {','.join(builder.RAW_FORMATS)}", file=sys.stderr)
-        raise SystemExit(2)
     readme = (args.readme or None) if args.scrape_only else None
-    stats = builder.build_raw(raw.records(), meta, args.raw_dir, formats or builder.RAW_FORMATS,
+    stats = builder.build_raw(records, meta, args.raw_dir, formats,
                               limit=args.raw_limit, readme=readme)
     print(f"      {stats['raw_published']:,} proxies published to {args.raw_dir}/ "
           f"({stats['raw_http']:,} http, {stats['raw_socks4']:,} socks4, "
@@ -256,14 +262,20 @@ async def run_scrape_only(args: argparse.Namespace) -> int:
     health = Health(cache / "source_health.json")
     meta: dict = {"mode": "scrape-only", "validated": False}
 
+    formats = raw_formats(args)
+    if formats is None:
+        return 2
     await step_discover(args, health, meta, 1, 4)
     pool = await step_scrape(args, health, cache, meta, 2, 4)
     raw = step_accumulate(args, pool, cache, meta, 3, 4)
     meta["runtime_seconds"] = round(time.monotonic() - started)
-    stats = step_publish_raw(args, raw, meta, 4, 4)
-    if not stats["raw_published"] and not args.allow_empty:
-        print("Nothing scraped: leaving the previous raw lists untouched", file=sys.stderr)
+    records = raw.records()
+    if not records and not args.allow_empty:
+        # never replace a list built by earlier passes with an empty one
+        print("Nothing scraped: leaving the previous raw lists untouched "
+              "(use --allow-empty to publish an empty list)", file=sys.stderr)
         return 3
+    stats = step_publish_raw(args, records, formats, meta, 4, 4)
     print(json.dumps({k: v for k, v in stats.items() if k.startswith("raw_") or k in
                       ("sources", "sources_ok", "candidates", "scrape_seconds", "runtime_seconds")},
                      indent=1))
@@ -289,8 +301,10 @@ async def run(args: argparse.Namespace) -> int:
     pool = await step_scrape(args, health, cache, meta, 2, 7)
     raw = step_accumulate(args, pool, cache, meta, 3, 7)
     if args.publish_raw:
-        raw_stats = step_publish_raw(args, raw, meta, 3, 7)
-        meta["raw_published"] = raw_stats["raw_published"]
+        raw_fmt = raw_formats(args)
+        if raw_fmt is None:
+            return 2
+        meta["raw_published"] = step_publish_raw(args, raw.records(), raw_fmt, meta, 3, 7)["raw_published"]
 
     # 4 ---------------------------------------------------------------- previous results
     log_header(4, 7, "Loading previous results")
@@ -357,8 +371,25 @@ async def run(args: argparse.Namespace) -> int:
               f"(<{args.keep_published:g} min old), {merge_stats['verified_now']:,} verified now")
     meta["runtime_seconds"] = round(time.monotonic() - started)
     stats = builder.build(records, meta, args.output, formats, readme=args.readme or None)
+    if args.readme:
+        refresh_readme_raw(Path(args.raw_dir), args.readme)
     print(json.dumps(stats, indent=1))
     return 0
+
+
+def refresh_readme_raw(raw_dir: Path, readme: str) -> None:
+    """Mirror the numbers of the last scrape-only pass into the README.
+
+    The raw lists are published by their own (faster) pass; the validated pass owns
+    the README, so both blocks stay in one file and one writer.
+    """
+    stats_file = raw_dir / "json" / "stats.json"
+    if not stats_file.exists():
+        return
+    try:
+        builder.update_readme_raw(json.loads(stats_file.read_text()), readme)
+    except (ValueError, OSError):
+        pass
 
 
 async def run_forever(args: argparse.Namespace) -> int:
@@ -383,6 +414,8 @@ async def run_forever(args: argparse.Namespace) -> int:
                   file=sys.stderr, flush=True)
         spent = time.monotonic() - began
         print(f"===== pass {passes} finished in {spent:.0f}s (exit {code}) =====", flush=True)
+        if code == 2:                                            # unusable arguments: never retry
+            return code
         wait = period - spent
         if wait > 0:
             try:

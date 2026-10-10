@@ -2,8 +2,12 @@ name: Audit Sources
 
 # Maintenance job: fetch every registered source once and report which ones are
 # reachable and how many proxies each of them yields. Run it by hand after adding
-# sources (`Actions -> Audit Sources -> Run workflow`), then prune the dead lines
-# locally with `python tools/audit_sources.py --prune`.
+# sources (`Actions -> Audit Sources -> Run workflow`); the report is attached as the
+# `source-audit` artifact and summarised on the run page.
+#
+# The same thing locally (needs internet):
+#
+#     python tools/audit_sources.py --sort yield --prune --prune-empty
 
 on:
   workflow_dispatch:
@@ -20,15 +24,12 @@ on:
         description: "Stop after N minutes (0 = no limit)"
         required: false
         default: "10"
-  push:
-    branches: ["arena/**"]
-    paths: ["sources/**", "tools/audit_sources.py", ".github/workflows/audit-sources.yml"]
 
 permissions:
   contents: read
 
 concurrency:
-  group: audit-sources-${{ github.ref }}
+  group: audit-sources
   cancel-in-progress: true
 
 jobs:
@@ -55,8 +56,10 @@ jobs:
             --sort "${{ github.event.inputs.sort || 'yield' }}" \
             --budget "${{ github.event.inputs.budget || '10' }}" \
             --concurrency 120 \
+            --prune --prune-empty \
             --report audit-report.txt \
-            --quiet | tee audit-sources.txt
+            --quiet | tee audit-sources.tsv
+          mkdir -p pruned && cp sources/*.pruned pruned/ 2>/dev/null || true
 
       - name: Summary
         if: always()
@@ -67,12 +70,15 @@ jobs:
             echo "Top 40 sources by yield:"
             echo ""
             echo '```'
-            head -40 audit-sources.txt
+            head -40 audit-sources.tsv
             echo '```'
             echo ""
-            echo "Unreachable sources: $(grep -c '^failed' audit-sources.txt || true)"
-            echo "Reachable but empty: $(grep -c '^empty' audit-sources.txt || true)"
-            echo "Delivering proxies : $(grep -c '^ok' audit-sources.txt || true)"
+            echo "| State | Sources |"
+            echo "| --- | --- |"
+            echo "| delivering proxies | $(grep -c '^ok' audit-sources.tsv || true) |"
+            echo "| reachable, empty | $(grep -c '^empty' audit-sources.tsv || true) |"
+            echo "| unreachable | $(grep -c '^failed' audit-sources.tsv || true) |"
+            echo "| skipped (budget) | $(grep -c '^skipped' audit-sources.tsv || true) |"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload report
@@ -82,5 +88,6 @@ jobs:
           name: source-audit
           path: |
             audit-report.txt
-            audit-sources.txt
+            audit-sources.tsv
+            pruned/
           if-no-files-found: ignore

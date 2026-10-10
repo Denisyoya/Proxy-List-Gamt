@@ -6,11 +6,14 @@ import json
 import os
 import sys
 import tempfile
+import time
 import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import support
 from aiohttp import web
+from common import utc_stamp
 
 from mocknet import JudgeServer, MockProxy, make_pki
 
@@ -76,6 +79,7 @@ class FakeInternet:
                  f"<tr><td>127.0.0.1</td><td>{multi.port}</td><td>elite</td></tr>"
                  f"<tr><td>127.0.0.1</td><td>{self.bad[2].port}</td><td>HTTP</td></tr></table>")
         pages = {1: a(self.good["http"][:1]), 2: a([connect_only]), 3: "no more"}
+        self.pages = pages                     # tests may add proxies to a later pass
         app = web.Application()
 
         def serve(body=None, content_type="text/plain", pick=None):
@@ -93,6 +97,7 @@ class FakeInternet:
         await site.start()
         port = site._server.sockets[0].getsockname()[1]
         base = f"http://127.0.0.1:{port}"
+        self.base = base
         sources = tmp / "sources"
         sources.mkdir()
         (sources / "github.txt").write_text("")
@@ -239,6 +244,158 @@ class EndToEnd(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(code, 0, output)
         self.assertEqual(read_lines(self.dir / "results" / "txt" / "https.txt"), [])
         self.assertTrue(read_lines(self.dir / "results" / "txt" / "http.txt"))
+
+    # ------------------------------------------------------------------ scrape only
+
+    async def test_scrape_only_publishes_everything_without_validating(self):
+        raw = self.dir / "raw"
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw))
+        self.assertEqual(code, 0, output)
+        self.assertIn("Publishing raw (unvalidated) proxies", output)
+        self.assertNotIn("Detecting environment", output)          # no judges, no probes at all
+        self.assertFalse((self.dir / "results" / "txt").exists())   # nothing validated was published
+        text = (raw / "txt" / "all.txt").read_text()
+        for address in self.net.bad_addresses:                     # the rejects are in there too
+            self.assertIn(address, text, address)
+        stats = json.loads((raw / "json" / "stats.json").read_text())
+        self.assertFalse(stats["validated"])
+        self.assertEqual(stats["raw_published"], len(json.loads((raw / "json" / "all.json").read_text())))
+        self.assertEqual(sorted(p.name for p in raw.iterdir()), ["json", "txt"])
+
+    async def test_raw_passes_accumulate_and_overwrite_instead_of_duplicating(self):
+        raw = self.dir / "raw"
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw))
+        self.assertEqual(code, 0, output)
+        first = read_lines(raw / "txt" / "all.txt")
+        self.assertIn("0 expired", output)
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw))
+        self.assertEqual(code, 0, output)
+        self.assertIn("+0 new", output)                            # everything was already there
+        self.assertIn("overwritten", output)
+        self.assertEqual(read_lines(raw / "txt" / "all.txt"), first)   # stable order, no duplicates
+        records = json.loads((raw / "json" / "all.json").read_text())
+        self.assertTrue(records)
+        self.assertTrue(all(r["hits"] >= 2 for r in records), [r for r in records if r["hits"] < 2][:3])
+
+    async def test_a_new_source_adds_to_the_pool_and_the_old_entries_stay(self):
+        raw = self.dir / "raw"
+        code, _ = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw))
+        self.assertEqual(code, 0)
+        before = set(read_lines(raw / "txt" / "all.txt"))
+        self.net.pages[3] = "7.7.7.7:80\n8.8.8.8:1080"                # a page nobody delivered before
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw))
+        self.assertEqual(code, 0, output)
+        after = set(read_lines(raw / "txt" / "all.txt"))
+        self.assertTrue(before <= after, sorted(before - after)[:3])   # nothing was dropped
+        self.assertIn("7.7.7.7:80", after)                             # the /api hint is "mixed", so
+        self.assertIn("8.8.8.8:1080", after)                           # the lines carry no scheme
+
+    async def test_raw_entries_expire_when_no_source_lists_them_any_more(self):
+        cache = self.dir / "cache"
+        cache.mkdir(exist_ok=True)
+        ancient = int(time.time()) - 7 * 3600
+        (cache / "raw_pool.json").write_text(json.dumps({"7.7.7.7:80": [1, 1, 5, ancient, ancient]}))
+        raw = self.dir / "raw"
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw),
+                                      "--raw-ttl-hours", "6")
+        self.assertEqual(code, 0, output)
+        self.assertIn("-1 expired", output)
+        self.assertNotIn("7.7.7.7:80", (raw / "txt" / "all.txt").read_text())
+
+    async def test_the_raw_pool_can_be_capped(self):
+        raw = self.dir / "raw"
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw),
+                                      "--raw-pool-limit", "3", "--raw-limit", "0")
+        self.assertEqual(code, 0, output)
+        self.assertIn("over the cap", output)
+        self.assertEqual(len(json.loads((raw / "json" / "all.json").read_text())), 3)
+
+    async def test_scrape_only_without_accumulation_starts_from_zero(self):
+        raw = self.dir / "raw"
+        await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw))
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw),
+                                      "--no-accumulate")
+        self.assertEqual(code, 0, output)
+        records = json.loads((raw / "json" / "all.json").read_text())
+        self.assertTrue(all(r["hits"] == 1 for r in records))       # the previous pass was forgotten
+
+    async def test_nothing_scraped_leaves_the_previous_raw_lists_alone(self):
+        raw = self.dir / "raw"
+        code, _ = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw))
+        self.assertEqual(code, 0)
+        before = (raw / "txt" / "all.txt").read_text()
+        (self.dir / "sources" / "websites.txt").write_text("")       # every source is gone
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw),
+                                      "--raw-ttl-hours", "0")
+        self.assertEqual(code, 0, output)                            # the pool still holds the old pass
+        self.assertEqual((raw / "txt" / "all.txt").read_text(), before)
+        code, output = await run_main(self.dir, self.net, "--scrape-only", "--raw-dir", str(raw),
+                                      "--no-accumulate")
+        self.assertEqual(code, 3, output)                            # nothing to publish at all
+        self.assertIn("leaving the previous raw lists untouched", output)
+        self.assertEqual((raw / "txt" / "all.txt").read_text(), before)
+
+    async def test_unusable_raw_formats_are_rejected(self):
+        code, output = await run_main(self.dir, self.net, "--scrape-only",
+                                      "--raw-dir", str(self.dir / "raw"), "--raw-formats", "txt,pdf")
+        self.assertEqual(code, 2, output)
+        self.assertIn("--raw-formats must be a non-empty subset", output)
+        self.assertFalse((self.dir / "raw").exists())                 # nothing was written
+
+    # ------------------------------------------------------- continuous validated list
+
+    async def test_keep_published_carries_a_proxy_this_pass_did_not_verify(self):
+        code, output = await run_main(self.dir, self.net, "--rounds", "0")
+        self.assertEqual(code, 0, output)
+        first = sorted(read_lines(self.dir / "results" / "txt" / "all.txt"))
+        victim = self.net.good["socks5"][0]
+        await victim.close()                                          # it dies between passes
+        code, output = await run_main(self.dir, self.net, "--rounds", "0", "--keep-published", "30")
+        self.assertEqual(code, 0, output)
+        self.assertIn("carried over from earlier passes", output)
+        self.assertEqual(sorted(read_lines(self.dir / "results" / "txt" / "all.txt")), first)
+        records = json.loads((self.dir / "results" / "json" / "all.json").read_text())
+        carried = {r["proxy"] for r in records if r.get("carried_over")}
+        self.assertIn(victim.address, carried)
+        self.assertTrue(all(r["checked_at"] for r in records))         # every record is stamped
+        stats = json.loads((self.dir / "results" / "json" / "stats.json").read_text())
+        self.assertEqual(stats["carried_over"], len(carried))
+        self.assertEqual(stats["live"], len(records))
+
+    async def test_the_interval_loop_starts_a_new_pass_on_its_own(self):
+        """``--interval 5`` is what the 5-minute schedule does; here it is 1.2 seconds."""
+        raw = self.dir / "raw"
+        env = dict(os.environ)
+        env.pop("GITHUB_TOKEN", None); env.pop("GH_TOKEN", None)
+        process = await asyncio.create_subprocess_exec(
+            sys.executable, str(MAIN), "--sources", str(self.dir / "sources"),
+            "--output", str(self.dir / "results"), "--cache", str(self.dir / "cache"),
+            "--readme", "", "--discover", "off", "--allow-private", "--scrape-concurrency", "10",
+            "--scrape-only", "--raw-dir", str(raw), "--interval", "0.02",
+            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT, env=env, cwd=str(self.dir))
+        await asyncio.sleep(6)
+        process.terminate()
+        out, _ = await asyncio.wait_for(process.communicate(), 30)
+        text = out.decode()
+        self.assertIn("loop: a new pass starts every 0.02 minutes", text)
+        self.assertGreaterEqual(text.count("finished in"), 2, text[-800:])
+        self.assertIn("pass 2", text)
+        self.assertTrue(read_lines(raw / "txt" / "all.txt"))       # every pass published again
+
+    async def test_carrying_over_stops_at_the_end_of_the_window(self):
+        code, _ = await run_main(self.dir, self.net, "--rounds", "0")
+        self.assertEqual(code, 0)
+        published = self.dir / "results" / "json" / "all.json"
+        records = json.loads(published.read_text())
+        for record in records:                                        # pretend they are two hours old
+            record["checked_at"] = utc_stamp(datetime.now(timezone.utc) - timedelta(hours=2))
+        published.write_text(json.dumps(records))
+        for mock in self.net.mocks:
+            await mock.close()                                        # nothing verifies any more
+        code, output = await run_main(self.dir, self.net, "--rounds", "0", "--keep-published", "30",
+                                      "--allow-empty")
+        self.assertEqual(code, 0, output)
+        self.assertEqual(read_lines(self.dir / "results" / "txt" / "all.txt"), [])
 
 
 if __name__ == "__main__":

@@ -1,5 +1,20 @@
 name: Proxy Scraper Auto Update
 
+# Every 5 minutes: scrape every registered source, add the result to what is already
+# known (an entry that is there again is overwritten with its newest data), validate
+# the best candidates and publish. Because the interval is short, each pass works with
+# a budget instead of testing everything:
+#
+#   --scrape-budget   minutes spent downloading sources
+#   --time-budget     minutes spent validating
+#   --max-candidates  how many of the ranked candidates a pass may test
+#   --keep-published  minutes a verified proxy stays published after its last check,
+#                     so a short pass never wipes the list built by earlier passes
+#
+# The unvalidated (raw) lists are published by the "Proxy Scraper Raw" workflow, which
+# runs the same scrape without any validation; the PDFs are re-rendered from the
+# published JSON by "Publish PDF" every three hours.
+
 env:
   PROJECT_AUTHOR: Gametturxux
   PROJECT_COMMUNITY: gametturxux community
@@ -8,7 +23,7 @@ env:
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       timeout:
@@ -26,15 +41,23 @@ on:
       rounds:
         description: "Confirmation rounds after the first pass"
         required: false
+        default: "1"
+      scrape_budget:
+        description: "Stop scraping after N minutes"
+        required: false
         default: "2"
       time_budget:
         description: "Stop verifying after N minutes (0 = no limit)"
         required: false
-        default: "70"
+        default: "2"
       max_candidates:
         description: "Test only the best N candidates (0 = all)"
         required: false
-        default: "0"
+        default: "40000"
+      keep_published:
+        description: "Keep a verified proxy published for N minutes after its last check"
+        required: false
+        default: "30"
       discover:
         description: "Find new proxy-list repositories on GitHub (auto/on/off)"
         required: false
@@ -73,7 +96,7 @@ jobs:
     needs: authorization
     if: needs.authorization.outputs.allowed == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 12
 
     steps:
       - name: Checkout repository
@@ -88,15 +111,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Remembers which sources keep failing so they are skipped (and finally pruned
-      # from sources/discovered.txt) instead of being downloaded every three hours.
-      - name: Restore source health
+      # Shared with the raw workflow: source health (which sources keep failing), the
+      # candidate cache and the accumulated raw pool. A new key per run, restored from
+      # the newest available one, so the pool keeps growing across passes.
+      - name: Restore caches
         uses: actions/cache@v4
         with:
-          path: .cache/source_health.json
-          key: source-health-${{ github.run_id }}
+          path: .cache
+          key: proxy-cache-${{ github.run_id }}
           restore-keys: |
-            source-health-
+            proxy-cache-
 
       - name: Run pipeline
         env:
@@ -107,12 +131,17 @@ jobs:
             --timeout "${{ github.event.inputs.timeout || '8' }}" \
             --concurrency "${{ github.event.inputs.concurrency || '800' }}" \
             --tcp-concurrency "${{ github.event.inputs.tcp_concurrency || '3000' }}" \
-            --rounds "${{ github.event.inputs.rounds || '2' }}" \
-            --time-budget "${{ github.event.inputs.time_budget || '70' }}" \
-            --max-candidates "${{ github.event.inputs.max_candidates || '0' }}" \
-            --discover "${{ github.event.inputs.discover || 'auto' }}"
+            --rounds "${{ github.event.inputs.rounds || '1' }}" \
+            --scrape-budget "${{ github.event.inputs.scrape_budget || '2' }}" \
+            --time-budget "${{ github.event.inputs.time_budget || '2' }}" \
+            --max-candidates "${{ github.event.inputs.max_candidates || '40000' }}" \
+            --keep-published "${{ github.event.inputs.keep_published || '30' }}" \
+            --discover-calls 40 --discover-minutes 0.5 \
+            --discover "${{ github.event.inputs.discover || 'auto' }}" \
+            --formats txt,json
 
       - name: Build summary
+        if: always()
         run: |
           {
             echo "### ${PROJECT_REPOSITORY}"
@@ -122,7 +151,7 @@ jobs:
             echo "Channel: ${COMMUNITY_CHANNEL}"
             echo ""
             echo '```json'
-            cat results/json/stats.json
+            cat results/json/stats.json 2>/dev/null || echo "no stats (nothing published this pass)"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -130,12 +159,14 @@ jobs:
         run: |
           git config user.name "${PROJECT_AUTHOR} bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add results sources README.md
+          git add results/txt results/json sources README.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
           COUNT=$(python -c "import json;print(json.load(open('results/json/stats.json'))['live'])")
-          git commit -m "update: ${COUNT} live proxies [${PROJECT_AUTHOR}]"
+          CARRIED=$(python -c "import json;print(json.load(open('results/json/stats.json')).get('carried_over',0))")
+          RAW=$(python -c "import json,os;p='results/raw/json/stats.json';print(json.load(open(p)).get('raw_published',0) if os.path.exists(p) else 0)")
+          git commit -m "update: ${COUNT} live proxies (+${CARRIED} carried, ${RAW} raw) [${PROJECT_AUTHOR}]"
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
           git push origin HEAD:"${GITHUB_REF_NAME}"

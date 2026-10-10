@@ -98,6 +98,8 @@ def merge_published(previous: list[dict], fresh: list[dict], keep_minutes: float
     if keep_minutes > 0:
         limit = keep_minutes * 60
         for record in previous:
+            if not isinstance(record, dict):
+                continue                                       # a hand-edited or truncated file
             proxy = record.get("proxy")
             if not proxy:
                 continue
@@ -201,6 +203,19 @@ RAW_TITLES = {
 }
 
 
+def _ip_key(record: dict) -> tuple:
+    """Numeric IP order: stable between runs, so git only stores the difference."""
+    proxy = record.get("proxy", "")
+    host, _, port = proxy.rpartition(":")
+    try:
+        parts = tuple(int(octet) for octet in host.split("."))
+        if len(parts) != 4:
+            raise ValueError
+    except ValueError:
+        return ((1,) + (0,) * 4 + (0,), proxy)
+    return ((0,) + parts + (int(port) if port.isdigit() else 0,), proxy)
+
+
 def raw_lines(records: list[dict], group: str) -> list[str]:
     """``protocol://ip:port`` for mixed lists, bare ``ip:port`` otherwise.
 
@@ -220,12 +235,20 @@ def raw_lines(records: list[dict], group: str) -> list[str]:
 
 
 def select_raw(records: list[dict], group: str) -> list[dict]:
-    """Records of *group* (already ordered freshest-first by the raw pool)."""
+    """Records of *group*, in a stable numeric-IP order.
+
+    The pool hands them over freshest-first - that is the order the ``--raw-limit``
+    cut is made in - but publishing sorts by address, so two consecutive runs differ
+    only where entries really appeared or disappeared (and git stores the difference).
+    """
     if group == "all":
-        return list(records)
-    if group == "socks":
-        return [r for r in records if {"socks4", "socks5"} & set(r.get("protocols") or ())]
-    return [r for r in records if group in (r.get("protocols") or ())]
+        chosen = list(records)
+    elif group == "socks":
+        chosen = [r for r in records if {"socks4", "socks5"} & set(r.get("protocols") or ())]
+    else:
+        chosen = [r for r in records if group in (r.get("protocols") or [])]
+    chosen.sort(key=_ip_key)
+    return chosen
 
 
 def compute_raw_stats(records: list[dict], meta: dict) -> dict:
@@ -267,8 +290,9 @@ def build_raw(records: list[dict], meta: dict | None = None, output_dir: str = R
             _atomic_write(root / "txt" / f"{group}.txt",
                           ("\n".join(lines) + "\n" if lines else "").encode())
         if "json" in formats:
+            # compact: bulk data, nobody reads ten thousand records by hand
             _atomic_write(root / "json" / f"{group}.json",
-                          (json.dumps(chosen, indent=1) + "\n").encode())
+                          (json.dumps(chosen, separators=(",", ":")) + "\n").encode())
     if "json" in formats:
         _atomic_write(root / "json" / "stats.json", (json.dumps(stats, indent=1) + "\n").encode())
     if readme:

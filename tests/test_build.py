@@ -2,11 +2,13 @@ import io
 import json
 import tempfile
 import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import support  # noqa: F401
 import build
 import pdfgen
+from common import utc_stamp
 
 
 def rec(proxy, protocol, ms, http=True, https=False, passed=3, total=3):
@@ -113,6 +115,164 @@ class Writing(unittest.TestCase):
         self.assertIn("Script by Gametturxux.", text)
         self.assertIn("middle", text)
         self.assertNotIn("old", text)
+
+
+RAW_RECORDS = [
+    {"proxy": "9.9.9.9:3128", "protocols": ["http"], "listings": 2, "hits": 3,
+     "first_seen": 10, "last_seen": 500, "age_seconds": 0},
+    {"proxy": "1.1.1.1:1080", "protocols": ["socks5", "socks4"], "listings": 1, "hits": 1,
+     "first_seen": 100, "last_seen": 900, "age_seconds": 0},
+    {"proxy": "8.8.8.8:8080", "protocols": [], "listings": 5, "hits": 9,
+     "first_seen": 1, "last_seen": 999, "age_seconds": 0},
+]
+
+
+def stamped(proxy, protocol, minutes_ago, now, **extra):
+    """A record as it was published *minutes_ago* (``checked_at`` drives the keep window)."""
+    record = rec(proxy, protocol, 200)
+    record["checked_at"] = utc_stamp(now - timedelta(minutes=minutes_ago))
+    record.update(extra)
+    return record
+
+
+class Merging(unittest.TestCase):
+    """``--keep-published``: keep adding, overwrite what is already there."""
+
+    NOW = datetime(2026, 10, 10, 12, 0, 0, tzinfo=timezone.utc)
+
+    def test_a_fresh_check_overwrites_the_published_record(self):
+        previous = [stamped("1.1.1.1:80", "http", 20, self.NOW, latency_ms=999)]
+        fresh = [rec("1.1.1.1:80", "http", 120)]
+        merged, stats = build.merge_published(previous, fresh, keep_minutes=60, now=self.NOW)
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["latency_ms"], 120)          # the new measurement wins
+        self.assertNotIn("carried_over", merged[0])
+        self.assertEqual(stats, {"verified_now": 1, "carried_over": 0, "published": 1})
+
+    def test_records_that_were_not_rechecked_survive_the_keep_window(self):
+        previous = [stamped("1.1.1.1:80", "http", 10, self.NOW),
+                    stamped("2.2.2.2:1080", "socks5", 59, self.NOW)]
+        merged, stats = build.merge_published(previous, [rec("3.3.3.3:80", "http", 100)],
+                                              keep_minutes=60, now=self.NOW)
+        self.assertEqual({r["proxy"] for r in merged}, {"1.1.1.1:80", "2.2.2.2:1080", "3.3.3.3:80"})
+        self.assertEqual(stats["carried_over"], 2)
+        self.assertTrue(all(r["carried_over"] for r in merged if r["proxy"] != "3.3.3.3:80"))
+
+    def test_records_older_than_the_window_expire(self):
+        previous = [stamped("1.1.1.1:80", "http", 61, self.NOW)]
+        merged, stats = build.merge_published(previous, [], keep_minutes=60, now=self.NOW)
+        self.assertEqual(merged, [])
+        self.assertEqual(stats["carried_over"], 0)
+
+    def test_the_same_endpoint_can_be_carried_for_one_protocol_only(self):
+        previous = [stamped("1.1.1.1:8080", "http", 5, self.NOW),
+                    stamped("1.1.1.1:8080", "socks5", 5, self.NOW)]
+        fresh = [rec("1.1.1.1:8080", "socks5", 90)]            # only SOCKS5 verified again
+        merged, _ = build.merge_published(previous, fresh, keep_minutes=60, now=self.NOW)
+        by_protocol = {r["protocol"]: r for r in merged}
+        self.assertEqual(set(by_protocol), {"http", "socks5"})
+        self.assertTrue(by_protocol["http"]["carried_over"])
+        self.assertNotIn("carried_over", by_protocol["socks5"])
+        self.assertEqual(by_protocol["socks5"]["latency_ms"], 90)
+
+    def test_keep_zero_publishes_only_what_this_run_verified(self):
+        previous = [stamped("1.1.1.1:80", "http", 1, self.NOW)]
+        merged, stats = build.merge_published(previous, [rec("2.2.2.2:80", "http", 100)],
+                                              keep_minutes=0, now=self.NOW)
+        self.assertEqual([r["proxy"] for r in merged], ["2.2.2.2:80"])
+        self.assertEqual(stats, {"verified_now": 1, "carried_over": 0, "published": 1})
+
+    def test_a_record_without_a_stamp_is_never_carried(self):
+        old = rec("1.1.1.1:80", "http", 100)                    # published before stamps existed
+        merged, _ = build.merge_published([old], [], keep_minutes=60, now=self.NOW)
+        self.assertEqual(merged, [])
+
+    def test_junk_in_the_previous_file_is_ignored(self):
+        merged, _ = build.merge_published([{}, {"proxy": None}, "junk"], [rec("1.1.1.1:80", "http", 5)],
+                                          keep_minutes=60, now=self.NOW)
+        self.assertEqual([r["proxy"] for r in merged], ["1.1.1.1:80"])
+
+
+class RawPublishing(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.out = Path(self.tmp.name) / "results" / "raw"
+
+    def test_layout(self):
+        stats = build.build_raw(RAW_RECORDS, {"sources": 4, "candidates": 3}, str(self.out))
+        for group in build.RAW_GROUPS:
+            self.assertTrue((self.out / "txt" / f"{group}.txt").exists(), group)
+            self.assertTrue((self.out / "json" / f"{group}.json").exists(), group)
+        self.assertFalse((self.out / "pdf").exists())            # bulk data: no PDF export
+        self.assertEqual(stats["raw_published"], 3)
+        self.assertEqual((stats["raw_http"], stats["raw_socks4"], stats["raw_socks5"]), (1, 1, 1))
+        self.assertEqual(stats["raw_unspecified"], 1)
+        self.assertFalse(stats["validated"])
+        self.assertEqual(json.loads((self.out / "json" / "stats.json").read_text()), stats)
+
+    def test_lines(self):
+        build.build_raw(RAW_RECORDS, {}, str(self.out))
+        read = lambda name: (self.out / "txt" / f"{name}.txt").read_text().splitlines()
+        self.assertEqual(sorted(read("all")), sorted(["http://9.9.9.9:3128", "socks5://1.1.1.1:1080",
+                                                      "socks4://1.1.1.1:1080", "8.8.8.8:8080"]))
+        self.assertEqual(read("http"), ["9.9.9.9:3128"])         # bare ip:port in a single-protocol list
+        self.assertEqual(read("socks4"), ["1.1.1.1:1080"])
+        self.assertEqual(read("socks5"), ["1.1.1.1:1080"])
+        self.assertEqual(sorted(read("socks")), ["socks4://1.1.1.1:1080", "socks5://1.1.1.1:1080"])
+
+    def test_order_is_numeric_not_lexicographic(self):
+        """9.9.9.9 sorts after 10.0.0.1: a stable order keeps the git diff small."""
+        records = [{"proxy": p, "protocols": ["http"], "listings": 1, "hits": 1,
+                    "first_seen": 1, "last_seen": 1, "age_seconds": 0}
+                   for p in ("10.0.0.1:80", "9.9.9.9:80", "2.2.2.2:80", "100.1.1.1:80")]
+        build.build_raw(records, {}, str(self.out))
+        lines = (self.out / "txt" / "http.txt").read_text().splitlines()
+        self.assertEqual(lines, ["2.2.2.2:80", "9.9.9.9:80", "10.0.0.1:80", "100.1.1.1:80"])
+
+    def test_limit_keeps_the_freshest(self):
+        records = sorted(RAW_RECORDS, key=lambda r: -r["last_seen"])     # pool order: freshest first
+        stats = build.build_raw(records, {}, str(self.out), limit=2)
+        self.assertEqual(stats["raw_published"], 2)
+        lines = (self.out / "txt" / "all.txt").read_text().splitlines()
+        self.assertNotIn("9.9.9.9:3128", "\n".join(lines))       # the oldest entry was cut
+        self.assertIn("8.8.8.8:8080", lines)
+
+    def test_json_is_compact_and_carries_the_pool_metadata(self):
+        build.build_raw(RAW_RECORDS, {}, str(self.out))
+        raw_text = (self.out / "json" / "all.json").read_text()
+        self.assertNotIn("\n ", raw_text)                        # one line, no indentation
+        data = json.loads(raw_text)
+        self.assertEqual(set(data[0]), {"proxy", "protocols", "listings", "hits",
+                                        "first_seen", "last_seen", "age_seconds"})
+
+    def test_formats_can_be_limited(self):
+        build.build_raw(RAW_RECORDS, {}, str(self.out), formats=("txt",))
+        self.assertTrue((self.out / "txt").exists())
+        self.assertFalse((self.out / "json").exists())
+
+    def test_empty_pool_still_writes_every_file(self):
+        build.build_raw([], {}, str(self.out))
+        self.assertEqual((self.out / "txt" / "all.txt").read_text(), "")
+        self.assertEqual(json.loads((self.out / "json" / "all.json").read_text()), [])
+
+    def test_readme_raw_block(self):
+        readme = Path(self.tmp.name) / "README.md"
+        readme.write_text("intro\n<!-- raw-stats:start -->\nold\n<!-- raw-stats:end -->\nend\n")
+        build.build_raw(RAW_RECORDS, {"sources": 4, "raw_total": 9, "raw_ttl_hours": 6},
+                        str(self.out), readme=str(readme))
+        text = readme.read_text()
+        self.assertIn("| Raw proxies published | **3** |", text)
+        self.assertIn("| Raw pool size (accumulated) | 9 |", text)
+        self.assertIn("no validation", text)
+        self.assertNotIn("old", text)
+        self.assertIn("intro", text)
+
+    def test_a_missing_raw_block_leaves_the_readme_alone(self):
+        readme = Path(self.tmp.name) / "README.md"
+        readme.write_text("no markers here\n")
+        build.build_raw(RAW_RECORDS, {}, str(self.out), readme=str(readme))
+        self.assertEqual(readme.read_text(), "no markers here\n")
 
 
 class Pdf(unittest.TestCase):
