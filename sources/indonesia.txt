@@ -1,0 +1,60 @@
+# Curated domestic sources (dalam negeri): Indonesian sites, APIs and GitHub lists.
+#
+# Both registry formats are accepted in this file:
+#   <hint> <url> [pages=1..10] [step=64]        a website / API
+#   <hint> <owner>/<repo>/<branch>/<path>       a list hosted on GitHub (mirrors added automatically)
+#
+# hint = http | socks4 | socks5 | socks | mixed  (protocol claimed for entries that do not say)
+#
+# What domestic free proxies look like: mostly transparent HTTP proxies on 8080/3128/80/8085
+# from Telkom, Indosat, Biznet, XL, Icon+ and university networks, plus SOCKS5 on
+# 1080/5678/8199/4153. Country-filtered endpoints of the big aggregators are listed here
+# too, because that is where an Indonesian list actually comes from: only a handful of
+# sites are published inside the country, and they are small.
+#
+# Free sites come and go. Every source is health-tracked (see src/scraper.py), so a dead
+# entry costs almost nothing and is pruned from the registry automatically.
+
+# ============================================================== GitHub lists (proyek Indonesia)
+# kenzopanel/Free-Indonesia-Proxy - "Free Indonesia HTTPS Proxy", refreshed by its own action
+mixed kenzopanel/Free-Indonesia-Proxy/main/proxy.json
+# Xnuvers007/free-proxy - "Free Proxy Checker ... mengambil proxy dari berbagai sumber"
+mixed Xnuvers007/free-proxy/main/proxy.txt
+mixed Xnuvers007/free-proxy/main/proxy_active.txt
+mixed Xnuvers007/free-proxy/main/proxy_scheme.txt
+mixed Xnuvers007/free-proxy/main/proxy_scheme_active.txt
+# notthinks/proxy-indonesia - "Auto-scanner proxy Indonesia aktif - multi-provider, geo+forward verify"
+mixed notthinks/proxy-indonesia/main/indonesia_proxies.txt
+mixed notthinks/proxy-indonesia/main/raw_proxies.txt
+# Dragonforfly/proxy-list-free-socks - "daftar proxy SOCKS4 dan SOCKS5"
+socks  Dragonforfly/proxy-list-free-socks/main/modules/cache/database.json
+
+# ============================================================== situs & blog dalam negeri
+mixed  https://tuwaga.id/artikel/daftar-proxy-indonesia-gratis/
+mixed  https://www.biznethome.net/blog/proxy-gratis-terbaik-2025-cepat-online-dan-aman-digunakan/
+
+# ============================================================== API per negara (country=ID)
+mixed  https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=ID&proxy_format=protocolipport&format=text&timeout=20000
+http   https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=ID&ssl=all&anonymity=all
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=ID&sort_by=lastChecked&sort_type=desc  pages=1..4
+mixed  https://proxylist.geonode.com/api/proxy-list?limit=500&page={page}&country=ID&protocols=socks5&sort_by=lastChecked&sort_type=desc  pages=1..4
+mixed  https://api.proxyscan.io/proxy?limit=500&country=ID&type=http,https,socks4,socks5&format=txt&lastCheck=360
+
+# ============================================================== daftar per negara di situs asing
+mixed  https://spys.one/free-proxy-list/ID/
+mixed  https://www.proxynova.com/proxy-server-list/country-id/
+mixed  https://free-proxy.cz/en/proxylist/country/ID/{page}  pages=1..5
+mixed  https://proxydb.net/?country=ID&offset={offset}  pages=1..5  step=15
+mixed  https://www.freeproxy.world/?country=ID&page={page}  pages=1..5
+mixed  https://hidemy.name/en/proxy-list/?country=ID&type=hs
+mixed  https://premproxy.com/list/indonesia-{page}.htm  pages=1..5
+mixed  https://www.proxydocker.com/en/proxy-list/?country=indonesia
+mixed  https://proxycompass.com/free-proxies/asia/indonesia/
+mixed  https://fineproxy.org/free-proxies/asia/indonesia/
+mixed  https://free.geonix.com/en/indonesia/
+mixed  https://proxyelite.info/free/asia/indonesia/
+mixed  https://proxyfreeonly.com/free-proxy-list/indonesia
+mixed  https://list.proxylistplus.com/Indonesia-Proxy-List-{page}  pages=1..3
+mixed  https://www.proxy-list.download/id/v1/get?type=http&country=ID
+mixed  https://roundproxies.com/api/get-free-proxies/?limit=50&page={page}&country=ID&sort_by=lastChecked&sort_type=desc  pages=1..10
+mixed  https://hide.mn/en/proxy-list/?country=ID&start={offset}  pages=1..5  step=64

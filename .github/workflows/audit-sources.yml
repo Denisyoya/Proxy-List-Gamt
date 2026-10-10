@@ -1,0 +1,86 @@
+name: Audit Sources
+
+# Maintenance job: fetch every registered source once and report which ones are
+# reachable and how many proxies each of them yields. Run it by hand after adding
+# sources (`Actions -> Audit Sources -> Run workflow`), then prune the dead lines
+# locally with `python tools/audit_sources.py --prune`.
+
+on:
+  workflow_dispatch:
+    inputs:
+      files:
+        description: "Registries to audit (comma separated)"
+        required: false
+        default: "github.txt,websites.txt,indonesia.txt"
+      sort:
+        description: "Report order (registry, yield, state)"
+        required: false
+        default: "yield"
+      budget:
+        description: "Stop after N minutes (0 = no limit)"
+        required: false
+        default: "10"
+  push:
+    branches: ["arena/**"]
+    paths: ["sources/**", "tools/audit_sources.py", ".github/workflows/audit-sources.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-sources-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Reachability and yield
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Audit the registries
+        run: |
+          ulimit -n 65535 || true
+          python tools/audit_sources.py \
+            --files "${{ github.event.inputs.files || 'github.txt,websites.txt,indonesia.txt' }}" \
+            --sort "${{ github.event.inputs.sort || 'yield' }}" \
+            --budget "${{ github.event.inputs.budget || '10' }}" \
+            --concurrency 120 \
+            --report audit-report.txt \
+            --quiet | tee audit-sources.txt
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Source audit"
+            echo ""
+            echo "Top 40 sources by yield:"
+            echo ""
+            echo '```'
+            head -40 audit-sources.txt
+            echo '```'
+            echo ""
+            echo "Unreachable sources: $(grep -c '^failed' audit-sources.txt || true)"
+            echo "Reachable but empty: $(grep -c '^empty' audit-sources.txt || true)"
+            echo "Delivering proxies : $(grep -c '^ok' audit-sources.txt || true)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-audit
+          path: |
+            audit-report.txt
+            audit-sources.txt
+          if-no-files-found: ignore
