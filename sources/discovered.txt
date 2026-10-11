@@ -4331,3 +4331,10 @@ mixed wanhutiger/agent-egress-proxies/main/proxy-findings.json
 # @ 1569126506-sudo/dsh-team-cost 2026-09-10
 # @ 102402103wuyaqing/102402103wuyaqing 2026-09-10
 # @ aelibraries/tune 2026-10-10
+# @ ProxcyDev/Proxies 2026-10-11
+http ProxcyDev/Proxies/master/http.txt
+socks4 ProxcyDev/Proxies/master/socks4.txt
+socks5 ProxcyDev/Proxies/master/socks5.txt
+mixed ProxcyDev/Proxies/master/all.txt
+# @ Quincunx33/bomber-v2 2026-10-11
+# @ ProxcyDev/Dashboard 2026-10-11
