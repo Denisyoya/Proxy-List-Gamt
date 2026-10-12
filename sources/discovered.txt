@@ -4341,3 +4341,6 @@ mixed ProxcyDev/Proxies/master/all.txt
 # @ MuRongPIG/proxy-master-dev 2026-10-12
 # @ faiqsohail/ProxyChecker 2026-10-12
 # @ OtakuEmily/iplist 2026-10-12
+# @ lewispour/pulse-proxy-checker 2026-10-12
+# @ zzdree/proxy-farm-9router 2026-10-12
+# @ lubomirbudin-glitch/mmmover 2026-10-12
