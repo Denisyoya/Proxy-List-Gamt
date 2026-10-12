@@ -4338,3 +4338,4 @@ socks5 ProxcyDev/Proxies/master/socks5.txt
 mixed ProxcyDev/Proxies/master/all.txt
 # @ Quincunx33/bomber-v2 2026-10-11
 # @ ProxcyDev/Dashboard 2026-10-11
+# @ MuRongPIG/proxy-master-dev 2026-10-12
