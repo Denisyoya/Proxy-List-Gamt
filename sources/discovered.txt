@@ -4344,3 +4344,4 @@ mixed ProxcyDev/Proxies/master/all.txt
 # @ lewispour/pulse-proxy-checker 2026-10-12
 # @ zzdree/proxy-farm-9router 2026-10-12
 # @ lubomirbudin-glitch/mmmover 2026-10-12
+# @ KBF-1/DevProxy 2026-10-12
