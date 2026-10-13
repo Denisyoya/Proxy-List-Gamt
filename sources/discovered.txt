@@ -4346,3 +4346,4 @@ mixed ProxcyDev/Proxies/master/all.txt
 # @ lubomirbudin-glitch/mmmover 2026-10-12
 # @ KBF-1/DevProxy 2026-10-12
 # @ unknown-killer/ScrapeX 2026-10-13
+# @ HVHBIGNAME/proxypulse 2026-10-13
