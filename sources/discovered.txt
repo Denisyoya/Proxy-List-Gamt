@@ -4345,3 +4345,4 @@ mixed ProxcyDev/Proxies/master/all.txt
 # @ zzdree/proxy-farm-9router 2026-10-12
 # @ lubomirbudin-glitch/mmmover 2026-10-12
 # @ KBF-1/DevProxy 2026-10-12
+# @ unknown-killer/ScrapeX 2026-10-13
