@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-13 01:21:45 UTC`
+Last run: `2026-10-13 07:51:26 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **1,110** |
-| HTTP | 694 |
-| HTTPS (verified TLS tunnel) | 38 |
-| SOCKS4 | 83 |
-| SOCKS5 | 331 |
-| Passed every check (stable) | 1,110 |
-| Median latency | 2608 ms |
-| Fastest | 366 ms |
-| Under 1 second | 164 |
+| Live proxies | **1,547** |
+| HTTP | 1,109 |
+| HTTPS (verified TLS tunnel) | 39 |
+| SOCKS4 | 97 |
+| SOCKS5 | 337 |
+| Passed every check (stable) | 1,547 |
+| Median latency | 1840 ms |
+| Fastest | 161 ms |
+| Under 1 second | 239 |
 | Sources registered | 882 (589 curated + 293 discovered) |
-| Sources that delivered proxies | 538 |
-| Candidates scraped | 1,678,760 |
-| Reachable on TCP | 12,717 |
+| Sources that delivered proxies | 541 |
+| Candidates scraped | 1,677,271 |
+| Reachable on TCP | 13,166 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 207s |
+| Runtime | 219s |
 
 <!-- stats:end -->
 
@@ -115,23 +115,23 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-10-12 21:53:14 UTC` - **no validation**, published as scraped
+Last scrape: `2026-10-13 02:50:34 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
 | Raw proxies published | **10,000** |
 | Unique endpoints | 10,000 |
 | HTTP | 10,000 |
-| SOCKS4 | 9,940 |
+| SOCKS4 | 9,945 |
 | SOCKS5 | 10,000 |
 | Protocol not stated by any source | 0 |
-| Seen in more than one scrape run | 9,998 |
+| Seen in more than one scrape run | 10,000 |
 | Sources registered | 882 (589 curated + 293 discovered) |
-| Sources that delivered proxies | 528 |
-| Candidates scraped this run | 1,677,298 |
+| Sources that delivered proxies | 478 |
+| Candidates scraped this run | 1,676,777 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 57s |
+| Scrape time | 61s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-13 01:21:45 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-13 07:51:26 UTC.
 
 <!-- footer:end -->
