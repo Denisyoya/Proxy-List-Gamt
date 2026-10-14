@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-14 02:25:35 UTC`
+Last run: `2026-10-14 07:52:05 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **1,108** |
-| HTTP | 729 |
-| HTTPS (verified TLS tunnel) | 39 |
-| SOCKS4 | 90 |
-| SOCKS5 | 285 |
-| Passed every check (stable) | 1,108 |
-| Median latency | 1578 ms |
-| Fastest | 182 ms |
-| Under 1 second | 200 |
+| Live proxies | **840** |
+| HTTP | 202 |
+| HTTPS (verified TLS tunnel) | 37 |
+| SOCKS4 | 91 |
+| SOCKS5 | 544 |
+| Passed every check (stable) | 840 |
+| Median latency | 4228 ms |
+| Fastest | 400 ms |
+| Under 1 second | 144 |
 | Sources registered | 882 (589 curated + 293 discovered) |
-| Sources that delivered proxies | 510 |
-| Candidates scraped | 1,530,616 |
-| Reachable on TCP | 12,560 |
+| Sources that delivered proxies | 516 |
+| Candidates scraped | 1,532,851 |
+| Reachable on TCP | 13,700 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 207s |
+| Runtime | 228s |
 
 <!-- stats:end -->
 
@@ -115,23 +115,23 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-10-14 00:55:50 UTC` - **no validation**, published as scraped
+Last scrape: `2026-10-14 05:56:08 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
 | Raw proxies published | **10,000** |
 | Unique endpoints | 10,000 |
 | HTTP | 10,000 |
-| SOCKS4 | 9,957 |
+| SOCKS4 | 9,964 |
 | SOCKS5 | 10,000 |
 | Protocol not stated by any source | 0 |
 | Seen in more than one scrape run | 10,000 |
 | Sources registered | 882 (589 curated + 293 discovered) |
-| Sources that delivered proxies | 502 |
-| Candidates scraped this run | 1,678,943 |
+| Sources that delivered proxies | 508 |
+| Candidates scraped this run | 1,532,457 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 62s |
+| Scrape time | 52s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-14 02:25:35 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-14 07:52:05 UTC.
 
 <!-- footer:end -->
