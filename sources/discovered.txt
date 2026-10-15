@@ -4352,3 +4352,4 @@ mixed ProxcyDev/Proxies/master/all.txt
 mixed dimaslanjaka/php-proxy-hunter/master/proxyChecker.php.txt
 mixed dimaslanjaka/php-proxy-hunter/master/proxyCheckerReal.php.txt
 # @ fatkhurrhn/fadev-proxy 2026-10-15
+# @ fabrice8/lips 2026-10-15
