@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-15 23:12:20 UTC`
+Last run: `2026-10-16 01:19:37 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **722** |
-| HTTP | 225 |
-| HTTPS (verified TLS tunnel) | 38 |
-| SOCKS4 | 90 |
-| SOCKS5 | 404 |
-| Passed every check (stable) | 722 |
-| Median latency | 2529 ms |
-| Fastest | 338 ms |
-| Under 1 second | 72 |
+| Live proxies | **1,226** |
+| HTTP | 822 |
+| HTTPS (verified TLS tunnel) | 37 |
+| SOCKS4 | 100 |
+| SOCKS5 | 301 |
+| Passed every check (stable) | 1,226 |
+| Median latency | 1264 ms |
+| Fastest | 186 ms |
+| Under 1 second | 392 |
 | Sources registered | 884 (589 curated + 295 discovered) |
-| Sources that delivered proxies | 493 |
-| Candidates scraped | 1,668,500 |
-| Reachable on TCP | 14,327 |
+| Sources that delivered proxies | 461 |
+| Candidates scraped | 1,487,558 |
+| Reachable on TCP | 12,270 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 214s |
+| Runtime | 218s |
 
 <!-- stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-15 23:12:20 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-16 01:19:37 UTC.
 
 <!-- footer:end -->
