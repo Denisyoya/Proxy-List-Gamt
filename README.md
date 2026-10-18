@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-18 00:45:42 UTC`
+Last run: `2026-10-18 05:11:55 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **530** |
-| HTTP | 201 |
-| HTTPS (verified TLS tunnel) | 38 |
-| SOCKS4 | 72 |
-| SOCKS5 | 255 |
-| Passed every check (stable) | 530 |
-| Median latency | 2184 ms |
-| Fastest | 432 ms |
-| Under 1 second | 153 |
+| Live proxies | **1,076** |
+| HTTP | 762 |
+| HTTPS (verified TLS tunnel) | 42 |
+| SOCKS4 | 100 |
+| SOCKS5 | 211 |
+| Passed every check (stable) | 1,076 |
+| Median latency | 1560 ms |
+| Fastest | 434 ms |
+| Under 1 second | 188 |
 | Sources registered | 884 (589 curated + 295 discovered) |
-| Sources that delivered proxies | 464 |
-| Candidates scraped | 1,690,877 |
-| Reachable on TCP | 13,054 |
+| Sources that delivered proxies | 462 |
+| Candidates scraped | 1,692,273 |
+| Reachable on TCP | 12,092 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 219s |
+| Runtime | 200s |
 
 <!-- stats:end -->
 
@@ -115,23 +115,23 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-10-18 00:28:23 UTC` - **no validation**, published as scraped
+Last scrape: `2026-10-18 05:03:46 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
 | Raw proxies published | **10,000** |
 | Unique endpoints | 10,000 |
 | HTTP | 10,000 |
-| SOCKS4 | 9,994 |
-| SOCKS5 | 10,000 |
+| SOCKS4 | 9,993 |
+| SOCKS5 | 9,999 |
 | Protocol not stated by any source | 0 |
-| Seen in more than one scrape run | 10,000 |
+| Seen in more than one scrape run | 9,997 |
 | Sources registered | 884 (589 curated + 295 discovered) |
-| Sources that delivered proxies | 447 |
-| Candidates scraped this run | 1,682,839 |
+| Sources that delivered proxies | 486 |
+| Candidates scraped this run | 1,693,621 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 54s |
+| Scrape time | 61s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-18 00:45:42 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-18 05:11:55 UTC.
 
 <!-- footer:end -->
