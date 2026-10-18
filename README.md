@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-18 13:31:42 UTC`
+Last run: `2026-10-18 16:45:51 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **1,733** |
-| HTTP | 1,504 |
-| HTTPS (verified TLS tunnel) | 38 |
-| SOCKS4 | 91 |
-| SOCKS5 | 136 |
-| Passed every check (stable) | 1,733 |
-| Median latency | 1089 ms |
-| Fastest | 550 ms |
-| Under 1 second | 484 |
+| Live proxies | **2,412** |
+| HTTP | 1,830 |
+| HTTPS (verified TLS tunnel) | 41 |
+| SOCKS4 | 92 |
+| SOCKS5 | 488 |
+| Passed every check (stable) | 2,412 |
+| Median latency | 2068 ms |
+| Fastest | 575 ms |
+| Under 1 second | 22 |
 | Sources registered | 884 (589 curated + 295 discovered) |
-| Sources that delivered proxies | 501 |
-| Candidates scraped | 1,685,417 |
-| Reachable on TCP | 12,927 |
+| Sources that delivered proxies | 483 |
+| Candidates scraped | 1,677,213 |
+| Reachable on TCP | 14,470 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 207s |
+| Runtime | 239s |
 
 <!-- stats:end -->
 
@@ -115,23 +115,23 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-10-18 09:32:17 UTC` - **no validation**, published as scraped
+Last scrape: `2026-10-18 13:32:22 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
 | Raw proxies published | **10,000** |
 | Unique endpoints | 10,000 |
 | HTTP | 10,000 |
-| SOCKS4 | 9,991 |
+| SOCKS4 | 9,993 |
 | SOCKS5 | 10,000 |
 | Protocol not stated by any source | 0 |
-| Seen in more than one scrape run | 9,998 |
+| Seen in more than one scrape run | 10,000 |
 | Sources registered | 884 (589 curated + 295 discovered) |
-| Sources that delivered proxies | 468 |
-| Candidates scraped this run | 1,538,531 |
+| Sources that delivered proxies | 509 |
+| Candidates scraped this run | 1,683,701 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 66s |
+| Scrape time | 35s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-18 13:31:42 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-18 16:45:51 UTC.
 
 <!-- footer:end -->
