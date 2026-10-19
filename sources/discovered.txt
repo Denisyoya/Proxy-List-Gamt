@@ -4357,3 +4357,4 @@ mixed dimaslanjaka/php-proxy-hunter/master/proxyCheckerReal.php.txt
 # @ Hyper-Solutions/hermes-scraper 2026-10-18
 # @ zyrexdz/proxy-scraper-checker 2026-10-18
 # @ 1234567Yang/cf-proxy-ex 2026-10-19
+# @ Halil-KAPLAN/ProxyScout 2026-10-19
