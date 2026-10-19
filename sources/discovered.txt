@@ -4359,3 +4359,4 @@ mixed dimaslanjaka/php-proxy-hunter/master/proxyCheckerReal.php.txt
 # @ 1234567Yang/cf-proxy-ex 2026-10-19
 # @ Halil-KAPLAN/ProxyScout 2026-10-19
 # @ TECHYAko/ash-proxy 2026-10-19
+# @ natelollar/nlol-proxy-creator 2026-10-19
