@@ -4361,3 +4361,9 @@ mixed dimaslanjaka/php-proxy-hunter/master/proxyCheckerReal.php.txt
 # @ TECHYAko/ash-proxy 2026-10-19
 # @ natelollar/nlol-proxy-creator 2026-10-19
 # @ g4dr/awesome-web-scraping 2026-10-19
+# @ MuhammadUsamaMX/Free-Proxy-Hunter 2026-10-20
+http MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/http.txt
+socks4 MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/socks4.txt
+socks5 MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/socks5.txt
+mixed MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/all.txt
+# @ omkarcloud/built-in-scraper 2026-10-20
