@@ -4360,3 +4360,4 @@ mixed dimaslanjaka/php-proxy-hunter/master/proxyCheckerReal.php.txt
 # @ Halil-KAPLAN/ProxyScout 2026-10-19
 # @ TECHYAko/ash-proxy 2026-10-19
 # @ natelollar/nlol-proxy-creator 2026-10-19
+# @ g4dr/awesome-web-scraping 2026-10-19
