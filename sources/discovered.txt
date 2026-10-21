@@ -1467,14 +1467,12 @@ socks5 7and1/free-proxy-list/main/proxies/protocols/socks5/data.txt
 mixed 7and1/free-proxy-list/main/proxies/all/data.txt
 # @ 6yyn/free-proxy-list 2026-10-07
 http 6yyn/free-proxy-list/main/http_proxy_list.txt
-http 6yyn/free-proxy-list/main/free_http_proxies.txt
 http 6yyn/free-proxy-list/main/http-proxies.txt
 http 6yyn/free-proxy-list/main/http_proxies.txt
 http 6yyn/free-proxy-list/main/proxies_http.txt
 http 6yyn/free-proxy-list/main/proxies_https.txt
 mixed 6yyn/free-proxy-list/main/all-proxies.txt
 mixed 6yyn/free-proxy-list/main/all_proxies.txt
-mixed 6yyn/free-proxy-list/main/active_proxies.txt
 mixed 6yyn/free-proxy-list/main/checked_proxies.txt
 # @ 600888/dlt698 2026-10-07
 # @ 3tel/proxy-rules 2026-10-07
