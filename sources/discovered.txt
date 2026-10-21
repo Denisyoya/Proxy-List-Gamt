@@ -4365,3 +4365,4 @@ socks4 MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/socks4.txt
 socks5 MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/socks5.txt
 mixed MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/all.txt
 # @ omkarcloud/built-in-scraper 2026-10-20
+# @ ming-14/proxy-pool 2026-10-21
