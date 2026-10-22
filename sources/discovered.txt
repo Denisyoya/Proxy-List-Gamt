@@ -4367,3 +4367,5 @@ mixed MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/all.txt
 # @ omkarcloud/built-in-scraper 2026-10-20
 # @ ming-14/proxy-pool 2026-10-21
 # @ nevenaywgmhe/tiktok-dm-blaster 2026-10-22
+# @ memr10330-tech/async-proxy-checker 2026-10-22
+mixed memr10330-tech/async-proxy-checker/main/proxies.txt
