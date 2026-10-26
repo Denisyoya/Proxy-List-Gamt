@@ -4370,3 +4370,5 @@ mixed MuhammadUsamaMX/Free-Proxy-Hunter/main/proxies/all.txt
 mixed memr10330-tech/async-proxy-checker/main/proxies.txt
 # @ nn0z/Proxies-Puller 2026-10-25
 # @ proxifly/free-socks5-proxies 2026-10-25
+# @ lucasfrag/yugioh-proxy 2026-10-26
+# @ proxyres/proxyres-rs 2026-10-20
