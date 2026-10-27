@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-27 12:48:25 UTC`
+Last run: `2026-10-27 18:22:22 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **564** |
-| HTTP | 208 |
-| HTTPS (verified TLS tunnel) | 34 |
-| SOCKS4 | 117 |
-| SOCKS5 | 238 |
-| Passed every check (stable) | 564 |
-| Median latency | 1534 ms |
-| Fastest | 442 ms |
-| Under 1 second | 70 |
+| Live proxies | **1,035** |
+| HTTP | 670 |
+| HTTPS (verified TLS tunnel) | 41 |
+| SOCKS4 | 78 |
+| SOCKS5 | 282 |
+| Passed every check (stable) | 1,035 |
+| Median latency | 2438 ms |
+| Fastest | 162 ms |
+| Under 1 second | 166 |
 | Sources registered | 886 (589 curated + 297 discovered) |
-| Sources that delivered proxies | 527 |
-| Candidates scraped | 1,701,367 |
-| Reachable on TCP | 12,598 |
+| Sources that delivered proxies | 529 |
+| Candidates scraped | 1,701,080 |
+| Reachable on TCP | 12,350 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 237s |
+| Runtime | 214s |
 
 <!-- stats:end -->
 
@@ -115,7 +115,7 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-10-27 12:16:30 UTC` - **no validation**, published as scraped
+Last scrape: `2026-10-27 18:07:23 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
@@ -123,15 +123,15 @@ Last scrape: `2026-10-27 12:16:30 UTC` - **no validation**, published as scraped
 | Unique endpoints | 10,000 |
 | HTTP | 10,000 |
 | SOCKS4 | 9,998 |
-| SOCKS5 | 9,998 |
+| SOCKS5 | 10,000 |
 | Protocol not stated by any source | 0 |
 | Seen in more than one scrape run | 10,000 |
-| Sources registered | 882 (589 curated + 293 discovered) |
-| Sources that delivered proxies | 454 |
-| Candidates scraped this run | 1,692,654 |
+| Sources registered | 886 (589 curated + 297 discovered) |
+| Sources that delivered proxies | 487 |
+| Candidates scraped this run | 1,695,364 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 53s |
+| Scrape time | 61s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-27 12:48:25 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-27 18:22:22 UTC.
 
 <!-- footer:end -->
