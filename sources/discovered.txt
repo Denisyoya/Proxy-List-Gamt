@@ -219,7 +219,6 @@
 mixed CB-X2-Jun/cf-proxyip-lists/main/proxyip.txt
 # @ Alisarani7021/fast-proxy 2026-10-09
 # @ 674542449/tunnelx-lite 2026-10-09
-mixed 674542449/tunnelx-lite/main/internal/routing/data/proxy-list.txt
 # @ 3381358378-commits/AINPC- 2026-10-09
 # @ 2839273551/SkyLearn 2026-10-09
 # @ 13657940158/KeeperSage 2026-10-09
@@ -242,7 +241,6 @@ mixed 674542449/tunnelx-lite/main/internal/routing/data/proxy-list.txt
 # @ xingluoyuankong/workbuddy2api-panel 2026-10-08
 # @ xiaoyy8/Big-Data-Analytics-and-Data-Visualization 2026-10-08
 # @ xh1337/for-Shadowrocket 2026-10-08
-mixed xh1337/for-Shadowrocket/main/RULE-SET_Personal_PROXY.list
 # @ xg-o/wp-rrs 2026-10-08
 # @ xaboy/form-create 2026-10-08
 # @ x2it/Relay 2026-10-08
@@ -577,13 +575,11 @@ socks5 stormsia/proxy-list/main/socks5.txt
 # @ solidjs/solid 2026-10-07
 # @ snove999/emby-proxy-list 2026-10-07
 mixed snove999/emby-proxy-list/main/all.txt
-mixed snove999/emby-proxy-list/main/proxies.txt
 # @ smg38/mihomo-net 2026-10-07
 # @ smallSheep123/paper-skills 2026-10-07
 # @ sm1ee/Sniper 2026-10-07
 # @ shumingyang-opencode/mattpocock-skills-zh-tw 2026-10-07
 # @ shulganovo/Proxylists 2026-10-07
-mixed shulganovo/Proxylists/main/proxies.txt
 # @ shubhamshendre/Free-Proxies 2026-10-07
 http shubhamshendre/Free-Proxies/main/http.txt
 socks4 shubhamshendre/Free-Proxies/main/socks4.txt
@@ -611,8 +607,6 @@ socks5 shubhamshendre/Free-Proxies/main/socks5.txt
 # @ rix4uni/fresh-proxy-list 2026-10-07
 mixed rix4uni/fresh-proxy-list/main/proxylist.txt
 # @ rickicode/free-proxy-gateway 2026-10-07
-mixed rickicode/free-proxy-gateway/main/output/live-proxies.json
-mixed rickicode/free-proxy-gateway/main/output/live-proxies.singbox.json
 # @ rianilham28/proxian 2026-10-07
 # @ revolttt511/local-proxy 2026-10-07
 # @ reservedbytes/proxyscraper 2026-10-07
@@ -721,16 +715,6 @@ socks5 mauricegift/free-proxies/master/files/socks5.json
 # @ malwareworld/MalwareWorld 2026-10-07
 # @ madbrolab/dian115 2026-10-07
 # @ lzwme/scoop-proxy-cn 2026-10-07
-http lzwme/scoop-proxy-cn/sync/bucket/bb-http-server.json
-http lzwme/scoop-proxy-cn/sync/bucket/cc-connect.json
-http lzwme/scoop-proxy-cn/sync/bucket/connect.json
-http lzwme/scoop-proxy-cn/sync/bucket/hello-http.json
-http lzwme/scoop-proxy-cn/sync/bucket/http-downloader.json
-http lzwme/scoop-proxy-cn/sync/bucket/http-prompt-py.json
-http lzwme/scoop-proxy-cn/sync/bucket/kt-connect.json
-http lzwme/scoop-proxy-cn/sync/bucket/omnisharp-http-net6.json
-http lzwme/scoop-proxy-cn/sync/bucket/omnisharp-http.json
-http lzwme/scoop-proxy-cn/sync/bucket/openvpn-connect.json
 # @ lzwme/homebrew-cn 2026-10-07
 # @ lyr05142002-dot/Q7Y 2026-10-07
 # @ lusipad/browser-agent 2026-10-07
@@ -794,7 +778,6 @@ socks5 kevinriverrrr-sudo/auto-proxies/main/socks5.txt
 # @ kattyGG/daxionglink 2026-10-07
 # @ kanze1/kanzei-code 2026-10-07
 # @ kamysheblid/working_proxies 2026-10-07
-mixed kamysheblid/working_proxies/master/working_proxies.txt
 # @ kamaho-source/shokusuu1 2026-10-07
 # @ kaixin-aa/ai-beginner-36 2026-10-07
 # @ just-not-google/BiNeuron 2026-10-07
@@ -815,8 +798,6 @@ mixed kamysheblid/working_proxies/master/working_proxies.txt
 # @ iwvw/Momomi 2026-10-07
 # @ itrunswap/Kivo 2026-10-07
 # @ istio/istio 2026-10-07
-http istio/istio/master/istioctl/pkg/writer/envoy/configdump/testdata/routes/istio-gateway-http-route-prefix/output.txt
-http istio/istio/master/istioctl/pkg/writer/envoy/configdump/testdata/routes/k8s-gateway-http-route-path-prefix/output.txt
 # @ iplocate/free-proxy-list 2026-10-07
 mixed iplocate/free-proxy-list/main/all-proxies.txt
 http iplocate/free-proxy-list/main/protocols/http.txt
@@ -884,8 +865,6 @@ http handeveloper1/DailyProxy---Auto-Update-List/main/Proxy-mzyui/http.txt
 # @ find-xposed-magisk/MyIP 2026-10-07
 # @ ferama/rospo 2026-10-07
 # @ ezgy1984/Aggregated-Split-ProxyList 2026-10-07
-mixed ezgy1984/Aggregated-Split-ProxyList/main/USA_ALL.txt
-mixed ezgy1984/Aggregated-Split-ProxyList/main/all_working.txt
 # @ euphoria95/external-tor-proxies 2026-10-07
 mixed euphoria95/external-tor-proxies/main/proxies.txt
 # @ eriklaldo/rshEPOZG 2026-10-07
@@ -909,15 +888,6 @@ mixed efebilici/reddit-proxy-list/main/reddit_proxies.json
 # @ edwin45168899/voice-activated-assistant.py 2026-10-07
 # @ edwiin1688/voice-activated-assistant.py 2026-10-07
 # @ duzyn/scoop-cn 2026-10-07
-http duzyn/scoop-cn/master/bucket/cc-connect.json
-http duzyn/scoop-cn/master/bucket/connect.json
-http duzyn/scoop-cn/master/bucket/hello-http.json
-http duzyn/scoop-cn/master/bucket/http-downloader.json
-http duzyn/scoop-cn/master/bucket/omnisharp-http-net6.json
-http duzyn/scoop-cn/master/bucket/omnisharp-http.json
-http duzyn/scoop-cn/master/bucket/openvpn-connect.json
-http duzyn/scoop-cn/master/bucket/simple-http-server.json
-http duzyn/scoop-cn/master/bucket/ti-connect-ce-software-np.json
 # @ dsqp4/vBXBDzdD 2026-10-07
 # @ dsqp4/llQMDIZH 2026-10-07
 # @ dsqp4/XADZIExB 2026-10-07
@@ -949,7 +919,6 @@ socks5 dinoz0rg/proxy-list/main/scraped_proxies/socks5.txt
 # @ dazhi666666/agent-router 2026-10-07
 # @ davyzhong/finBoss 2026-10-07
 # @ daveytang/ruleset 2026-10-07
-mixed daveytang/ruleset/main/release/proxy-list.txt
 # @ datphan192125/- 2026-10-07
 # @ databay-labs/free-proxy-list 2026-10-07
 http databay-labs/free-proxy-list/master/http.txt
@@ -980,7 +949,6 @@ http claude89757/free_https_proxies/main/isz_https_proxies.txt
 # @ cheesyx-rudy/cheesyx-rudy 2026-10-07
 # @ changsheng0804-blip/demos 2026-10-07
 # @ chalie56/proxy-multi-protocol-checker 2026-10-07
-mixed chalie56/proxy-multi-protocol-checker/main/proxies.txt
 # @ cecial668/-SwiftFlow-WMS-AGV- 2026-10-07
 # @ caryyu0306/proxy-list 2026-10-07
 # @ cannoncoug/yVWqtaEW 2026-10-07
@@ -992,7 +960,6 @@ mixed chalie56/proxy-multi-protocol-checker/main/proxies.txt
 # @ bout2bus/thepiratebay-proxy-list 2026-10-07
 # @ boringstudent/codebuddy-switch 2026-10-07
 # @ bojieli/ai-agent-book 2026-10-07
-http bojieli/ai-agent-book/main/chapter5/log-diagnosis/validation/runs/exp5-8-live-http-mcp-20260730-053403/live_replays.json
 # @ bkn06210/zero-trust-gateway 2026-10-07
 # @ binardy-ai/Nexveil 2026-10-07
 # @ bifrost-proxy/bifrost 2026-10-07
@@ -1086,7 +1053,6 @@ mixed XigmaDev/proxy/main/proxies.txt
 # @ XavierLin19/china-patent-software-copyright-skill 2026-10-07
 # @ XMhead/Super-High 2026-10-07
 # @ WinFactorAI/Next-DBM 2026-10-07
-mixed WinFactorAI/Next-DBM/main/all-languages.json
 # @ Wanted000/Socks5-Proxies 2026-10-07
 socks5 Wanted000/Socks5-Proxies/main/socks5.txt
 # @ WKoishi/model_router 2026-10-07
@@ -1317,7 +1283,6 @@ socks5 HB47x/proxy-list/main/worldwide_socks5.txt
 # @ Fairen8/slext 2026-10-07
 # @ EvilGenius-dot/RustMinerSystem 2026-10-07
 # @ Europanlimeade375/9router_proxy 2026-10-07
-mixed Europanlimeade375/9router_proxy/main/proxy-sources.json
 # @ Esethu1974/sgproxy 2026-10-07
 # @ ErcinDedeoglu/proxies 2026-10-07
 http ErcinDedeoglu/proxies/main/proxies/http.txt
@@ -1344,15 +1309,9 @@ mixed Durgaa17/cf-sg-proxies/main/proxies_working_simple.txt
 mixed Durgaa17/cf-sg-proxies/main/proxies.txt
 mixed Durgaa17/cf-sg-proxies/main/proxies_simple.txt
 # @ DogeLakeDev/ScriptsForMinecraftServer 2026-10-07
-http DogeLakeDev/ScriptsForMinecraftServer/main/http/http-client.env.json
 # @ Dimasssss/free_proxy 2026-10-07
 # @ Deuteriumvillagegreen361/IntraSocks 2026-10-07
 # @ Denisyoya/Proxy-List-Gamt 2026-10-07
-http Denisyoya/Proxy-List-Gamt/main/proxy/http.txt
-http Denisyoya/Proxy-List-Gamt/main/proxy/https.txt
-socks4 Denisyoya/Proxy-List-Gamt/main/proxy/socks4.txt
-socks5 Denisyoya/Proxy-List-Gamt/main/proxy/socks5.txt
-mixed Denisyoya/Proxy-List-Gamt/main/proxy/all.txt
 # @ Delta-Kronecker/Vpn-Gate 2026-10-07
 # @ Delta-Kronecker/Tor-Bridges-Collector 2026-10-07
 # @ Deji-Techh/opencode-free-proxy 2026-10-07
@@ -1389,7 +1348,6 @@ mixed Ch4120N/Ch4120N-Proxy-List/master/proxies/all.txt
 # @ CakeSystem/hashcake 2026-10-07
 # @ CH6666nb/xljkzs 2026-10-07
 # @ CH3NGYZ/test-github-proxies 2026-10-07
-mixed CH3NGYZ/test-github-proxies/main/proxies.txt
 # @ CB-X2-Jun/proxy-lists 2026-10-07
 mixed CB-X2-Jun/proxy-lists/main/proxy.txt
 # @ Btk-Project/hajimi 2026-10-07
@@ -1410,7 +1368,6 @@ mixed BlacKSnowDot0/Proxy-Pulse/main/all.txt
 mixed Bes-js/public-proxy-list/main/proxies.txt
 mixed Bes-js/public-proxy-list/main/proxies_geolocation.json
 # @ Bashmek/Proxy-Collector 2026-10-07
-mixed Bashmek/Proxy-Collector/main/working_proxies.txt
 # @ Back-T0/renameProxies 2026-10-07
 # @ AssistOS-AI/proxies 2026-10-07
 # @ Arimayuki03/workbuddy-cockpit 2026-10-07
@@ -1426,16 +1383,9 @@ socks4 Anonym0usWork1221/Free-Proxies/main/proxy_files/socks4_proxies.txt
 socks5 Anonym0usWork1221/Free-Proxies/main/proxy_files/socks5_proxies.txt
 # @ Ann011414/advanced-algebra-notes 2026-10-07
 # @ AnAverageBeing/openshield-blocklists 2026-10-07
-socks AnAverageBeing/openshield-blocklists/main/raw/firehol_socks_proxy_30d.txt
-http AnAverageBeing/openshield-blocklists/main/raw/firehol_ssl_proxies_30d.txt
 http AnAverageBeing/openshield-blocklists/main/raw/proxyscrape_http.txt
 socks4 AnAverageBeing/openshield-blocklists/main/raw/proxyscrape_socks4.txt
 socks5 AnAverageBeing/openshield-blocklists/main/raw/proxyscrape_socks5.txt
-http AnAverageBeing/openshield-blocklists/main/feeds/http-proxies/ipv4-cidrs.txt
-http AnAverageBeing/openshield-blocklists/main/feeds/http-proxies/ipv4.txt
-http AnAverageBeing/openshield-blocklists/main/feeds/http-proxies/ipv6-cidrs.txt
-http AnAverageBeing/openshield-blocklists/main/feeds/http-proxies/ipv6.txt
-socks4 AnAverageBeing/openshield-blocklists/main/feeds/socks4-proxies/ipv4-cidrs.txt
 # @ Altars3668/luci-app-frpc 2026-10-07
 # @ Allen-xxa/ComfyNexus 2026-10-07
 # @ Alexia-Hxz/FastAPIProject 2026-10-07
@@ -1535,7 +1485,6 @@ mixed 398001/ProxysList/main/all_working.txt
 # @ robb3n/petrel 2026-10-06
 # @ qlw088697-ui/codex-troubleshooting 2026-10-06
 # @ qiuqidenvhai/XRZagentGUI 2026-10-06
-mixed qiuqidenvhai/XRZagentGUI/main/all_platforms_report.json
 # @ permargon/wqRLlzvg 2026-10-06
 # @ permargon/sfWuqarN 2026-10-06
 # @ pengkangzhen/otlet 2026-10-06
@@ -1553,7 +1502,6 @@ mixed qiuqidenvhai/XRZagentGUI/main/all_platforms_report.json
 # @ monosans/proxy-scraper-checker 2026-10-06
 # @ modefa888/File_Flask 2026-10-06
 # @ mins0n/rules 2026-10-06
-mixed mins0n/rules/main/vod_proxy.list
 # @ miaom4702-art/zzz-chat 2026-10-06
 # @ mezantrop/ts-warp 2026-10-06
 # @ mendoncanoe/proxychains-rs 2026-10-06
@@ -1691,7 +1639,6 @@ socks5 b4mbo-o/Check-Free-Proxy/main/alive_socks5.txt
 # @ Raveena2781/opsiphon 2026-10-06
 # @ ROCSI-eu/Telemetry-Attestation-Gateway 2026-10-06
 # @ Qitu/proxyList 2026-10-06
-mixed Qitu/proxyList/main/Proxy.list
 # @ QAQAQ-cookie/FluxSwap-DEX 2026-10-06
 # @ Practice019/multi2api 2026-10-06
 # @ PNUops/pickle-proxy-agent 2026-10-06
@@ -1742,7 +1689,6 @@ mixed NikolaiT/free-proxy-list/main/proxies/ips.txt
 # @ 9Soul-Reaper/ClipGlass 2026-10-06
 # @ 86cloudyun-afk/dsh-imperator 2026-10-06
 # @ 674542449/tunnel-pro 2026-10-06
-mixed 674542449/tunnel-pro/master/internal/routing/data/proxy-list.txt
 # @ 45645885/- 2026-10-06
 # @ 2026-Teecher-Team-C/platform-server 2026-10-06
 # @ 2026-Teecher-Team-C/platform-agent 2026-10-06
@@ -1923,11 +1869,9 @@ http IPParrot/proxy_ips/main/proxies/http.txt
 http IPParrot/proxy_ips/main/proxies/https.txt
 socks4 IPParrot/proxy_ips/main/proxies/socks4.txt
 socks5 IPParrot/proxy_ips/main/proxies/socks5.txt
-mixed IPParrot/proxy_ips/main/proxies/ips.txt
 # @ HASSAAS/frpadmin-client 2026-10-05
 # @ GoetheDady/pi-zh-cn 2026-10-05
 # @ Endericedragon/promatic 2026-10-05
-mixed Endericedragon/promatic/master/forced_proxy.txt
 # @ Doorham/CodexPlugins 2026-10-05
 # @ Colduction/proxykit-go 2026-10-05
 # @ Cirno-Mira/net-ops-toolbox 2026-10-05
@@ -1943,7 +1887,6 @@ mixed Endericedragon/promatic/master/forced_proxy.txt
 # @ 000214075/aethertunnel 2026-10-05
 # @ yxxbc/gqy-agent 2026-10-04
 # @ yohoten/Auto_registration 2026-10-04
-mixed yohoten/Auto_registration/main/proxies.txt
 # @ yehao9589/yehaoproxy 2026-10-04
 # @ xyvfx7/unlimited-bandwidth-proxies 2026-10-04
 # @ wuyou0016/ivpn-xyz 2026-10-04
@@ -1994,10 +1937,6 @@ mixed cizik5064-arch/proxies/main/proxies.txt
 # @ api-evangelist/scrapfly 2026-10-04
 # @ api-evangelist/nimbleway 2026-10-04
 # @ api-evangelist/ngrok 2026-10-04
-http api-evangelist/ngrok/main/collections/ngrok-edges-https-api.opencollection.json
-http api-evangelist/ngrok/main/collections/ngrok-edges-https-api.postman_collection.json
-http api-evangelist/ngrok/main/json-schema/https-edge.json
-http api-evangelist/ngrok/main/postman/ngrok-edges-https-api.postman_collection.json
 # @ api-evangelist/hyperbrowser 2026-10-04
 # @ api-evangelist/envoy-proxy 2026-10-04
 # @ api-evangelist/api-proxies 2026-10-04
@@ -2106,7 +2045,6 @@ mixed TuanMinPay/live-proxy/master/all.txt
 # @ July21126/homework-file-archiver 2026-10-03
 # @ JiangZi0721/Experiment-for-learning 2026-10-03
 # @ JakobAIOdev/smythstoys-monitor 2026-10-03
-mixed JakobAIOdev/smythstoys-monitor/main/proxies.example.txt
 # @ JGtaka/culture-link 2026-10-03
 # @ GateCross/ms_tmdb 2026-10-03
 # @ GD-Attack/GD-socket5 2026-10-03
@@ -2428,7 +2366,6 @@ socks5 VAX-001/free-proxy/main/socks5.json
 # @ feeling-pure/pure-gin-vue-admin 2026-09-30
 # @ fancha0/Proxy-rules 2026-09-30
 # @ eve2ptp/self-app-rules 2026-09-30
-mixed eve2ptp/self-app-rules/main/proxy.json
 # @ euhv/proxy-list 2026-09-30
 mixed euhv/proxy-list/main/proxy_001.txt
 mixed euhv/proxy-list/main/proxy_002.txt
@@ -2632,9 +2569,7 @@ mixed euhv/proxy-list/main/proxy_002.txt
 # @ EugeneJian/growatt-unified-api 2026-09-29
 # @ Emopeny/calibre-web-patches 2026-09-29
 # @ DylanSmith025/ProxyList 2026-09-29
-mixed DylanSmith025/ProxyList/main/Proxy.list
 # @ DiMAKES/proxy-list 2026-09-29
-mixed DiMAKES/proxy-list/main/list-for-proxy.txt
 # @ CubeQuants/cubequants 2026-09-29
 # @ CoCoTeaNet/CyreneAdmin 2026-09-29
 # @ Brianlucca/cinesorte-backend 2026-09-29
@@ -2948,7 +2883,6 @@ mixed MrGuyMan-code/my-proxy-lib/main/free-proxy-list.txt
 # @ draiagent/ai-to-agent-knowledge-management-method 2026-09-25
 # @ draiagent/ai-to-agent-codex-switcher 2026-09-25
 # @ dongqianyuan/website_proxy 2026-09-25
-mixed dongqianyuan/website_proxy/main/website_proxy.list
 # @ dechuanjiaka/ip66-proxy-guide 2026-09-25
 # @ coffegorio/self-hosted-browser-vpn 2026-09-25
 # @ code-prometheus/proxy-bridge 2026-09-25
@@ -3041,7 +2975,6 @@ mixed relayglass/free-proxy-list/main/all.txt
 # @ lazyvip/gemini-watermark-remover-pro 2026-09-24
 # @ kingrzkx/light_api_gateway 2026-09-24
 # @ kevin178plus/ks1-sample-api 2026-09-24
-mixed kevin178plus/ks1-sample-api/main/free_api_test/free8/test_result_proxy.txt
 # @ kaifandi8-droid/patent-second-opinion 2026-09-24
 # @ jiangyi3265/crowlook-admin 2026-09-24
 # @ izhaorui/Zr.Admin.NET 2026-09-24
@@ -3183,7 +3116,6 @@ mixed kevin178plus/ks1-sample-api/main/free_api_test/free8/test_result_proxy.txt
 # @ hsushjk/not-gh-proxy 2026-09-23
 # @ hexiaofeier/hehe-development-potential-assessment 2026-09-23
 # @ han-cczu/vps-monitor 2026-09-23
-mixed han-cczu/vps-monitor/main/server/internal/proxy/render/testdata/all.golden.json
 # @ grizzzzzzzy/my-proxy-chat-project 2026-09-23
 # @ gogoore/vPswDGUD 2026-09-23
 # @ gogoore/nKOTyWFT 2026-09-23
@@ -3815,7 +3747,6 @@ mixed mishakorzik/Free-Proxy/main/proxy.txt
 # @ Nasro-B/Codex_Gratuit 2026-09-16
 # @ NEUwpy/chuchuzhao 2026-09-16
 # @ MyElevenChen/Linux-C-HTTP- 2026-09-16
-http MyElevenChen/Linux-C-HTTP-/main/v0.6_http_parse/CMakeLists.txt
 # @ JaguarJack/catch-admin 2026-09-16
 # @ Jacob-z-p/algorithm-journey 2026-09-16
 # @ Huzhenyuan-art/idempotency-key-proxy 2026-09-16
@@ -3862,7 +3793,6 @@ mixed qamrixtech/isitproxy/main/proxy.txt
 # @ lfr0401/tech-knowledge 2026-09-15
 # @ kjf0720/09code 2026-09-15
 # @ kingsnakerrr/proxy 2026-09-15
-mixed kingsnakerrr/proxy/main/emby_proxy.list
 # @ kb791325/miaoda-apps 2026-09-15
 # @ jy02534655/data-proxy 2026-09-15
 # @ juxiaopeng/AI-Website-Cloner-Template 2026-09-15
@@ -4090,8 +4020,6 @@ mixed kingsnakerrr/proxy/main/emby_proxy.list
 # @ motorookina/Daru 2026-09-12
 # @ mc-miner/MCMiner 2026-09-12
 # @ mariey99/mariey99 2026-09-12
-mixed mariey99/mariey99/main/Proxy.list
-mixed mariey99/mariey99/main/ProxyGFW.list
 # @ lyan0220/ModernNav 2026-09-12
 # @ linuxhex/devops 2026-09-12
 # @ laoluonb/openvpn-web-manager 2026-09-12
@@ -4170,7 +4098,6 @@ socks5 cmahmud/proxies/main/gold/socks5.txt
 # @ xaoxuu/gh-api 2026-09-11
 # @ webDxx/daigong-appmini 2026-09-11
 # @ wanhutiger/agent-egress-proxies 2026-09-11
-mixed wanhutiger/agent-egress-proxies/main/proxy-findings.json
 # @ vains-Sofia/website-proxy 2026-09-11
 # @ unfallenwill/menshen 2026-09-11
 # @ sobird/murph 2026-09-11
@@ -4373,3 +4300,4 @@ mixed memr10330-tech/async-proxy-checker/main/proxies.txt
 # @ lucasfrag/yugioh-proxy 2026-10-26
 # @ proxyres/proxyres-rs 2026-10-20
 # @ Lord1Egypt/proxy-collector 2026-10-28
+# @ OtakuAvery/iplist 2026-10-29
