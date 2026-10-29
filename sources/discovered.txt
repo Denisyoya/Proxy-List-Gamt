@@ -4372,3 +4372,4 @@ mixed memr10330-tech/async-proxy-checker/main/proxies.txt
 # @ proxifly/free-socks5-proxies 2026-10-25
 # @ lucasfrag/yugioh-proxy 2026-10-26
 # @ proxyres/proxyres-rs 2026-10-20
+# @ Lord1Egypt/proxy-collector 2026-10-28
