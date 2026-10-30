@@ -4301,3 +4301,5 @@ mixed memr10330-tech/async-proxy-checker/main/proxies.txt
 # @ proxyres/proxyres-rs 2026-10-20
 # @ Lord1Egypt/proxy-collector 2026-10-28
 # @ OtakuAvery/iplist 2026-10-29
+# @ cmalf/MuseAI-1B-Token-Unlocker 2026-10-29
+# @ hack-ita/mysquidscanner 2026-10-29
