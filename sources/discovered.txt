@@ -4303,3 +4303,8 @@ mixed memr10330-tech/async-proxy-checker/main/proxies.txt
 # @ OtakuAvery/iplist 2026-10-29
 # @ cmalf/MuseAI-1B-Token-Unlocker 2026-10-29
 # @ hack-ita/mysquidscanner 2026-10-29
+# @ SoraaaID/proxy-scraper 2026-10-30
+http SoraaaID/proxy-scraper/main/http.txt
+socks4 SoraaaID/proxy-scraper/main/socks4.txt
+socks5 SoraaaID/proxy-scraper/main/socks5.txt
+# @ dsh-plugins/dsh-network-settings 2026-10-30
