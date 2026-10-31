@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-10-31 06:34:27 UTC`
+Last run: `2026-10-31 13:01:35 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **1,100** |
-| HTTP | 872 |
-| HTTPS (verified TLS tunnel) | 38 |
-| SOCKS4 | 77 |
-| SOCKS5 | 148 |
-| Passed every check (stable) | 1,100 |
-| Median latency | 1085 ms |
-| Fastest | 374 ms |
-| Under 1 second | 444 |
+| Live proxies | **1,744** |
+| HTTP | 1,440 |
+| HTTPS (verified TLS tunnel) | 41 |
+| SOCKS4 | 72 |
+| SOCKS5 | 228 |
+| Passed every check (stable) | 1,744 |
+| Median latency | 1846 ms |
+| Fastest | 512 ms |
+| Under 1 second | 202 |
 | Sources registered | 808 (589 curated + 219 discovered) |
-| Sources that delivered proxies | 483 |
-| Candidates scraped | 1,686,066 |
-| Reachable on TCP | 13,449 |
+| Sources that delivered proxies | 445 |
+| Candidates scraped | 1,692,001 |
+| Reachable on TCP | 16,288 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 238s |
+| Runtime | 244s |
 
 <!-- stats:end -->
 
@@ -115,7 +115,7 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-10-31 01:55:20 UTC` - **no validation**, published as scraped
+Last scrape: `2026-10-31 08:06:05 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
@@ -127,11 +127,11 @@ Last scrape: `2026-10-31 01:55:20 UTC` - **no validation**, published as scraped
 | Protocol not stated by any source | 0 |
 | Seen in more than one scrape run | 10,000 |
 | Sources registered | 808 (589 curated + 219 discovered) |
-| Sources that delivered proxies | 474 |
-| Candidates scraped this run | 1,693,380 |
+| Sources that delivered proxies | 439 |
+| Candidates scraped this run | 1,686,431 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 67s |
+| Scrape time | 89s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-10-31 06:34:27 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-10-31 13:01:35 UTC.
 
 <!-- footer:end -->
