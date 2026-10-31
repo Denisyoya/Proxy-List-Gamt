@@ -4303,3 +4303,5 @@ socks5 SoraaaID/proxy-scraper/main/socks5.txt
 # @ task4z/unblockedgames 2026-10-30
 # @ lkrjangid1/Awesome-Warez 2026-10-31
 # @ the67kid67/dgsn-pr0xy-network 2026-10-30
+# @ mllef1/Proxy-finder-and-checker 2026-10-31
+# @ oldavery/iplist 2026-10-31
