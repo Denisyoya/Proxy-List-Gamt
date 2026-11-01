@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-11-01 09:41:45 UTC`
+Last run: `2026-11-01 16:23:10 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **3,067** |
-| HTTP | 2,705 |
-| HTTPS (verified TLS tunnel) | 39 |
-| SOCKS4 | 82 |
-| SOCKS5 | 277 |
-| Passed every check (stable) | 3,067 |
-| Median latency | 1390 ms |
-| Fastest | 566 ms |
-| Under 1 second | 600 |
-| Sources registered | 807 (589 curated + 218 discovered) |
-| Sources that delivered proxies | 511 |
-| Candidates scraped | 1,682,906 |
-| Reachable on TCP | 16,256 |
+| Live proxies | **3,137** |
+| HTTP | 2,822 |
+| HTTPS (verified TLS tunnel) | 38 |
+| SOCKS4 | 87 |
+| SOCKS5 | 226 |
+| Passed every check (stable) | 3,137 |
+| Median latency | 1316 ms |
+| Fastest | 494 ms |
+| Under 1 second | 628 |
+| Sources registered | 810 (589 curated + 221 discovered) |
+| Sources that delivered proxies | 536 |
+| Candidates scraped | 1,523,819 |
+| Reachable on TCP | 16,449 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 243s |
+| Runtime | 226s |
 
 <!-- stats:end -->
 
@@ -115,7 +115,7 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-11-01 07:01:48 UTC` - **no validation**, published as scraped
+Last scrape: `2026-11-01 14:15:11 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
@@ -125,13 +125,13 @@ Last scrape: `2026-11-01 07:01:48 UTC` - **no validation**, published as scraped
 | SOCKS4 | 9,997 |
 | SOCKS5 | 10,000 |
 | Protocol not stated by any source | 0 |
-| Seen in more than one scrape run | 9,999 |
-| Sources registered | 808 (589 curated + 219 discovered) |
-| Sources that delivered proxies | 523 |
-| Candidates scraped this run | 1,529,591 |
+| Seen in more than one scrape run | 10,000 |
+| Sources registered | 807 (589 curated + 218 discovered) |
+| Sources that delivered proxies | 467 |
+| Candidates scraped this run | 1,683,728 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 62s |
+| Scrape time | 57s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-11-01 09:41:45 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-11-01 16:23:10 UTC.
 
 <!-- footer:end -->
