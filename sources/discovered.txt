@@ -4317,3 +4317,5 @@ http j0rd1s3rr4n0/api/main/proxy/results/classified/http.txt
 socks4 j0rd1s3rr4n0/api/main/proxy/results/classified/socks4.txt
 socks5 j0rd1s3rr4n0/api/main/proxy/results/classified/socks5.txt
 mixed j0rd1s3rr4n0/api/main/proxy/results/valid.txt
+# @ bright-cn/China-proxies 2026-11-02
+# @ bright-cn/rest-api-with-curl 2026-11-02
