@@ -4311,3 +4311,9 @@ mixed solproxy/sol-free-proxy-list/main/all.txt
 # @ SalvationuraHawk/AL-YOUTUBE-resocket 2026-11-01
 # @ Adriem/low-ink-playtest-magic 2026-11-01
 # @ capiedrav/youtube-summarizer 2026-11-01
+# @ ZorrentSystems/Website-Block-Checker 2026-11-02
+# @ j0rd1s3rr4n0/api 2026-11-02
+http j0rd1s3rr4n0/api/main/proxy/results/classified/http.txt
+socks4 j0rd1s3rr4n0/api/main/proxy/results/classified/socks4.txt
+socks5 j0rd1s3rr4n0/api/main/proxy/results/classified/socks5.txt
+mixed j0rd1s3rr4n0/api/main/proxy/results/valid.txt

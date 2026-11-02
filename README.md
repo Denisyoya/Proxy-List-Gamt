@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-11-02 02:51:19 UTC`
+Last run: `2026-11-02 10:06:33 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **3,416** |
-| HTTP | 3,029 |
+| Live proxies | **609** |
+| HTTP | 236 |
 | HTTPS (verified TLS tunnel) | 43 |
-| SOCKS4 | 92 |
-| SOCKS5 | 294 |
-| Passed every check (stable) | 3,416 |
-| Median latency | 1328 ms |
-| Fastest | 714 ms |
-| Under 1 second | 1,093 |
-| Sources registered | 810 (589 curated + 221 discovered) |
-| Sources that delivered proxies | 468 |
-| Candidates scraped | 1,676,643 |
-| Reachable on TCP | 15,702 |
+| SOCKS4 | 72 |
+| SOCKS5 | 299 |
+| Passed every check (stable) | 609 |
+| Median latency | 2500 ms |
+| Fastest | 508 ms |
+| Under 1 second | 17 |
+| Sources registered | 814 (589 curated + 225 discovered) |
+| Sources that delivered proxies | 451 |
+| Candidates scraped | 1,528,725 |
+| Reachable on TCP | 16,872 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 210s |
+| Runtime | 257s |
 
 <!-- stats:end -->
 
@@ -115,7 +115,7 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-11-02 01:55:25 UTC` - **no validation**, published as scraped
+Last scrape: `2026-11-02 09:00:06 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
@@ -127,11 +127,11 @@ Last scrape: `2026-11-02 01:55:25 UTC` - **no validation**, published as scraped
 | Protocol not stated by any source | 0 |
 | Seen in more than one scrape run | 10,000 |
 | Sources registered | 810 (589 curated + 221 discovered) |
-| Sources that delivered proxies | 434 |
-| Candidates scraped this run | 1,504,387 |
+| Sources that delivered proxies | 525 |
+| Candidates scraped this run | 1,683,089 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 66s |
+| Scrape time | 38s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-11-02 02:51:19 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-11-02 10:06:33 UTC.
 
 <!-- footer:end -->
