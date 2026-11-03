@@ -4333,3 +4333,4 @@ mixed j0rd1s3rr4n0/api/main/proxy/results/valid.txt
 # @ bright-cn/ebay-proxies 2026-11-03
 # @ bright-cn/social-media-proxies 2026-11-03
 # @ bright-cn/Awesome-Web-Scraping 2026-11-03
+# @ PitKub/ProxyCraft 2026-11-03
