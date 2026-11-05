@@ -4365,3 +4365,4 @@ mixed j0rd1s3rr4n0/api/main/proxy/results/valid.txt
 # @ bright-cn/Scraping-hotels-google-travel 2026-11-04
 # @ bright-cn/France-Proxies 2026-11-04
 # @ Materialshashock/Free-ProtonVPN-Plus 2026-11-05
+# @ PortParakeetShift/clion 2026-11-05
