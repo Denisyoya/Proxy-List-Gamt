@@ -4368,3 +4368,6 @@ mixed j0rd1s3rr4n0/api/main/proxy/results/valid.txt
 # @ PortParakeetShift/clion 2026-11-05
 # @ novaestellar/novaproxy 2026-11-06
 # @ villagekeeperflash/clion 2026-11-06
+# @ Adromedary/Adromedary-s-Scrybe 2026-11-06
+# @ Pursuerdellacoupling/clion 2026-11-06
+# @ gravitygovernorhinge/clion 2026-11-06
