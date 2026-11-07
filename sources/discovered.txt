@@ -4371,3 +4371,4 @@ mixed j0rd1s3rr4n0/api/main/proxy/results/valid.txt
 # @ Adromedary/Adromedary-s-Scrybe 2026-11-06
 # @ Pursuerdellacoupling/clion 2026-11-06
 # @ gravitygovernorhinge/clion 2026-11-06
+# @ chainski/ProxyScraper 2026-11-07
