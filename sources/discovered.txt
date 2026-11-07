@@ -4372,3 +4372,9 @@ mixed j0rd1s3rr4n0/api/main/proxy/results/valid.txt
 # @ Pursuerdellacoupling/clion 2026-11-06
 # @ gravitygovernorhinge/clion 2026-11-06
 # @ chainski/ProxyScraper 2026-11-07
+# @ Dahono-com/free-proxy-list 2026-11-07
+http Dahono-com/free-proxy-list/main/proxies/http.txt
+http Dahono-com/free-proxy-list/main/proxies/https.txt
+socks4 Dahono-com/free-proxy-list/main/proxies/socks4.txt
+socks5 Dahono-com/free-proxy-list/main/proxies/socks5.txt
+mixed Dahono-com/free-proxy-list/main/proxies/all.txt
