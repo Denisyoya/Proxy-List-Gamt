@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08 02:47:14 UTC",
+ "generated_at": "2026-11-08 09:37:31 UTC",
  "raw_published": 10000,
  "raw_endpoints": 10000,
  "raw_http": 10000,
@@ -8,7 +8,7 @@
  "raw_unspecified": 0,
  "raw_multi_run": 10000,
  "raw_median_listings": 102,
- "raw_newest_age_seconds": 10,
+ "raw_newest_age_seconds": 9,
  "validated": false,
  "mode": "scrape-only",
  "sources": 819,
@@ -19,13 +19,13 @@
  "sources_discovered": 230,
  "sources_ok": 534,
  "sources_empty": 2,
- "sources_failed": 3,
- "sources_skipped": 280,
- "candidates": 1690627,
- "scrape_seconds": 65,
+ "sources_failed": 9,
+ "sources_skipped": 274,
+ "candidates": 1690028,
+ "scrape_seconds": 89,
  "raw_total": 250000,
- "raw_multi_hits": 249462,
- "raw_median_age_seconds": -1,
+ "raw_multi_hits": 249667,
+ "raw_median_age_seconds": -2,
  "raw_ttl_hours": 6.0,
- "runtime_seconds": 76
+ "runtime_seconds": 100
 }
