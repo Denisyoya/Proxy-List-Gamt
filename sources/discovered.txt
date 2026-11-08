@@ -2611,10 +2611,6 @@ mixed t0mer/free-proxies/main/proxies.json
 # @ Peter267/github-oauth-proxy 2026-09-28
 # @ NoelJudeNoel/open-free-router 2026-09-28
 # @ NetroIndonesia/proxy-live 2026-09-28
-http NetroIndonesia/proxy-live/main/http.txt
-socks4 NetroIndonesia/proxy-live/main/socks4.txt
-socks5 NetroIndonesia/proxy-live/main/socks5.txt
-mixed NetroIndonesia/proxy-live/main/proxy.txt
 # @ MrGuyMan-code/my-proxy-lib 2026-09-28
 mixed MrGuyMan-code/my-proxy-lib/main/free-proxy-list.txt
 # @ MorganWeistling/JackalRouter 2026-09-28
