@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-11-09 09:41:18 UTC`
+Last run: `2026-11-09 20:05:05 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **2,226** |
-| HTTP | 2,018 |
-| HTTPS (verified TLS tunnel) | 36 |
-| SOCKS4 | 72 |
-| SOCKS5 | 131 |
-| Passed every check (stable) | 2,226 |
-| Median latency | 1527 ms |
-| Fastest | 528 ms |
-| Under 1 second | 157 |
-| Sources registered | 815 (589 curated + 226 discovered) |
-| Sources that delivered proxies | 458 |
-| Candidates scraped | 1,692,303 |
-| Reachable on TCP | 16,177 |
+| Live proxies | **2,545** |
+| HTTP | 2,285 |
+| HTTPS (verified TLS tunnel) | 32 |
+| SOCKS4 | 77 |
+| SOCKS5 | 181 |
+| Passed every check (stable) | 2,545 |
+| Median latency | 1366 ms |
+| Fastest | 593 ms |
+| Under 1 second | 470 |
+| Sources registered | 816 (589 curated + 227 discovered) |
+| Sources that delivered proxies | 468 |
+| Candidates scraped | 1,534,610 |
+| Reachable on TCP | 15,451 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 224s |
+| Runtime | 214s |
 
 <!-- stats:end -->
 
@@ -115,7 +115,7 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-11-09 06:14:25 UTC` - **no validation**, published as scraped
+Last scrape: `2026-11-09 16:37:25 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
@@ -127,11 +127,11 @@ Last scrape: `2026-11-09 06:14:25 UTC` - **no validation**, published as scraped
 | Protocol not stated by any source | 0 |
 | Seen in more than one scrape run | 10,000 |
 | Sources registered | 815 (589 curated + 226 discovered) |
-| Sources that delivered proxies | 523 |
-| Candidates scraped this run | 1,537,050 |
+| Sources that delivered proxies | 513 |
+| Candidates scraped this run | 1,693,994 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 56s |
+| Scrape time | 57s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-11-09 09:41:18 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-11-09 20:05:05 UTC.
 
 <!-- footer:end -->

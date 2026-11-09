@@ -4375,3 +4375,5 @@ socks4 Dahono-com/free-proxy-list/main/proxies/socks4.txt
 socks5 Dahono-com/free-proxy-list/main/proxies/socks5.txt
 mixed Dahono-com/free-proxy-list/main/proxies/all.txt
 # @ jn-s3s/proxy-list 2026-11-08
+# @ mrgusux/automatic-proxy 2026-11-09
+mixed mrgusux/automatic-proxy/main/outputs/keep_alive_proxies.txt
