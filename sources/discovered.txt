@@ -4377,3 +4377,4 @@ mixed Dahono-com/free-proxy-list/main/proxies/all.txt
 # @ jn-s3s/proxy-list 2026-11-08
 # @ mrgusux/automatic-proxy 2026-11-09
 mixed mrgusux/automatic-proxy/main/outputs/keep_alive_proxies.txt
+# @ theexpie/Osama 2026-11-10
