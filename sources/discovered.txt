@@ -4379,3 +4379,9 @@ mixed Dahono-com/free-proxy-list/main/proxies/all.txt
 mixed mrgusux/automatic-proxy/main/outputs/keep_alive_proxies.txt
 # @ theexpie/Osama 2026-11-10
 # @ 0XRV0/BLANKDISK_v5.5-ddos-tool 2026-11-10
+# @ fusion-proxy/free-proxy-list 2026-11-10
+http fusion-proxy/free-proxy-list/main/proxies/http.txt
+socks4 fusion-proxy/free-proxy-list/main/proxies/socks4.txt
+socks5 fusion-proxy/free-proxy-list/main/proxies/socks5.txt
+mixed fusion-proxy/free-proxy-list/main/proxies/all.txt
+# @ VarnishVendor/clion 2026-11-10
