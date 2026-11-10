@@ -4378,3 +4378,4 @@ mixed Dahono-com/free-proxy-list/main/proxies/all.txt
 # @ mrgusux/automatic-proxy 2026-11-09
 mixed mrgusux/automatic-proxy/main/outputs/keep_alive_proxies.txt
 # @ theexpie/Osama 2026-11-10
+# @ 0XRV0/BLANKDISK_v5.5-ddos-tool 2026-11-10
