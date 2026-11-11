@@ -4382,3 +4382,5 @@ socks4 fusion-proxy/free-proxy-list/main/proxies/socks4.txt
 socks5 fusion-proxy/free-proxy-list/main/proxies/socks5.txt
 mixed fusion-proxy/free-proxy-list/main/proxies/all.txt
 # @ VarnishVendor/clion 2026-11-10
+# @ fusion-proxy/proxy-anonymity-test 2026-11-11
+# @ bright-cn/python-syntax-errors 2026-11-11
