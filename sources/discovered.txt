@@ -884,7 +884,6 @@ socks4 elliottophellia/proxylist/master/results/socks4/global/socks4_checked.txt
 socks5 elliottophellia/proxylist/master/results/socks5/global/psocks5_checked.txt
 socks5 elliottophellia/proxylist/master/results/socks5/global/socks5_checked.txt
 # @ efebilici/reddit-proxy-list 2026-10-07
-mixed efebilici/reddit-proxy-list/main/reddit_proxies.json
 # @ edwin45168899/voice-activated-assistant.py 2026-10-07
 # @ edwiin1688/voice-activated-assistant.py 2026-10-07
 # @ duzyn/scoop-cn 2026-10-07
