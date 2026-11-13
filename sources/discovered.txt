@@ -4386,3 +4386,12 @@ mixed fusion-proxy/free-proxy-list/main/proxies/all.txt
 # @ bright-cn/python-syntax-errors 2026-11-11
 # @ Densityuclash/Norton-360-Deluxe-Free 2026-11-11
 # @ sjeon87/proxyctl 2026-11-12
+# @ FusionProxies/free-proxy-list 2026-11-13
+http FusionProxies/free-proxy-list/main/proxies/http.txt
+socks4 FusionProxies/free-proxy-list/main/proxies/socks4.txt
+socks5 FusionProxies/free-proxy-list/main/proxies/socks5.txt
+mixed FusionProxies/free-proxy-list/main/proxies/all.txt
+# @ FusionProxies/proxy-anonymity-test 2026-11-12
+# @ FusionProxies/proxy-checker 2026-11-12
+# @ ProxyVerity/Proxy-Checker-Widget 2026-11-12
+# @ KyRoNiX23/Veyron 2026-11-11
