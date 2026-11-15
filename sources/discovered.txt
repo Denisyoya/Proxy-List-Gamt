@@ -4395,3 +4395,4 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ ProxyVerity/Proxy-Checker-Widget 2026-11-12
 # @ KyRoNiX23/Veyron 2026-11-11
 # @ automatape2/proxy_scraping 2026-11-14
+# @ mogelpeter/proxy-scraper 2026-11-15
