@@ -4396,3 +4396,5 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ KyRoNiX23/Veyron 2026-11-11
 # @ automatape2/proxy_scraping 2026-11-14
 # @ mogelpeter/proxy-scraper 2026-11-15
+# @ DownloadBreaker/lightspeed-bypass-proxy 2026-11-15
+# @ YubaSoftware/Technetium 2026-11-15
