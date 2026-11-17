@@ -4399,3 +4399,6 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ DownloadBreaker/lightspeed-bypass-proxy 2026-11-15
 # @ YubaSoftware/Technetium 2026-11-15
 # @ Major-Woolfi/XClient 2026-11-17
+# @ hlebglebbie/alive-proxy 2026-11-15
+# @ bhuvanpddahal/barrex 2026-11-17
+# @ triposat/published-blogs 2026-11-17
