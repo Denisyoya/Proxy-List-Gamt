@@ -4398,3 +4398,4 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ mogelpeter/proxy-scraper 2026-11-15
 # @ DownloadBreaker/lightspeed-bypass-proxy 2026-11-15
 # @ YubaSoftware/Technetium 2026-11-15
+# @ Major-Woolfi/XClient 2026-11-17
