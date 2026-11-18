@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-11-18 17:04:49 UTC`
+Last run: `2026-11-18 23:23:11 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **2,008** |
-| HTTP | 1,749 |
-| HTTPS (verified TLS tunnel) | 39 |
-| SOCKS4 | 88 |
-| SOCKS5 | 166 |
-| Passed every check (stable) | 2,008 |
-| Median latency | 1296 ms |
-| Fastest | 240 ms |
-| Under 1 second | 303 |
+| Live proxies | **444** |
+| HTTP | 219 |
+| HTTPS (verified TLS tunnel) | 42 |
+| SOCKS4 | 81 |
+| SOCKS5 | 141 |
+| Passed every check (stable) | 444 |
+| Median latency | 1508 ms |
+| Fastest | 183 ms |
+| Under 1 second | 125 |
 | Sources registered | 823 (589 curated + 234 discovered) |
-| Sources that delivered proxies | 534 |
-| Candidates scraped | 1,679,352 |
-| Reachable on TCP | 14,783 |
+| Sources that delivered proxies | 479 |
+| Candidates scraped | 1,662,718 |
+| Reachable on TCP | 17,496 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 195s |
+| Runtime | 208s |
 
 <!-- stats:end -->
 
@@ -115,23 +115,23 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-11-18 10:19:03 UTC` - **no validation**, published as scraped
+Last scrape: `2026-11-18 18:55:42 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
 | Raw proxies published | **10,000** |
 | Unique endpoints | 10,000 |
 | HTTP | 10,000 |
-| SOCKS4 | 9,999 |
+| SOCKS4 | 9,998 |
 | SOCKS5 | 10,000 |
 | Protocol not stated by any source | 0 |
 | Seen in more than one scrape run | 10,000 |
 | Sources registered | 823 (589 curated + 234 discovered) |
-| Sources that delivered proxies | 480 |
-| Candidates scraped this run | 1,676,519 |
+| Sources that delivered proxies | 535 |
+| Candidates scraped this run | 1,679,700 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 73s |
+| Scrape time | 53s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-11-18 17:04:49 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-11-18 23:23:11 UTC.
 
 <!-- footer:end -->

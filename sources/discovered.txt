@@ -4408,3 +4408,8 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ mubokoxstopme/hackersx-unblocked-websites 2026-11-16
 # @ goastian/midopress 2026-11-18
 # @ octoprox/octoprox 2026-11-16
+# @ hproxy-com/flipper-zero-app 2026-11-18
+# @ ItzJoker2YT-city/proxy-finder 2026-11-18
+# @ bolivian-peru/taskmarket-proxies-sx 2026-11-18
+# @ LimitlessCode/proxy-harvester 2026-11-18
+# @ Chychyndr/us-proxy-auditor 2026-11-18
