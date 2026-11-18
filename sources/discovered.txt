@@ -4404,3 +4404,7 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ triposat/published-blogs 2026-11-17
 # @ wattmarespade/socks5-proxy-server 2026-11-17
 # @ Nelmad/country-proxy 2026-11-18
+# @ cangurel81/Nethyx 2026-11-18
+# @ mubokoxstopme/hackersx-unblocked-websites 2026-11-16
+# @ goastian/midopress 2026-11-18
+# @ octoprox/octoprox 2026-11-16
