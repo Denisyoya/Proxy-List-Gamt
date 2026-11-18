@@ -4402,3 +4402,4 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ hlebglebbie/alive-proxy 2026-11-15
 # @ bhuvanpddahal/barrex 2026-11-17
 # @ triposat/published-blogs 2026-11-17
+# @ wattmarespade/socks5-proxy-server 2026-11-17
