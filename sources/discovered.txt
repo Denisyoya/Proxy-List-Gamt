@@ -4413,3 +4413,4 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ bolivian-peru/taskmarket-proxies-sx 2026-11-18
 # @ LimitlessCode/proxy-harvester 2026-11-18
 # @ Chychyndr/us-proxy-auditor 2026-11-18
+# @ cyqsimon/ProxyList 2026-11-19
