@@ -4414,3 +4414,4 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ LimitlessCode/proxy-harvester 2026-11-18
 # @ Chychyndr/us-proxy-auditor 2026-11-18
 # @ cyqsimon/ProxyList 2026-11-19
+# @ chinayury/FreeProxyPool 2026-11-19
