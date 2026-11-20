@@ -4415,3 +4415,4 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ Chychyndr/us-proxy-auditor 2026-11-18
 # @ cyqsimon/ProxyList 2026-11-19
 # @ chinayury/FreeProxyPool 2026-11-19
+# @ omkarcloud/mobile-de-scraper 2026-11-20
