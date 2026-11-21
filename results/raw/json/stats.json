@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21 18:11:05 UTC",
+ "generated_at": "2026-11-21 23:20:52 UTC",
  "raw_published": 10000,
  "raw_endpoints": 10000,
  "raw_http": 10000,
@@ -8,7 +8,7 @@
  "raw_unspecified": 0,
  "raw_multi_run": 10000,
  "raw_median_listings": 106,
- "raw_newest_age_seconds": 9,
+ "raw_newest_age_seconds": 8,
  "validated": false,
  "mode": "scrape-only",
  "sources": 823,
@@ -17,15 +17,15 @@
  "sources_websites": 324,
  "sources_indonesia": 27,
  "sources_discovered": 234,
- "sources_ok": 527,
+ "sources_ok": 538,
  "sources_empty": 0,
- "sources_failed": 11,
- "sources_skipped": 285,
- "candidates": 1670866,
- "scrape_seconds": 57,
+ "sources_failed": 3,
+ "sources_skipped": 282,
+ "candidates": 1673946,
+ "scrape_seconds": 48,
  "raw_total": 250000,
- "raw_multi_hits": 249789,
+ "raw_multi_hits": 249844,
  "raw_median_age_seconds": -2,
  "raw_ttl_hours": 6.0,
- "runtime_seconds": 68
+ "runtime_seconds": 58
 }
