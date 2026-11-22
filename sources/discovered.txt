@@ -4416,3 +4416,8 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ cyqsimon/ProxyList 2026-11-19
 # @ chinayury/FreeProxyPool 2026-11-19
 # @ omkarcloud/mobile-de-scraper 2026-11-20
+# @ proxy302/proxy-list-format-converter 2026-11-20
+# @ Delta-Kronecker/DeltaSF 2026-11-22
+# @ proxy302/proxy-list-health-check 2026-11-18
+# @ Edsel-Rahimi/YUEL 2026-11-22
+# @ Flatdatrellis/clion 2026-11-19
