@@ -4421,3 +4421,7 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ proxy302/proxy-list-health-check 2026-11-18
 # @ Edsel-Rahimi/YUEL 2026-11-22
 # @ Flatdatrellis/clion 2026-11-19
+# @ oxylabs/free-proxy-list 2026-11-23
+# @ 5forzin/singularity 2026-11-23
+# @ BannerAce/AL-YOUTUBE-resocket 2026-11-23
+# @ az4if/Cloudora 2026-11-23
