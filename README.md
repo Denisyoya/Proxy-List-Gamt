@@ -30,25 +30,25 @@ expires on its own.
 
 <!-- stats:start -->
 
-Last run: `2026-11-23 21:44:29 UTC`
+Last run: `2026-11-24 05:34:00 UTC`
 
 | Metric | Value |
 | --- | --- |
-| Live proxies | **1,309** |
-| HTTP | 1,108 |
-| HTTPS (verified TLS tunnel) | 39 |
-| SOCKS4 | 92 |
-| SOCKS5 | 107 |
-| Passed every check (stable) | 1,309 |
-| Median latency | 1412 ms |
-| Fastest | 198 ms |
-| Under 1 second | 391 |
-| Sources registered | 823 (589 curated + 234 discovered) |
-| Sources that delivered proxies | 533 |
-| Candidates scraped | 1,673,739 |
-| Reachable on TCP | 14,309 |
+| Live proxies | **459** |
+| HTTP | 271 |
+| HTTPS (verified TLS tunnel) | 38 |
+| SOCKS4 | 77 |
+| SOCKS5 | 106 |
+| Passed every check (stable) | 459 |
+| Median latency | 1223 ms |
+| Fastest | 196 ms |
+| Under 1 second | 177 |
+| Sources registered | 833 (589 curated + 244 discovered) |
+| Sources that delivered proxies | 547 |
+| Candidates scraped | 1,672,157 |
+| Reachable on TCP | 14,958 |
 | Validation rounds | 2 (first pass + 1 confirmation) |
-| Runtime | 201s |
+| Runtime | 179s |
 
 <!-- stats:end -->
 
@@ -115,23 +115,23 @@ is known to work.
 
 <!-- raw-stats:start -->
 
-Last scrape: `2026-11-23 16:30:51 UTC` - **no validation**, published as scraped
+Last scrape: `2026-11-24 03:01:34 UTC` - **no validation**, published as scraped
 
 | Metric | Value |
 | --- | --- |
 | Raw proxies published | **10,000** |
 | Unique endpoints | 10,000 |
 | HTTP | 10,000 |
-| SOCKS4 | 9,999 |
+| SOCKS4 | 10,000 |
 | SOCKS5 | 10,000 |
 | Protocol not stated by any source | 0 |
 | Seen in more than one scrape run | 10,000 |
 | Sources registered | 823 (589 curated + 234 discovered) |
-| Sources that delivered proxies | 472 |
-| Candidates scraped this run | 1,673,321 |
+| Sources that delivered proxies | 532 |
+| Candidates scraped this run | 1,514,255 |
 | Raw pool size (accumulated) | 250,000 |
 | Raw pool TTL | 6.0 h |
-| Scrape time | 73s |
+| Scrape time | 47s |
 
 <!-- raw-stats:end -->
 
@@ -474,6 +474,6 @@ Released under the [MIT License](LICENSE).
 
 Community channel: https://whatsapp.com/channel/0029VbC6a5C7oQhUeajM3q1i
 
-Script by Gametturxux. Automated build refreshed at 2026-11-23 21:44:29 UTC.
+Script by Gametturxux. Automated build refreshed at 2026-11-24 05:34:00 UTC.
 
 <!-- footer:end -->

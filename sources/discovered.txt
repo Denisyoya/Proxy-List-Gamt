@@ -673,7 +673,6 @@ mixed parserpp/ip_ports/main/proxy.list
 mixed notfaj/ester/master/proxies.txt
 # @ nooblk-98/docker-socks5-proxy 2026-10-07
 # @ nokturbay-droid/carflow-proxies 2026-10-07
-mixed nokturbay-droid/carflow-proxies/main/proxies/all_proxies.txt
 # @ noctiro/getproxy 2026-10-07
 http noctiro/getproxy/master/file/http.txt
 http noctiro/getproxy/master/file/http_with_protocol.txt
@@ -4425,3 +4424,16 @@ mixed FusionProxies/free-proxy-list/main/proxies/all.txt
 # @ 5forzin/singularity 2026-11-23
 # @ BannerAce/AL-YOUTUBE-resocket 2026-11-23
 # @ az4if/Cloudora 2026-11-23
+# @ lalipa2003-arch/FreeProxies 2026-11-24
+http lalipa2003-arch/FreeProxies/main/http/anzoycd9867d2.log.txt
+http lalipa2003-arch/FreeProxies/main/http/bhqzx248f7d00.log.txt
+http lalipa2003-arch/FreeProxies/main/http/cvmic54d808f9.log.txt
+http lalipa2003-arch/FreeProxies/main/http/dejddjn18373s.log.txt
+http lalipa2003-arch/FreeProxies/main/http/dnphi585c24f7.log.txt
+http lalipa2003-arch/FreeProxies/main/http/eaqid3a3faba8.log.txt
+http lalipa2003-arch/FreeProxies/main/http/ehiwm0d66b18a.log.txt
+http lalipa2003-arch/FreeProxies/main/http/ezmqc739b4b60.log.txt
+http lalipa2003-arch/FreeProxies/main/http/gucume41e19b2.log.txt
+http lalipa2003-arch/FreeProxies/main/http/jsudhshd82.log.txt
+# @ acidvegas/proxytools 2026-11-23
+mixed acidvegas/proxytools/master/proxy_sources.txt
