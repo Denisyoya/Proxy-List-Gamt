@@ -4437,3 +4437,10 @@ http lalipa2003-arch/FreeProxies/main/http/gucume41e19b2.log.txt
 http lalipa2003-arch/FreeProxies/main/http/jsudhshd82.log.txt
 # @ acidvegas/proxytools 2026-11-23
 mixed acidvegas/proxytools/master/proxy_sources.txt
+# @ oxylabs/socks5-udp-golang 2026-11-24
+# @ z6sGD/SCORS 2026-11-24
+# @ oxylabs/web-scraping-r 2026-11-24
+# @ oxylabs/high-bandwidth-proxies 2026-11-24
+# @ oxylabs/daily-proxies 2026-11-24
+# @ oxylabs/socks5-udp-python 2026-11-24
+# @ oxylabs/what-is-curl 2026-11-24
