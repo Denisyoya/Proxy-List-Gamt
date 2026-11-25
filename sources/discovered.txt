@@ -4460,3 +4460,4 @@ http lalipa2003-arch/YourFavoriteProxies/main/http/idapa6425207c.log.txt
 # @ oxylabs/tamilyogi-proxy 2026-11-24
 # @ 0verfl0w767/kr-proxy-list-parser 2026-11-24
 mixed 0verfl0w767/kr-proxy-list-parser/main/proxy.json
+# @ DeltaBureaucratArm/clion 2026-11-25
