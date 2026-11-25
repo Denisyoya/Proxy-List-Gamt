@@ -4444,3 +4444,19 @@ mixed acidvegas/proxytools/master/proxy_sources.txt
 # @ oxylabs/daily-proxies 2026-11-24
 # @ oxylabs/socks5-udp-python 2026-11-24
 # @ oxylabs/what-is-curl 2026-11-24
+# @ lalipa2003-arch/YourFavoriteProxies 2026-11-25
+http lalipa2003-arch/YourFavoriteProxies/main/http/anzoycd9867d2.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/bhqzx248f7d00.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/cvmic54d808f9.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/dejddjn18373s.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/dnphi585c24f7.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/eaqid3a3faba8.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/ehiwm0d66b18a.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/ezmqc739b4b60.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/gucume41e19b2.log.txt
+http lalipa2003-arch/YourFavoriteProxies/main/http/idapa6425207c.log.txt
+# @ barriermayorpush/clion 2026-11-23
+# @ oxylabs/udp-proxies 2026-11-24
+# @ oxylabs/tamilyogi-proxy 2026-11-24
+# @ 0verfl0w767/kr-proxy-list-parser 2026-11-24
+mixed 0verfl0w767/kr-proxy-list-parser/main/proxy.json
