@@ -1373,7 +1373,6 @@ socks5 Argh94/ProxyProwler/main/proxy_output/SOCKS5.txt
 # @ Anthony-Hoo/llmapi-logger 2026-10-07
 # @ Anonym0usWork1221/Free-Proxies 2026-10-07
 http Anonym0usWork1221/Free-Proxies/main/proxy_files/http_proxies.txt
-http Anonym0usWork1221/Free-Proxies/main/proxy_files/https_proxies.txt
 socks4 Anonym0usWork1221/Free-Proxies/main/proxy_files/socks4_proxies.txt
 socks5 Anonym0usWork1221/Free-Proxies/main/proxy_files/socks5_proxies.txt
 # @ Ann011414/advanced-algebra-notes 2026-10-07
@@ -4460,3 +4459,4 @@ http lalipa2003-arch/YourFavoriteProxies/main/http/idapa6425207c.log.txt
 # @ 0verfl0w767/kr-proxy-list-parser 2026-11-24
 mixed 0verfl0w767/kr-proxy-list-parser/main/proxy.json
 # @ DeltaBureaucratArm/clion 2026-11-25
+# @ Luno-pr/free-proxies 2026-11-25
