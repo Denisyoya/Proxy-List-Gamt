@@ -979,7 +979,6 @@ mixed azestkingscrown/Free_Proxy_List/main/working_proxies.txt
 # @ atauenis/webone 2026-10-07
 # @ aslan9/pku_quantllm 2026-10-07
 # @ asim4998/proxybrowser-list 2026-10-07
-mixed asim4998/proxybrowser-list/main/proxies.json
 # @ asifshaikhtsn/shaikh 2026-10-07
 mixed asifshaikhtsn/shaikh/master/data/all_proxies.json
 mixed asifshaikhtsn/shaikh/master/data/live_proxies.json
@@ -4460,3 +4459,6 @@ http lalipa2003-arch/YourFavoriteProxies/main/http/idapa6425207c.log.txt
 mixed 0verfl0w767/kr-proxy-list-parser/main/proxy.json
 # @ DeltaBureaucratArm/clion 2026-11-25
 # @ Luno-pr/free-proxies 2026-11-25
+# @ HarmonicLizard/clion 2026-11-26
+# @ changying00/ProxyProof 2026-11-26
+# @ mahdixser/SX-DDoS-Panel 2026-11-26
