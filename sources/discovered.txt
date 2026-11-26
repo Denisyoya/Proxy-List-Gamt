@@ -1042,7 +1042,6 @@ socks5 Zaeem20/FREE_PROXIES_LIST/master/socks5.txt
 # @ Xsenus/ProxyHarbor 2026-10-07
 # @ Xnuvers007/free-proxy 2026-10-07
 mixed Xnuvers007/free-proxy/main/proxy_active.txt
-mixed Xnuvers007/free-proxy/main/proxy_scheme_active.txt
 mixed Xnuvers007/free-proxy/main/proxy.txt
 mixed Xnuvers007/free-proxy/main/proxy_scheme.txt
 # @ XigmaDev/proxy 2026-10-07
