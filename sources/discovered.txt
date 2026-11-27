@@ -4463,3 +4463,8 @@ mixed 0verfl0w767/kr-proxy-list-parser/main/proxy.json
 # @ changying00/ProxyProof 2026-11-26
 # @ mahdixser/SX-DDoS-Panel 2026-11-26
 # @ istopwg/ippsample 2026-11-26
+# @ nguyennoben-a11y/proxy-line-parser 2026-11-27
+# @ chneau/proxy 2026-11-26
+# @ jin-ting2520/proxy_pool_new 2026-11-27
+# @ proxyproinsight/omeganexus-fresh-proxy-feed 2026-11-27
+http proxyproinsight/omeganexus-fresh-proxy-feed/main/lists/http.txt
