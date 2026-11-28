@@ -4468,3 +4468,5 @@ mixed 0verfl0w767/kr-proxy-list-parser/main/proxy.json
 # @ jin-ting2520/proxy_pool_new 2026-11-27
 # @ proxyproinsight/omeganexus-fresh-proxy-feed 2026-11-27
 http proxyproinsight/omeganexus-fresh-proxy-feed/main/lists/http.txt
+# @ NN-Coder/EdCube-STABLE 2026-11-28
+# @ Sign-Function/Tor-Bridges-Collector 2026-11-28
