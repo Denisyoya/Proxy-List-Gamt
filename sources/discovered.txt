@@ -4470,3 +4470,11 @@ mixed 0verfl0w767/kr-proxy-list-parser/main/proxy.json
 http proxyproinsight/omeganexus-fresh-proxy-feed/main/lists/http.txt
 # @ NN-Coder/EdCube-STABLE 2026-11-28
 # @ Sign-Function/Tor-Bridges-Collector 2026-11-28
+# @ Hungvip69/free-proxy-list 2026-11-28
+http Hungvip69/free-proxy-list/main/proxies/http.txt
+http Hungvip69/free-proxy-list/main/proxies/https.txt
+socks5 Hungvip69/free-proxy-list/main/proxies/socks5.txt
+mixed Hungvip69/free-proxy-list/main/proxies/all.txt
+# @ The-Web-Scraping-Insider/awesome-scraping-tools 2026-11-28
+# @ anton-zherebkin/pulse-proxy-checker 2026-11-28
+# @ The-Web-Scraping-Insider/web-scraping-expert-amas 2026-11-28
